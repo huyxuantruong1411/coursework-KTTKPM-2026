@@ -1,0 +1,743 @@
+================================================================================
+PROJECT DUMP
+================================================================================
+
+Generated: 2026-05-08 22:48:03.770681
+Root: D:\TDMU\2025-2026\HKII_2025-2026\KTTKPM\coursework\manga_frontend
+
+================================================================================
+PROJECT STATS
+================================================================================
+
+{
+  "total_files": 17,
+  "total_dirs": 17,
+  "total_size": "10.99 KB",
+  "extensions": {
+    ".ts": 13,
+    ".py": 1,
+    ".json": 1,
+    ".tsx": 1,
+    ".css": 1
+  }
+}
+
+================================================================================
+PROJECT TREE
+================================================================================
+
+D:\TDMU\2025-2026\HKII_2025-2026\KTTKPM\coursework\manga_frontend
+├── dump.py
+├── package.json
+├── public
+├── src
+│   ├── app
+│   │   ├── admin
+│   │   ├── auth
+│   │   ├── lists
+│   │   ├── manga
+│   │   ├── page.tsx
+│   │   └── read
+│   ├── components
+│   │   ├── features
+│   │   ├── layout
+│   │   └── ui
+│   ├── hooks
+│   │   ├── useAuth.ts
+│   │   ├── useMangaQueries.ts
+│   │   └── useReader.ts
+│   ├── services
+│   │   ├── api.ts
+│   │   ├── auth.service.ts
+│   │   ├── chapter.service.ts
+│   │   ├── history.service.ts
+│   │   └── manga.service.ts
+│   ├── store
+│   │   └── useAppStore.ts
+│   ├── styles
+│   │   └── globals.css
+│   └── types
+│       ├── chapter.ts
+│       ├── manga.ts
+│       └── user.ts
+└── tailwind.config.ts
+
+================================================================================
+IMPORTANT FILES
+================================================================================
+
+
+--------------------------------------------------------------------------------
+FILE: D:\TDMU\2025-2026\HKII_2025-2026\KTTKPM\coursework\manga_frontend\package.json
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+FILE: D:\TDMU\2025-2026\HKII_2025-2026\KTTKPM\coursework\manga_frontend\tailwind.config.ts
+--------------------------------------------------------------------------------
+
+
+
+================================================================================
+SOURCE FILES
+================================================================================
+
+
+================================================================================
+FILE: dump.py
+SIZE: 10.99 KB
+SHA256: c29d9abb4ca9c4a9ba5d062bd2037f0902692f2e523c3868955e8e7bf78fc0c8
+================================================================================
+
+import os
+import json
+import hashlib
+from datetime import datetime
+
+# =========================================================
+# CONFIG
+# =========================================================
+
+OUTPUT_FILE = "project_dump.txt"
+
+MAX_FILE_SIZE_MB = 2
+
+MAX_FILE_SIZE = MAX_FILE_SIZE_MB * 1024 * 1024
+
+# =========================================================
+# IGNORE DIRECTORIES
+# =========================================================
+
+IGNORE_DIRS = {
+    "node_modules",
+    ".next",
+    "dist",
+    "build",
+    ".git",
+    ".idea",
+    ".vscode",
+    "__pycache__",
+    ".pytest_cache",
+    ".turbo",
+    ".vercel",
+    ".cache",
+    "coverage",
+    "logs",
+    "tmp",
+    "temp",
+    "vendor",
+    "bin",
+    "obj",
+    "out"
+}
+
+# =========================================================
+# IGNORE FILES
+# =========================================================
+
+IGNORE_FILES = {
+    OUTPUT_FILE.lower(),
+    ".ds_store",
+    "thumbs.db"
+}
+
+# =========================================================
+# IGNORE EXTENSIONS
+# =========================================================
+
+IGNORE_EXTENSIONS = {
+    # Images
+    ".png",
+    ".jpg",
+    ".jpeg",
+    ".gif",
+    ".webp",
+    ".svg",
+    ".ico",
+
+    # Video
+    ".mp4",
+    ".mov",
+    ".avi",
+    ".mkv",
+
+    # Audio
+    ".mp3",
+    ".wav",
+
+    # Archives
+    ".zip",
+    ".rar",
+    ".7z",
+    ".tar",
+    ".gz",
+
+    # Binary
+    ".exe",
+    ".dll",
+    ".so",
+    ".bin",
+    ".pyc",
+    ".class",
+
+    # Documents
+    ".pdf",
+    ".docx",
+    ".pptx",
+    ".xlsx",
+
+    # Database
+    ".db",
+    ".sqlite",
+    ".sqlite3",
+
+    # Logs
+    ".log"
+}
+
+# =========================================================
+# IMPORTANT FILES
+# =========================================================
+
+IMPORTANT_FILES = {
+    "package.json",
+    "tsconfig.json",
+    "next.config.js",
+    "next.config.ts",
+    "vite.config.ts",
+    "vite.config.js",
+    "tailwind.config.js",
+    "tailwind.config.ts",
+    ".env.example",
+    ".env",
+    "docker-compose.yml",
+    "Dockerfile",
+    "README.md"
+}
+
+# =========================================================
+# HELPERS
+# =========================================================
+
+def should_ignore_dir(dirname: str) -> bool:
+    return dirname.lower() in IGNORE_DIRS
+
+
+def should_ignore_file(filename: str) -> bool:
+
+    lower = filename.lower()
+
+    if lower in IGNORE_FILES:
+        return True
+
+    _, ext = os.path.splitext(lower)
+
+    if ext in IGNORE_EXTENSIONS:
+        return True
+
+    return False
+
+
+def get_file_hash(filepath: str) -> str:
+    """
+    SHA256 hash file.
+    """
+
+    sha256 = hashlib.sha256()
+
+    try:
+        with open(filepath, "rb") as f:
+            for chunk in iter(lambda: f.read(8192), b""):
+                sha256.update(chunk)
+
+        return sha256.hexdigest()
+
+    except Exception:
+        return "ERROR"
+
+
+def format_size(size_bytes: int) -> str:
+
+    for unit in ["B", "KB", "MB", "GB"]:
+
+        if size_bytes < 1024:
+            return f"{size_bytes:.2f} {unit}"
+
+        size_bytes /= 1024
+
+    return f"{size_bytes:.2f} TB"
+
+
+# =========================================================
+# BUILD ASCII TREE
+# =========================================================
+
+def build_ascii_tree(root_dir: str, prefix: str = "") -> str:
+
+    entries = []
+
+    try:
+
+        with os.scandir(root_dir) as scan:
+
+            for entry in sorted(scan, key=lambda e: e.name.lower()):
+
+                if entry.is_dir():
+
+                    if should_ignore_dir(entry.name):
+                        continue
+
+                    entries.append(entry)
+
+                elif entry.is_file():
+
+                    if should_ignore_file(entry.name):
+                        continue
+
+                    entries.append(entry)
+
+    except Exception:
+        return ""
+
+    lines = []
+
+    for index, entry in enumerate(entries):
+
+        connector = "└── " if index == len(entries) - 1 else "├── "
+
+        lines.append(prefix + connector + entry.name)
+
+        if entry.is_dir():
+
+            extension = (
+                "    "
+                if index == len(entries) - 1
+                else "│   "
+            )
+
+            subtree = build_ascii_tree(
+                entry.path,
+                prefix + extension
+            )
+
+            if subtree:
+                lines.extend(subtree.splitlines())
+
+    return "\n".join(lines)
+
+
+# =========================================================
+# PROJECT STATS
+# =========================================================
+
+def collect_stats(root_dir: str):
+
+    total_files = 0
+    total_dirs = 0
+    total_size = 0
+
+    extension_map = {}
+
+    for dirpath, dirnames, filenames in os.walk(root_dir):
+
+        dirnames[:] = [
+            d for d in dirnames
+            if not should_ignore_dir(d)
+        ]
+
+        total_dirs += len(dirnames)
+
+        for filename in filenames:
+
+            if should_ignore_file(filename):
+                continue
+
+            total_files += 1
+
+            filepath = os.path.join(dirpath, filename)
+
+            try:
+
+                size = os.path.getsize(filepath)
+
+                total_size += size
+
+                _, ext = os.path.splitext(filename)
+
+                ext = ext.lower()
+
+                extension_map[ext] = (
+                    extension_map.get(ext, 0) + 1
+                )
+
+            except Exception:
+                pass
+
+    return {
+        "total_files": total_files,
+        "total_dirs": total_dirs,
+        "total_size": format_size(total_size),
+        "extensions": dict(
+            sorted(
+                extension_map.items(),
+                key=lambda x: x[1],
+                reverse=True
+            )
+        )
+    }
+
+
+# =========================================================
+# READ FILE CONTENT
+# =========================================================
+
+def read_file_content(filepath: str) -> str:
+
+    try:
+
+        size = os.path.getsize(filepath)
+
+        if size > MAX_FILE_SIZE:
+
+            return (
+                f"[SKIPPED: File too large "
+                f"({format_size(size)})]"
+            )
+
+        with open(
+            filepath,
+            "r",
+            encoding="utf-8"
+        ) as f:
+
+            return f.read()
+
+    except UnicodeDecodeError:
+        return "[SKIPPED: Binary or non UTF-8 file]"
+
+    except Exception as e:
+        return f"[ERROR READING FILE: {str(e)}]"
+
+
+# =========================================================
+# DUMP PROJECT
+# =========================================================
+
+def dump_project(root_dir: str):
+
+    stats = collect_stats(root_dir)
+
+    with open(
+        OUTPUT_FILE,
+        "w",
+        encoding="utf-8"
+    ) as out:
+
+        # =================================================
+        # HEADER
+        # =================================================
+
+        out.write("=" * 80 + "\n")
+        out.write("PROJECT DUMP\n")
+        out.write("=" * 80 + "\n\n")
+
+        out.write(f"Generated: {datetime.now()}\n")
+        out.write(f"Root: {root_dir}\n\n")
+
+        # =================================================
+        # STATS
+        # =================================================
+
+        out.write("=" * 80 + "\n")
+        out.write("PROJECT STATS\n")
+        out.write("=" * 80 + "\n\n")
+
+        out.write(json.dumps(
+            stats,
+            indent=2,
+            ensure_ascii=False
+        ))
+
+        out.write("\n\n")
+
+        # =================================================
+        # TREE
+        # =================================================
+
+        out.write("=" * 80 + "\n")
+        out.write("PROJECT TREE\n")
+        out.write("=" * 80 + "\n\n")
+
+        out.write(root_dir + "\n")
+
+        out.write(
+            build_ascii_tree(root_dir)
+        )
+
+        out.write("\n\n")
+
+        # =================================================
+        # IMPORTANT FILES FIRST
+        # =================================================
+
+        out.write("=" * 80 + "\n")
+        out.write("IMPORTANT FILES\n")
+        out.write("=" * 80 + "\n\n")
+
+        for dirpath, dirnames, filenames in os.walk(root_dir):
+
+            dirnames[:] = [
+                d for d in dirnames
+                if not should_ignore_dir(d)
+            ]
+
+            for filename in filenames:
+
+                if filename not in IMPORTANT_FILES:
+                    continue
+
+                filepath = os.path.join(
+                    dirpath,
+                    filename
+                )
+
+                out.write(
+                    f"\n{'-' * 80}\n"
+                )
+
+                out.write(
+                    f"FILE: {filepath}\n"
+                )
+
+                out.write(
+                    f"{'-' * 80}\n"
+                )
+
+                out.write(
+                    read_file_content(filepath)
+                )
+
+                out.write("\n")
+
+        # =================================================
+        # ALL SOURCE FILES
+        # =================================================
+
+        out.write("\n\n")
+        out.write("=" * 80 + "\n")
+        out.write("SOURCE FILES\n")
+        out.write("=" * 80 + "\n\n")
+
+        for dirpath, dirnames, filenames in os.walk(root_dir):
+
+            dirnames[:] = [
+                d for d in dirnames
+                if not should_ignore_dir(d)
+            ]
+
+            for filename in sorted(filenames):
+
+                if should_ignore_file(filename):
+                    continue
+
+                filepath = os.path.join(
+                    dirpath,
+                    filename
+                )
+
+                try:
+
+                    size = os.path.getsize(filepath)
+
+                except Exception:
+                    size = 0
+
+                relative_path = os.path.relpath(
+                    filepath,
+                    root_dir
+                )
+
+                out.write(
+                    f"\n{'=' * 80}\n"
+                )
+
+                out.write(
+                    f"FILE: {relative_path}\n"
+                )
+
+                out.write(
+                    f"SIZE: {format_size(size)}\n"
+                )
+
+                out.write(
+                    f"SHA256: "
+                    f"{get_file_hash(filepath)}\n"
+                )
+
+                out.write(
+                    f"{'=' * 80}\n\n"
+                )
+
+                content = read_file_content(filepath)
+
+                out.write(content)
+
+                out.write("\n\n")
+
+    print(f"\n✅ Dump completed: {OUTPUT_FILE}")
+
+
+# =========================================================
+# MAIN
+# =========================================================
+
+if __name__ == "__main__":
+
+    current_dir = os.getcwd()
+
+    dump_project(current_dir)
+
+
+================================================================================
+FILE: package.json
+SIZE: 0.00 B
+SHA256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+================================================================================
+
+
+
+
+================================================================================
+FILE: tailwind.config.ts
+SIZE: 0.00 B
+SHA256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+================================================================================
+
+
+
+
+================================================================================
+FILE: src\app\page.tsx
+SIZE: 0.00 B
+SHA256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+================================================================================
+
+
+
+
+================================================================================
+FILE: src\hooks\useAuth.ts
+SIZE: 0.00 B
+SHA256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+================================================================================
+
+
+
+
+================================================================================
+FILE: src\hooks\useMangaQueries.ts
+SIZE: 0.00 B
+SHA256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+================================================================================
+
+
+
+
+================================================================================
+FILE: src\hooks\useReader.ts
+SIZE: 0.00 B
+SHA256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+================================================================================
+
+
+
+
+================================================================================
+FILE: src\services\api.ts
+SIZE: 0.00 B
+SHA256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+================================================================================
+
+
+
+
+================================================================================
+FILE: src\services\auth.service.ts
+SIZE: 0.00 B
+SHA256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+================================================================================
+
+
+
+
+================================================================================
+FILE: src\services\chapter.service.ts
+SIZE: 0.00 B
+SHA256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+================================================================================
+
+
+
+
+================================================================================
+FILE: src\services\history.service.ts
+SIZE: 0.00 B
+SHA256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+================================================================================
+
+
+
+
+================================================================================
+FILE: src\services\manga.service.ts
+SIZE: 0.00 B
+SHA256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+================================================================================
+
+
+
+
+================================================================================
+FILE: src\store\useAppStore.ts
+SIZE: 0.00 B
+SHA256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+================================================================================
+
+
+
+
+================================================================================
+FILE: src\styles\globals.css
+SIZE: 0.00 B
+SHA256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+================================================================================
+
+
+
+
+================================================================================
+FILE: src\types\chapter.ts
+SIZE: 0.00 B
+SHA256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+================================================================================
+
+
+
+
+================================================================================
+FILE: src\types\manga.ts
+SIZE: 0.00 B
+SHA256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+================================================================================
+
+
+
+
+================================================================================
+FILE: src\types\user.ts
+SIZE: 0.00 B
+SHA256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+================================================================================
+
+
+

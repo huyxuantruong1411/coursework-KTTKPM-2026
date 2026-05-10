@@ -1,0 +1,3794 @@
+=== Project Tree (JSON) ===
+{
+  "name": "manga_backend",
+  "type": "directory",
+  "children": [
+    {
+      "name": ".env",
+      "type": "file"
+    },
+    {
+      "name": "app",
+      "type": "directory",
+      "children": [
+        {
+          "name": "__init__.py",
+          "type": "file"
+        },
+        {
+          "name": "api",
+          "type": "directory",
+          "children": [
+            {
+              "name": "dependencies.py",
+              "type": "file"
+            },
+            {
+              "name": "v1",
+              "type": "directory",
+              "children": [
+                {
+                  "name": "__init__.py",
+                  "type": "file"
+                },
+                {
+                  "name": "admin.py",
+                  "type": "file"
+                },
+                {
+                  "name": "auth.py",
+                  "type": "file"
+                },
+                {
+                  "name": "chapter.py",
+                  "type": "file"
+                },
+                {
+                  "name": "comment.py",
+                  "type": "file"
+                },
+                {
+                  "name": "cover.py",
+                  "type": "file"
+                },
+                {
+                  "name": "history.py",
+                  "type": "file"
+                },
+                {
+                  "name": "list.py",
+                  "type": "file"
+                },
+                {
+                  "name": "manga.py",
+                  "type": "file"
+                },
+                {
+                  "name": "rating.py",
+                  "type": "file"
+                },
+                {
+                  "name": "tag.py",
+                  "type": "file"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "core",
+          "type": "directory",
+          "children": [
+            {
+              "name": "config.py",
+              "type": "file"
+            },
+            {
+              "name": "database.py",
+              "type": "file"
+            },
+            {
+              "name": "security.py",
+              "type": "file"
+            }
+          ]
+        },
+        {
+          "name": "models",
+          "type": "directory",
+          "children": [
+            {
+              "name": "__init__.py",
+              "type": "file"
+            },
+            {
+              "name": "domain.py",
+              "type": "file"
+            },
+            {
+              "name": "models.py",
+              "type": "file"
+            }
+          ]
+        },
+        {
+          "name": "schemas",
+          "type": "directory",
+          "children": [
+            {
+              "name": "__init__.py",
+              "type": "file"
+            },
+            {
+              "name": "auth.py",
+              "type": "file"
+            },
+            {
+              "name": "chapter.py",
+              "type": "file"
+            },
+            {
+              "name": "comment.py",
+              "type": "file"
+            },
+            {
+              "name": "common.py",
+              "type": "file"
+            },
+            {
+              "name": "history.py",
+              "type": "file"
+            },
+            {
+              "name": "list.py",
+              "type": "file"
+            },
+            {
+              "name": "manga.py",
+              "type": "file"
+            },
+            {
+              "name": "rating.py",
+              "type": "file"
+            },
+            {
+              "name": "tag.py",
+              "type": "file"
+            }
+          ]
+        },
+        {
+          "name": "services",
+          "type": "directory",
+          "children": [
+            {
+              "name": "minio_service.py",
+              "type": "file"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "docker-compose.yml",
+      "type": "file"
+    },
+    {
+      "name": "dump.py",
+      "type": "file"
+    },
+    {
+      "name": "main.py",
+      "type": "file"
+    },
+    {
+      "name": "ref",
+      "type": "directory",
+      "children": []
+    },
+    {
+      "name": "requirements.txt",
+      "type": "file"
+    },
+    {
+      "name": "scripts",
+      "type": "directory",
+      "children": [
+        {
+          "name": "image_downloader.py",
+          "type": "file"
+        }
+      ]
+    }
+  ]
+}
+
+=== Project Tree (ASCII) ===
+D:\TDMU\2025-2026\HKII_2025-2026\KTTKPM\coursework\manga_backend/
+├── .env
+├── app/
+│   ├── __init__.py
+│   ├── api/
+│   │   ├── dependencies.py
+│   │   └── v1/
+│   │       ├── __init__.py
+│   │       ├── admin.py
+│   │       ├── auth.py
+│   │       ├── chapter.py
+│   │       ├── comment.py
+│   │       ├── cover.py
+│   │       ├── history.py
+│   │       ├── list.py
+│   │       ├── manga.py
+│   │       ├── rating.py
+│   │       └── tag.py
+│   ├── core/
+│   │   ├── config.py
+│   │   ├── database.py
+│   │   └── security.py
+│   ├── models/
+│   │   ├── __init__.py
+│   │   ├── domain.py
+│   │   └── models.py
+│   ├── schemas/
+│   │   ├── __init__.py
+│   │   ├── auth.py
+│   │   ├── chapter.py
+│   │   ├── comment.py
+│   │   ├── common.py
+│   │   ├── history.py
+│   │   ├── list.py
+│   │   ├── manga.py
+│   │   ├── rating.py
+│   │   └── tag.py
+│   └── services/
+│       └── minio_service.py
+├── docker-compose.yml
+├── dump.py
+├── main.py
+├── ref/
+├── requirements.txt
+└── scripts/
+    └── image_downloader.py
+
+
+=== Folder: D:\TDMU\2025-2026\HKII_2025-2026\KTTKPM\coursework\manga_backend ===
+
+--- File: D:\TDMU\2025-2026\HKII_2025-2026\KTTKPM\coursework\manga_backend\.env ---
+# SQL Server connection (aioodbc async driver)
+DATABASE_URL=mssql+aioodbc://sa:YourPassword123@localhost:1433/MangaLibrary?driver=ODBC+Driver+17+for+SQL+Server
+
+# JWT
+SECRET_KEY=mot_chuoi_bi_mat_rat_dai_va_kho_doan_123!@#
+ACCESS_TOKEN_EXPIRE_MINUTES=10080
+
+# MinIO Object Storage
+MINIO_ENDPOINT=localhost:9000
+MINIO_ACCESS_KEY=admin
+MINIO_SECRET_KEY=password
+MINIO_BUCKET=manga-media
+MINIO_USE_SSL=false
+--- File: D:\TDMU\2025-2026\HKII_2025-2026\KTTKPM\coursework\manga_backend\docker-compose.yml ---
+version: "3.9"
+
+services:
+
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: manga-sqlserver
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "YourPassword123"
+    ports:
+      - "1433:1433"
+    volumes:
+      - sqlserver_data:/var/opt/mssql
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    container_name: manga-redis
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
+
+  minio:
+    image: minio/minio:latest
+    container_name: manga-minio
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    environment:
+      MINIO_ROOT_USER: admin
+      MINIO_ROOT_PASSWORD: password
+    command: server /data --console-address ":9001"
+    volumes:
+      - minio_data:/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "mc", "ready", "local"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  sqlserver_data:
+  minio_data:
+
+--- File: D:\TDMU\2025-2026\HKII_2025-2026\KTTKPM\coursework\manga_backend\dump.py ---
+import os
+import json
+
+OUTPUT_FILE = "project_dump.txt"
+
+# =========================
+# FOLDER BỊ BỎ QUA
+# =========================
+IGNORE_DIRS = {
+    "venv",
+    ".venv",
+    "__pycache__",
+    "data",
+    ".git",
+    "flags",
+    "pending-feature",
+    "simulation",
+    "debug",
+    "node_modules",
+    ".idea",
+    ".vscode",
+    "dist",
+    "build"
+}
+
+# =========================
+# FILE CỤ THỂ BỊ BỎ QUA
+# =========================
+IGNORE_FILES = {
+    ".gitignore",
+    ".gitattributes",
+    OUTPUT_FILE.lower()
+}
+
+# =========================
+# EXTENSION BỊ BỎ QUA
+# =========================
+IGNORE_EXTENSIONS = {
+    ".log",
+    ".csv",
+    ".sqlite",
+    ".db",
+    ".png",
+    ".jpg",
+    ".jpeg",
+    ".gif",
+    ".webp",
+    ".mp4",
+    ".mp3",
+    ".zip",
+    ".rar",
+    ".7z",
+    ".pdf",
+    ".xlsx",
+    ".xls",
+    ".docx",
+    ".pptx",
+    ".exe",
+    ".dll",
+    ".bin",
+    ".pyc"
+}
+
+
+def should_ignore_dir(dirname: str) -> bool:
+    """
+    Kiểm tra thư mục có cần bỏ qua không.
+    """
+    return dirname.lower() in IGNORE_DIRS
+
+
+def should_ignore_file(filename: str) -> bool:
+    """
+    Kiểm tra file có cần bỏ qua không.
+    """
+    filename_lower = filename.lower()
+
+    # Ignore exact filename
+    if filename_lower in IGNORE_FILES:
+        return True
+
+    # Ignore extension
+    _, ext = os.path.splitext(filename_lower)
+
+    if ext in IGNORE_EXTENSIONS:
+        return True
+
+    return False
+
+
+def build_tree_dict(root_dir: str) -> dict:
+    """
+    Trả về cây thư mục dưới dạng dict.
+    """
+    tree = {
+        "name": os.path.basename(root_dir),
+        "type": "directory",
+        "children": []
+    }
+
+    try:
+        with os.scandir(root_dir) as it:
+            entries = sorted(it, key=lambda e: e.name.lower())
+
+            for entry in entries:
+
+                # =========================
+                # DIRECTORY
+                # =========================
+                if entry.is_dir():
+
+                    if should_ignore_dir(entry.name):
+                        continue
+
+                    tree["children"].append(
+                        build_tree_dict(entry.path)
+                    )
+
+                # =========================
+                # FILE
+                # =========================
+                elif entry.is_file():
+
+                    if should_ignore_file(entry.name):
+                        continue
+
+                    tree["children"].append({
+                        "name": entry.name,
+                        "type": "file"
+                    })
+
+    except PermissionError:
+        pass
+
+    except Exception as e:
+        tree["children"].append({
+            "name": f"[ERROR] {str(e)}",
+            "type": "error"
+        })
+
+    return tree
+
+
+def build_tree_ascii(root_dir: str, prefix: str = "") -> str:
+    """
+    Tạo cây thư mục dạng ASCII.
+    """
+    entries = []
+
+    try:
+        with os.scandir(root_dir) as it:
+
+            scanned = sorted(it, key=lambda e: e.name.lower())
+
+            for entry in scanned:
+
+                # =========================
+                # DIRECTORY
+                # =========================
+                if entry.is_dir():
+
+                    if should_ignore_dir(entry.name):
+                        continue
+
+                    entries.append(entry)
+
+                # =========================
+                # FILE
+                # =========================
+                elif entry.is_file():
+
+                    if should_ignore_file(entry.name):
+                        continue
+
+                    entries.append(entry)
+
+    except PermissionError:
+        return ""
+
+    except Exception:
+        return ""
+
+    lines = []
+
+    for i, entry in enumerate(entries):
+
+        connector = "└── " if i == len(entries) - 1 else "├── "
+
+        if entry.is_dir():
+
+            lines.append(
+                prefix + connector + entry.name + "/"
+            )
+
+            extension = (
+                "    "
+                if i == len(entries) - 1
+                else "│   "
+            )
+
+            subtree = build_tree_ascii(
+                entry.path,
+                prefix + extension
+            )
+
+            if subtree:
+                lines.extend(subtree.splitlines())
+
+        else:
+            lines.append(
+                prefix + connector + entry.name
+            )
+
+    return "\n".join(lines)
+
+
+def dump_project(root_dir: str, output_file: str):
+
+    with open(output_file, "w", encoding="utf-8") as out:
+
+        # =========================
+        # JSON TREE
+        # =========================
+        tree_dict = build_tree_dict(root_dir)
+
+        out.write("=== Project Tree (JSON) ===\n")
+
+        out.write(
+            json.dumps(
+                tree_dict,
+                indent=2,
+                ensure_ascii=False
+            )
+        )
+
+        out.write("\n\n")
+
+        # =========================
+        # ASCII TREE
+        # =========================
+        out.write("=== Project Tree (ASCII) ===\n")
+
+        out.write(root_dir + "/\n")
+
+        out.write(
+            build_tree_ascii(root_dir)
+        )
+
+        out.write("\n\n")
+
+        # =========================
+        # FILE CONTENTS
+        # =========================
+        for dirpath, dirnames, filenames in os.walk(root_dir):
+
+            # Filter folders
+            dirnames[:] = [
+                d for d in dirnames
+                if not should_ignore_dir(d)
+            ]
+
+            rel_path = os.path.relpath(
+                dirpath,
+                root_dir
+            )
+
+            if rel_path == ".":
+                rel_path = ""
+
+            out.write(
+                f"\n=== Folder: {rel_path or root_dir} ===\n"
+            )
+
+            for filename in sorted(filenames):
+
+                # Skip ignored files
+                if should_ignore_file(filename):
+                    continue
+
+                file_path = os.path.join(
+                    dirpath,
+                    filename
+                )
+
+                out.write(
+                    f"\n--- File: {file_path} ---\n"
+                )
+
+                try:
+                    with open(
+                        file_path,
+                        "r",
+                        encoding="utf-8"
+                    ) as f:
+
+                        out.write(f.read())
+
+                except UnicodeDecodeError:
+                    out.write(
+                        "[Bỏ qua file binary / không đọc được UTF-8]\n"
+                    )
+
+                except Exception as e:
+                    out.write(
+                        f"[Lỗi đọc file: {e}]\n"
+                    )
+
+
+if __name__ == "__main__":
+
+    current_dir = os.getcwd()
+
+    dump_project(
+        current_dir,
+        OUTPUT_FILE
+    )
+
+    print(
+        f"✅ Đã xuất project vào: {OUTPUT_FILE}"
+    )
+--- File: D:\TDMU\2025-2026\HKII_2025-2026\KTTKPM\coursework\manga_backend\main.py ---
+"""FastAPI application entry point."""
+from contextlib import asynccontextmanager
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+
+from app.services.minio_service import minio_service
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # Startup: ensure MinIO bucket exists
+    try:
+        await minio_service.ensure_bucket()
+    except Exception as e:
+        print(f"[startup] MinIO bucket check skipped: {e}")
+    yield
+    # Shutdown: cleanup if needed
+
+
+app = FastAPI(
+    title="MangaLibrary Core API",
+    version="1.0.0",
+    description="FastAPI backend for Manga reading platform – migrated from Flask monolith",
+    lifespan=lifespan,
+)
+
+# CORS – cho phép frontend kết nối
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Production: chỉ định domain frontend
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+# ── Import & register routers ────────────────────────────
+from app.api.v1 import auth, manga, chapter, comment, rating, history, cover, tag, admin
+from app.api.v1 import list as list_router
+
+app.include_router(auth.router,    prefix="/api/v1/auth",     tags=["Authentication"])
+app.include_router(manga.router,   prefix="/api/v1/mangas",   tags=["Manga Catalog"])
+app.include_router(chapter.router, prefix="/api/v1",          tags=["Chapters"])
+app.include_router(comment.router, prefix="/api/v1/comments", tags=["Comments"])
+app.include_router(rating.router,  prefix="/api/v1/ratings",  tags=["Ratings"])
+app.include_router(history.router, prefix="/api/v1/history",  tags=["Reading History"])
+app.include_router(list_router.router, prefix="/api/v1/lists", tags=["Lists (MDLists)"])
+app.include_router(tag.router,     prefix="/api/v1/tags",     tags=["Tags"])
+app.include_router(cover.router,   prefix="/api/v1/covers",   tags=["Covers"])
+app.include_router(admin.router,   prefix="/api/v1/admin",    tags=["Admin"])
+
+
+@app.get("/")
+def root():
+    return {
+        "message": "MangaLibrary Core API",
+        "docs": "/docs",
+        "version": "1.0.0",
+    }
+--- File: D:\TDMU\2025-2026\HKII_2025-2026\KTTKPM\coursework\manga_backend\requirements.txt ---
+fastapi==0.104.1
+uvicorn==0.24.0
+sqlalchemy==2.0.23
+aioodbc==0.5.0
+pyodbc==5.1.0
+pydantic==2.5.2
+pydantic-settings==2.1.0
+passlib[bcrypt]==1.7.4
+python-jose[cryptography]==3.3.0
+python-multipart==0.0.6
+aioboto3==12.0.0
+redis==5.0.1
+greenlet==3.0.1
+email-validator==2.1.0
+httpx==0.27.0
+=== Folder: app ===
+
+--- File: D:\TDMU\2025-2026\HKII_2025-2026\KTTKPM\coursework\manga_backend\app\__init__.py ---
+
+=== Folder: app\api ===
+
+--- File: D:\TDMU\2025-2026\HKII_2025-2026\KTTKPM\coursework\manga_backend\app\api\dependencies.py ---
+from fastapi import Depends, HTTPException, status
+from fastapi.security import OAuth2PasswordBearer
+from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy.future import select
+
+from app.core.database import get_db
+from app.core.security import decode_access_token
+from app.models.models import User
+
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="api/v1/auth/login")
+oauth2_scheme_optional = OAuth2PasswordBearer(tokenUrl="api/v1/auth/login", auto_error=False)
+
+
+async def get_current_user(
+    token: str = Depends(oauth2_scheme),
+    db: AsyncSession = Depends(get_db),
+) -> User:
+    """Bắt buộc phải đăng nhập."""
+    credentials_exception = HTTPException(
+        status_code=status.HTTP_401_UNAUTHORIZED,
+        detail="Could not validate credentials",
+        headers={"WWW-Authenticate": "Bearer"},
+    )
+    payload = decode_access_token(token)
+    if payload is None:
+        raise credentials_exception
+    user_id: str = payload.get("sub")
+    if user_id is None:
+        raise credentials_exception
+
+    result = await db.execute(select(User).where(User.UserId == user_id))
+    user = result.scalars().first()
+    if user is None:
+        raise credentials_exception
+    if user.IsLocked:
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Account is locked")
+    return user
+
+
+async def get_current_user_optional(
+    token: str | None = Depends(oauth2_scheme_optional),
+    db: AsyncSession = Depends(get_db),
+) -> User | None:
+    """Trả về user nếu đã login, None nếu chưa."""
+    if token is None:
+        return None
+    payload = decode_access_token(token)
+    if payload is None:
+        return None
+    user_id = payload.get("sub")
+    if user_id is None:
+        return None
+    result = await db.execute(select(User).where(User.UserId == user_id))
+    return result.scalars().first()
+
+
+async def require_admin(current_user: User = Depends(get_current_user)) -> User:
+    """Chỉ cho phép admin truy cập."""
+    if (current_user.Role or "").lower() != "admin":
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Admin access required")
+    return current_user
+=== Folder: app\api\v1 ===
+
+--- File: D:\TDMU\2025-2026\HKII_2025-2026\KTTKPM\coursework\manga_backend\app\api\v1\__init__.py ---
+# API v1 routers package
+
+--- File: D:\TDMU\2025-2026\HKII_2025-2026\KTTKPM\coursework\manga_backend\app\api\v1\admin.py ---
+"""Admin API – dashboard stats, manage users, manage comments/reports."""
+import math, uuid
+from datetime import datetime, timedelta
+from fastapi import APIRouter, Depends, HTTPException, Query
+from sqlalchemy import desc, func, distinct
+from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy.future import select
+
+from app.core.database import get_db
+from app.api.dependencies import require_admin
+from app.models.models import (
+    User, Comment, Report, Manga, ReadingHistory, MangaTag, Tag,
+)
+
+router = APIRouter()
+
+
+@router.get("/dashboard")
+async def admin_dashboard(
+    start_date: str | None = None, end_date: str | None = None,
+    db: AsyncSession = Depends(get_db), admin: User = Depends(require_admin),
+):
+    today = datetime.utcnow().date()
+    window_start = today - timedelta(days=29)
+
+    try:
+        sd = datetime.strptime(start_date, "%Y-%m-%d").date() if start_date else window_start
+    except Exception:
+        sd = window_start
+    try:
+        ed = datetime.strptime(end_date, "%Y-%m-%d").date() if end_date else today
+    except Exception:
+        ed = today
+
+    # New users (last 30 days)
+    users_r = await db.execute(
+        select(func.cast(User.CreatedAt, func.DATE).label("d"), func.count())
+        .where(User.CreatedAt >= datetime.combine(window_start, datetime.min.time()))
+        .group_by(func.cast(User.CreatedAt, func.DATE))
+    )
+    new_users = {str(d): c for d, c in users_r.all() if d}
+
+    # Reading activity (last 30 days)
+    reads_r = await db.execute(
+        select(func.cast(ReadingHistory.ReadAt, func.DATE).label("d"), func.count())
+        .where(ReadingHistory.ReadAt >= datetime.combine(window_start, datetime.min.time()))
+        .group_by(func.cast(ReadingHistory.ReadAt, func.DATE))
+    )
+    reading_activity = {str(d): c for d, c in reads_r.all() if d}
+
+    # Top manga by readers
+    sd_dt = datetime.combine(sd, datetime.min.time())
+    ed_dt = datetime.combine(ed, datetime.max.time())
+    top_r = await db.execute(
+        select(ReadingHistory.MangaId, func.count(distinct(ReadingHistory.UserId)).label("cnt"))
+        .where(ReadingHistory.ReadAt.between(sd_dt, ed_dt))
+        .group_by(ReadingHistory.MangaId)
+        .order_by(desc("cnt"))
+        .limit(20)
+    )
+    top_manga = []
+    for mid, cnt in top_r.all():
+        title_r = await db.execute(select(Manga.TitleEn).where(Manga.MangaId == mid))
+        top_manga.append({"manga_id": str(mid), "title": title_r.scalar(), "readers": cnt})
+
+    # Totals
+    total_users = (await db.execute(select(func.count()).select_from(User))).scalar()
+    total_manga = (await db.execute(select(func.count()).select_from(Manga))).scalar()
+    pending_reports = (await db.execute(
+        select(func.count()).select_from(Report).where(Report.Status == "pending")
+    )).scalar()
+
+    return {
+        "new_users_by_date": new_users,
+        "reading_activity_by_date": reading_activity,
+        "top_manga": top_manga,
+        "totals": {"users": total_users, "manga": total_manga, "pending_reports": pending_reports},
+        "date_range": {"start": str(sd), "end": str(ed)},
+    }
+
+
+# ── MANAGE USERS ─────────────────────────────────────────
+@router.get("/users")
+async def list_users(
+    page: int = Query(1, ge=1), limit: int = Query(20, le=100), q: str = "",
+    db: AsyncSession = Depends(get_db), admin: User = Depends(require_admin),
+):
+    base = select(User)
+    if q.strip():
+        like = f"%{q.strip()}%"
+        from sqlalchemy import or_
+        base = base.where(or_(User.Username.ilike(like), User.Email.ilike(like)))
+    total = (await db.execute(select(func.count()).select_from(base.subquery()))).scalar() or 0
+    result = await db.execute(base.order_by(desc(User.CreatedAt)).offset((page - 1) * limit).limit(limit))
+    users = result.scalars().all()
+
+    from app.schemas.auth import UserResponse
+    items = [UserResponse.model_validate(u).model_dump() for u in users]
+    return {"items": items, "page": page, "per_page": limit, "total": total,
+            "total_pages": math.ceil(total / limit) if limit else 0}
+
+
+@router.post("/users/{user_id}/ban")
+async def ban_user(user_id: uuid.UUID, db: AsyncSession = Depends(get_db), admin: User = Depends(require_admin)):
+    result = await db.execute(select(User).where(User.UserId == user_id))
+    user = result.scalars().first()
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
+    if user.UserId == admin.UserId:
+        raise HTTPException(status_code=403, detail="Cannot ban yourself")
+    user.IsLocked = True
+    await db.commit()
+    return {"success": True, "message": f"User {user.Username} banned"}
+
+
+@router.post("/users/{user_id}/unban")
+async def unban_user(user_id: uuid.UUID, db: AsyncSession = Depends(get_db), admin: User = Depends(require_admin)):
+    result = await db.execute(select(User).where(User.UserId == user_id))
+    user = result.scalars().first()
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
+    user.IsLocked = False
+    await db.commit()
+    return {"success": True, "message": f"User {user.Username} unbanned"}
+
+
+# ── MANAGE COMMENTS ──────────────────────────────────────
+@router.get("/comments")
+async def list_reported_comments(
+    page: int = Query(1, ge=1), limit: int = Query(20, le=100),
+    status: str | None = None,
+    db: AsyncSession = Depends(get_db), admin: User = Depends(require_admin),
+):
+    base = (
+        select(Comment, User.Username, Manga.TitleEn, func.count(Report.ReportId).label("report_count"))
+        .join(Report, Report.CommentId == Comment.CommentId)
+        .join(User, Comment.UserId == User.UserId)
+        .join(Manga, Comment.MangaId == Manga.MangaId)
+    )
+    if status:
+        base = base.where(Report.Status == status)
+    base = base.group_by(
+        Comment.CommentId, Comment.UserId, Comment.MangaId, Comment.Content,
+        Comment.CreatedAt, User.Username, Manga.TitleEn,
+    ).order_by(desc(Comment.CreatedAt))
+
+    total = (await db.execute(select(func.count()).select_from(base.subquery()))).scalar() or 0
+    result = await db.execute(base.offset((page - 1) * limit).limit(limit))
+    rows = result.all()
+
+    items = []
+    for comment, username, manga_title, report_count in rows:
+        items.append({
+            "comment_id": str(comment.CommentId),
+            "content": comment.Content,
+            "username": username,
+            "manga_title": manga_title,
+            "report_count": report_count,
+            "created_at": comment.CreatedAt.isoformat() if comment.CreatedAt else None,
+        })
+    return {"items": items, "page": page, "per_page": limit, "total": total,
+            "total_pages": math.ceil(total / limit) if limit else 0}
+
+
+@router.post("/comments/{comment_id}/delete")
+async def admin_delete_comment(
+    comment_id: uuid.UUID,
+    db: AsyncSession = Depends(get_db), admin: User = Depends(require_admin),
+):
+    result = await db.execute(select(Comment).where(Comment.CommentId == comment_id))
+    c = result.scalars().first()
+    if not c:
+        raise HTTPException(status_code=404)
+    c.IsDeleted = True
+    c.UpdatedAt = datetime.utcnow()
+    await db.execute(
+        Report.__table__.update().where(Report.CommentId == comment_id).values(Status="resolved")
+    )
+    await db.commit()
+    return {"success": True}
+
+
+@router.post("/comments/{comment_id}/ignore")
+async def admin_ignore_reports(
+    comment_id: uuid.UUID,
+    db: AsyncSession = Depends(get_db), admin: User = Depends(require_admin),
+):
+    await db.execute(
+        Report.__table__.update().where(Report.CommentId == comment_id).values(Status="ignored")
+    )
+    await db.commit()
+    return {"success": True}
+
+--- File: D:\TDMU\2025-2026\HKII_2025-2026\KTTKPM\coursework\manga_backend\app\api\v1\auth.py ---
+from fastapi import APIRouter, Depends, HTTPException, status
+from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy.future import select
+from fastapi.security import OAuth2PasswordRequestForm
+
+from app.core.database import get_db
+from app.core.security import verify_password, get_password_hash, create_access_token
+from app.api.dependencies import get_current_user
+from app.models.models import User
+from app.schemas.auth import UserCreate, Token, UserResponse, UserUpdate
+
+router = APIRouter()
+
+
+@router.post("/register", response_model=UserResponse, status_code=status.HTTP_201_CREATED)
+async def register(user_in: UserCreate, db: AsyncSession = Depends(get_db)):
+    result = await db.execute(select(User).where(User.Email == user_in.email))
+    if result.scalars().first():
+        raise HTTPException(status_code=400, detail="Email already registered")
+
+    result2 = await db.execute(select(User).where(User.Username == user_in.username))
+    if result2.scalars().first():
+        raise HTTPException(status_code=400, detail="Username already taken")
+
+    new_user = User(
+        Username=user_in.username,
+        Email=user_in.email,
+        PasswordHash=get_password_hash(user_in.password),
+        Role="user",
+    )
+    db.add(new_user)
+    await db.commit()
+    await db.refresh(new_user)
+    return new_user
+
+
+@router.post("/login", response_model=Token)
+async def login(form_data: OAuth2PasswordRequestForm = Depends(), db: AsyncSession = Depends(get_db)):
+    result = await db.execute(select(User).where(User.Username == form_data.username))
+    user = result.scalars().first()
+    if not user or not verify_password(form_data.password, user.PasswordHash):
+        raise HTTPException(status_code=400, detail="Incorrect username or password")
+    if user.IsLocked:
+        raise HTTPException(status_code=403, detail="Account is locked")
+
+    access_token = create_access_token(data={"sub": str(user.UserId)})
+    return {"access_token": access_token, "token_type": "bearer"}
+
+
+@router.get("/me", response_model=UserResponse)
+async def get_me(current_user: User = Depends(get_current_user)):
+    return current_user
+
+
+@router.put("/me", response_model=UserResponse)
+async def update_me(
+    update: UserUpdate,
+    db: AsyncSession = Depends(get_db),
+    current_user: User = Depends(get_current_user),
+):
+    if update.username is not None:
+        dup = await db.execute(
+            select(User).where(User.Username == update.username, User.UserId != current_user.UserId)
+        )
+        if dup.scalars().first():
+            raise HTTPException(status_code=400, detail="Username already taken")
+        current_user.Username = update.username
+    if update.avatar is not None:
+        current_user.Avatar = update.avatar
+    await db.commit()
+    await db.refresh(current_user)
+    return current_user
+--- File: D:\TDMU\2025-2026\HKII_2025-2026\KTTKPM\coursework\manga_backend\app\api\v1\chapter.py ---
+"""Chapter API – list, detail with prev/next navigation, page URLs from MinIO."""
+import uuid
+from fastapi import APIRouter, Depends, HTTPException, Query
+from sqlalchemy import desc
+from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy.future import select
+
+from app.core.database import get_db
+from app.models.models import Chapter, Manga
+from app.schemas.chapter import ChapterResponse, ChapterNav
+from app.services.minio_service import minio_service
+
+router = APIRouter()
+
+
+@router.get("/manga/{manga_id}/chapters")
+async def list_chapters(
+    manga_id: uuid.UUID,
+    lang: str | None = None,
+    sort: str = Query("asc", pattern="^(asc|desc)$"),
+    db: AsyncSession = Depends(get_db),
+):
+    """List chapters grouped by ChapterNumber."""
+    query = select(Chapter).where(
+        Chapter.MangaId == manga_id,
+        Chapter.IsUnavailable != True,
+    )
+    if lang:
+        query = query.where(Chapter.TranslatedLang == lang)
+
+    if sort == "desc":
+        query = query.order_by(desc(Chapter.ChapterNumber))
+    else:
+        query = query.order_by(Chapter.ChapterNumber.asc())
+
+    result = await db.execute(query)
+    chapters = result.scalars().all()
+    return [ChapterResponse.model_validate(c) for c in chapters]
+
+
+@router.get("/manga/{manga_id}/languages")
+async def available_languages(manga_id: uuid.UUID, db: AsyncSession = Depends(get_db)):
+    """Get list of translated languages available for a manga."""
+    result = await db.execute(
+        select(Chapter.TranslatedLang)
+        .where(Chapter.MangaId == manga_id, Chapter.IsUnavailable != True)
+        .distinct()
+    )
+    langs = sorted([r for (r,) in result.all() if r])
+    return langs
+
+
+@router.get("/manga/{manga_id}/chapters/{chapter_id}")
+async def chapter_detail(
+    manga_id: uuid.UUID,
+    chapter_id: uuid.UUID,
+    db: AsyncSession = Depends(get_db),
+):
+    """Get chapter detail with prev/next navigation and page image URLs from MinIO."""
+    result = await db.execute(
+        select(Chapter).where(Chapter.ChapterId == chapter_id, Chapter.MangaId == manga_id)
+    )
+    chapter = result.scalars().first()
+    if not chapter:
+        raise HTTPException(status_code=404, detail="Chapter not found")
+
+    current_num = chapter.ChapterNumber
+    lang = chapter.TranslatedLang
+
+    # Previous chapter
+    prev_q = (
+        select(Chapter)
+        .where(
+            Chapter.MangaId == manga_id,
+            Chapter.ChapterNumber < current_num,
+            Chapter.IsUnavailable != True,
+        )
+        .order_by(desc(Chapter.ChapterNumber))
+        .limit(1)
+    )
+    if lang:
+        prev_q = prev_q.where(Chapter.TranslatedLang == lang)
+    prev_r = await db.execute(prev_q)
+    prev_chapter = prev_r.scalars().first()
+
+    # Next chapter
+    next_q = (
+        select(Chapter)
+        .where(
+            Chapter.MangaId == manga_id,
+            Chapter.ChapterNumber > current_num,
+            Chapter.IsUnavailable != True,
+        )
+        .order_by(Chapter.ChapterNumber.asc())
+        .limit(1)
+    )
+    if lang:
+        next_q = next_q.where(Chapter.TranslatedLang == lang)
+    next_r = await db.execute(next_q)
+    next_chapter = next_r.scalars().first()
+
+    # Page URLs from MinIO
+    page_urls = await minio_service.list_chapter_pages(str(chapter_id))
+
+    return ChapterNav(
+        current=ChapterResponse.model_validate(chapter),
+        prev_chapter=ChapterResponse.model_validate(prev_chapter) if prev_chapter else None,
+        next_chapter=ChapterResponse.model_validate(next_chapter) if next_chapter else None,
+        page_urls=page_urls,
+    )
+--- File: D:\TDMU\2025-2026\HKII_2025-2026\KTTKPM\coursework\manga_backend\app\api\v1\comment.py ---
+"""Comment API – CRUD, like/dislike toggle, report."""
+import uuid
+from datetime import datetime
+from fastapi import APIRouter, Depends, HTTPException, Query
+from sqlalchemy import desc, func
+from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy.future import select
+import math
+
+from app.core.database import get_db
+from app.api.dependencies import get_current_user
+from app.models.models import Comment, CommentReaction, Manga, Report, User
+from app.schemas.comment import CommentCreate, CommentUpdate, CommentResponse, ReportCreate
+from app.schemas.common import PaginatedResponse
+
+router = APIRouter()
+
+
+def _serialize(c: Comment, user: User | None = None) -> dict:
+    return CommentResponse(
+        CommentId=c.CommentId,
+        UserId=c.UserId,
+        MangaId=c.MangaId,
+        Username=user.Username if user else None,
+        Avatar=user.Avatar if user else None,
+        Content=c.Content,
+        IsSpoiler=c.IsSpoiler,
+        LikeCount=c.LikeCount,
+        DislikeCount=c.DislikeCount,
+        IsDeleted=c.IsDeleted,
+        CreatedAt=c.CreatedAt,
+        UpdatedAt=c.UpdatedAt,
+    ).model_dump()
+
+
+# ── LIST COMMENTS FOR MANGA ─────────────────────────────
+@router.get("/manga/{manga_id}/comments")
+async def list_comments(
+    manga_id: uuid.UUID,
+    page: int = Query(1, ge=1),
+    limit: int = Query(20, le=100),
+    db: AsyncSession = Depends(get_db),
+):
+    base = select(Comment).where(Comment.MangaId == manga_id, Comment.IsDeleted != True)
+    count_q = select(func.count()).select_from(base.subquery())
+    total = (await db.execute(count_q)).scalar() or 0
+
+    result = await db.execute(
+        base.order_by(desc(Comment.CreatedAt)).offset((page - 1) * limit).limit(limit)
+    )
+    comments = result.scalars().all()
+
+    items = []
+    for c in comments:
+        user_r = await db.execute(select(User).where(User.UserId == c.UserId))
+        user = user_r.scalars().first()
+        items.append(_serialize(c, user))
+
+    return PaginatedResponse(
+        items=items, page=page, per_page=limit, total=total,
+        total_pages=math.ceil(total / limit) if limit else 0,
+    )
+
+
+# ── CREATE COMMENT ───────────────────────────────────────
+@router.post("/manga/{manga_id}/comments", status_code=201)
+async def create_comment(
+    manga_id: uuid.UUID,
+    body: CommentCreate,
+    db: AsyncSession = Depends(get_db),
+    current_user: User = Depends(get_current_user),
+):
+    if not body.Content or len(body.Content.strip()) < 5:
+        raise HTTPException(status_code=400, detail="Comment too short (min 5 chars)")
+
+    manga_r = await db.execute(select(Manga).where(Manga.MangaId == manga_id))
+    if not manga_r.scalars().first():
+        raise HTTPException(status_code=404, detail="Manga not found")
+
+    new = Comment(
+        UserId=current_user.UserId,
+        MangaId=manga_id,
+        ChapterId=body.ChapterId,
+        Content=body.Content.strip(),
+        IsSpoiler=body.IsSpoiler,
+        CreatedAt=datetime.utcnow(),
+        UpdatedAt=datetime.utcnow(),
+    )
+    db.add(new)
+    await db.commit()
+    await db.refresh(new)
+    return {"success": True, "comment": _serialize(new, current_user)}
+
+
+# ── EDIT COMMENT ─────────────────────────────────────────
+@router.put("/{comment_id}")
+async def edit_comment(
+    comment_id: uuid.UUID,
+    body: CommentUpdate,
+    db: AsyncSession = Depends(get_db),
+    current_user: User = Depends(get_current_user),
+):
+    result = await db.execute(select(Comment).where(Comment.CommentId == comment_id))
+    c = result.scalars().first()
+    if not c or c.IsDeleted:
+        raise HTTPException(status_code=404, detail="Comment not found")
+    if c.UserId != current_user.UserId:
+        raise HTTPException(status_code=403, detail="Not the comment owner")
+    if len(body.Content.strip()) < 5:
+        raise HTTPException(status_code=400, detail="Comment too short")
+
+    c.Content = body.Content.strip()
+    c.UpdatedAt = datetime.utcnow()
+    await db.commit()
+    return {"success": True, "content": c.Content, "updated_at": c.UpdatedAt.isoformat()}
+
+
+# ── DELETE COMMENT ───────────────────────────────────────
+@router.delete("/{comment_id}")
+async def delete_comment(
+    comment_id: uuid.UUID,
+    db: AsyncSession = Depends(get_db),
+    current_user: User = Depends(get_current_user),
+):
+    result = await db.execute(select(Comment).where(Comment.CommentId == comment_id))
+    c = result.scalars().first()
+    if not c:
+        raise HTTPException(status_code=404, detail="Comment not found")
+    if c.UserId != current_user.UserId:
+        raise HTTPException(status_code=403, detail="Not the comment owner")
+
+    c.IsDeleted = True
+    c.UpdatedAt = datetime.utcnow()
+    await db.commit()
+    return {"success": True}
+
+
+# ── LIKE / DISLIKE TOGGLE ────────────────────────────────
+async def _toggle_reaction(comment_id: uuid.UUID, reaction_type: str, db: AsyncSession, user: User):
+    result = await db.execute(select(Comment).where(Comment.CommentId == comment_id))
+    c = result.scalars().first()
+    if not c or c.IsDeleted:
+        raise HTTPException(status_code=404, detail="Comment not found")
+
+    opposite = "dislike" if reaction_type == "like" else "like"
+
+    existing = await db.execute(
+        select(CommentReaction).where(
+            CommentReaction.CommentId == comment_id,
+            CommentReaction.UserId == user.UserId,
+            CommentReaction.Type == reaction_type,
+        )
+    )
+    existing_r = existing.scalars().first()
+
+    existing_opp = await db.execute(
+        select(CommentReaction).where(
+            CommentReaction.CommentId == comment_id,
+            CommentReaction.UserId == user.UserId,
+            CommentReaction.Type == opposite,
+        )
+    )
+    existing_opp_r = existing_opp.scalars().first()
+
+    if existing_r:
+        await db.delete(existing_r)
+        if reaction_type == "like":
+            c.LikeCount = max(0, (c.LikeCount or 0) - 1)
+        else:
+            c.DislikeCount = max(0, (c.DislikeCount or 0) - 1)
+    else:
+        new_r = CommentReaction(CommentId=comment_id, UserId=user.UserId, Type=reaction_type)
+        db.add(new_r)
+        if reaction_type == "like":
+            c.LikeCount = (c.LikeCount or 0) + 1
+        else:
+            c.DislikeCount = (c.DislikeCount or 0) + 1
+        if existing_opp_r:
+            await db.delete(existing_opp_r)
+            if opposite == "like":
+                c.LikeCount = max(0, (c.LikeCount or 0) - 1)
+            else:
+                c.DislikeCount = max(0, (c.DislikeCount or 0) - 1)
+
+    await db.commit()
+    return {"success": True, "like_count": c.LikeCount, "dislike_count": c.DislikeCount}
+
+
+@router.post("/{comment_id}/like")
+async def like_comment(comment_id: uuid.UUID, db: AsyncSession = Depends(get_db), user: User = Depends(get_current_user)):
+    return await _toggle_reaction(comment_id, "like", db, user)
+
+
+@router.post("/{comment_id}/dislike")
+async def dislike_comment(comment_id: uuid.UUID, db: AsyncSession = Depends(get_db), user: User = Depends(get_current_user)):
+    return await _toggle_reaction(comment_id, "dislike", db, user)
+
+
+# ── REPORT ───────────────────────────────────────────────
+@router.post("/{comment_id}/report", status_code=201)
+async def report_comment(
+    comment_id: uuid.UUID,
+    body: ReportCreate,
+    db: AsyncSession = Depends(get_db),
+    current_user: User = Depends(get_current_user),
+):
+    result = await db.execute(select(Comment).where(Comment.CommentId == comment_id))
+    if not result.scalars().first():
+        raise HTTPException(status_code=404, detail="Comment not found")
+    if not body.Reason.strip():
+        raise HTTPException(status_code=400, detail="Reason is required")
+
+    report = Report(
+        UserId=current_user.UserId,
+        CommentId=comment_id,
+        Reason=body.Reason.strip(),
+        Status="pending",
+        CreatedAt=datetime.utcnow(),
+    )
+    db.add(report)
+    await db.commit()
+    return {"success": True, "message": "Report submitted"}
+--- File: D:\TDMU\2025-2026\HKII_2025-2026\KTTKPM\coursework\manga_backend\app\api\v1\cover.py ---
+"""Cover API – get cover URLs for manga (served via MinIO)."""
+import uuid
+from fastapi import APIRouter, Depends
+from sqlalchemy import desc
+from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy.future import select
+
+from app.core.database import get_db
+from app.models.models import Cover
+from app.services.minio_service import minio_service
+
+router = APIRouter()
+
+
+@router.get("/manga/{manga_id}")
+async def get_primary_cover(manga_id: uuid.UUID, db: AsyncSession = Depends(get_db)):
+    """Get primary (latest) cover URL for a manga."""
+    result = await db.execute(
+        select(Cover)
+        .where(Cover.manga_id == manga_id)
+        .order_by(desc(Cover.createdAt))
+        .limit(1)
+    )
+    cover = result.scalars().first()
+    if not cover:
+        return {"cover_url": None}
+
+    url = cover.url
+    if url and url.startswith("covers/"):
+        url = await minio_service.get_presigned_url(url)
+
+    return {
+        "cover_id": str(cover.cover_id),
+        "manga_id": str(cover.manga_id),
+        "volume": cover.volume,
+        "locale": cover.locale,
+        "cover_url": url,
+    }
+
+
+@router.get("/manga/{manga_id}/all")
+async def get_all_covers(manga_id: uuid.UUID, db: AsyncSession = Depends(get_db)):
+    """Get all covers for a manga."""
+    result = await db.execute(
+        select(Cover).where(Cover.manga_id == manga_id).order_by(Cover.volume)
+    )
+    covers = result.scalars().all()
+
+    items = []
+    for c in covers:
+        url = c.url
+        if url and url.startswith("covers/"):
+            url = await minio_service.get_presigned_url(url)
+        items.append({
+            "cover_id": str(c.cover_id),
+            "volume": c.volume,
+            "locale": c.locale,
+            "fileName": c.fileName,
+            "cover_url": url,
+        })
+    return items
+
+--- File: D:\TDMU\2025-2026\HKII_2025-2026\KTTKPM\coursework\manga_backend\app\api\v1\history.py ---
+"""Reading history API."""
+import math, uuid
+from datetime import datetime
+from fastapi import APIRouter, Depends, Query
+from sqlalchemy import desc, func
+from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy.future import select
+
+from app.core.database import get_db
+from app.api.dependencies import get_current_user
+from app.models.models import ReadingHistory, Chapter, Manga, User
+from app.schemas.history import HistoryCreate, HistoryResponse
+from app.schemas.common import PaginatedResponse
+
+router = APIRouter()
+
+
+@router.post("/", status_code=201)
+async def record_history(
+    body: HistoryCreate,
+    db: AsyncSession = Depends(get_db),
+    current_user: User = Depends(get_current_user),
+):
+    entry = ReadingHistory(
+        UserId=current_user.UserId,
+        MangaId=body.MangaId,
+        ChapterId=body.ChapterId,
+        LastPageRead=body.LastPageRead,
+        ReadAt=datetime.utcnow(),
+    )
+    db.add(entry)
+    await db.commit()
+    return {"success": True}
+
+
+@router.get("/")
+async def get_history(
+    page: int = Query(1, ge=1),
+    limit: int = Query(20, le=100),
+    db: AsyncSession = Depends(get_db),
+    current_user: User = Depends(get_current_user),
+):
+    base = select(ReadingHistory).where(ReadingHistory.UserId == current_user.UserId)
+    total = (await db.execute(select(func.count()).select_from(base.subquery()))).scalar() or 0
+
+    result = await db.execute(
+        base.order_by(desc(ReadingHistory.ReadAt)).offset((page - 1) * limit).limit(limit)
+    )
+    entries = result.scalars().all()
+
+    items = []
+    for h in entries:
+        manga_r = await db.execute(select(Manga.TitleEn).where(Manga.MangaId == h.MangaId))
+        chap_r = await db.execute(select(Chapter.ChapterNumber).where(Chapter.ChapterId == h.ChapterId))
+        items.append(HistoryResponse(
+            HistoryId=h.HistoryId, MangaId=h.MangaId, ChapterId=h.ChapterId,
+            LastPageRead=h.LastPageRead, ReadAt=h.ReadAt,
+            manga_title=manga_r.scalar(), chapter_number=chap_r.scalar(),
+        ).model_dump())
+
+    return PaginatedResponse(
+        items=items, page=page, per_page=limit, total=total,
+        total_pages=math.ceil(total / limit) if limit else 0,
+    )
+
+
+@router.get("/manga/{manga_id}/continue")
+async def continue_reading(
+    manga_id: uuid.UUID,
+    db: AsyncSession = Depends(get_db),
+    current_user: User = Depends(get_current_user),
+):
+    """Get most recent history entry for a manga → continue reading."""
+    result = await db.execute(
+        select(ReadingHistory)
+        .where(ReadingHistory.UserId == current_user.UserId, ReadingHistory.MangaId == manga_id)
+        .order_by(desc(ReadingHistory.ReadAt))
+        .limit(1)
+    )
+    h = result.scalars().first()
+    if h:
+        return {"chapter_id": str(h.ChapterId), "last_page": h.LastPageRead}
+
+    # Fallback: first available chapter
+    first = await db.execute(
+        select(Chapter)
+        .where(Chapter.MangaId == manga_id, Chapter.IsUnavailable != True)
+        .order_by(Chapter.ChapterNumber.asc())
+        .limit(1)
+    )
+    chap = first.scalars().first()
+    if chap:
+        return {"chapter_id": str(chap.ChapterId), "last_page": None}
+    return {"chapter_id": None, "last_page": None}
+
+--- File: D:\TDMU\2025-2026\HKII_2025-2026\KTTKPM\coursework\manga_backend\app\api\v1\list.py ---
+"""MDList API – CRUD lists, manage items, follow/unfollow, public search."""
+import math, uuid
+from datetime import datetime
+from fastapi import APIRouter, Depends, HTTPException, Query
+from sqlalchemy import desc, asc, func, or_
+from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy.future import select
+
+from app.core.database import get_db
+from app.api.dependencies import get_current_user
+from app.models.models import MangaList, ListManga, ListFollower, Manga, User
+from app.schemas.list import (
+    ListCreate, ListUpdate, ListBrief, ListDetailResponse,
+    ListMangaItem, PublicListItem,
+)
+from app.schemas.common import PaginatedResponse
+
+router = APIRouter()
+
+
+# ── GET MY LISTS ─────────────────────────────────────────
+@router.get("/")
+async def get_lists(
+    manga_id: uuid.UUID | None = None,
+    db: AsyncSession = Depends(get_db),
+    current_user: User = Depends(get_current_user),
+):
+    my = await db.execute(
+        select(MangaList).where(MangaList.UserId == current_user.UserId).order_by(desc(MangaList.UpdatedAt))
+    )
+    my_lists = my.scalars().all()
+
+    followed = await db.execute(
+        select(MangaList)
+        .join(ListFollower, ListFollower.ListId == MangaList.ListId)
+        .where(ListFollower.UserId == current_user.UserId)
+        .order_by(desc(MangaList.UpdatedAt))
+    )
+    followed_lists = followed.scalars().all()
+
+    async def brief(l: MangaList) -> dict:
+        d = ListBrief(
+            ListId=l.ListId, Name=l.Name, Slug=l.Slug,
+            Description=l.Description, Visibility=l.Visibility,
+            ItemCount=l.ItemCount or 0, FollowerCount=l.FollowerCount or 0,
+            UpdatedAt=l.UpdatedAt,
+        )
+        if manga_id:
+            r = await db.execute(
+                select(ListManga).where(ListManga.ListId == l.ListId, ListManga.MangaId == manga_id)
+            )
+            d.contains = r.scalars().first() is not None
+        return d.model_dump()
+
+    return {
+        "my_lists": [await brief(l) for l in my_lists],
+        "followed_lists": [await brief(l) for l in followed_lists],
+    }
+
+
+# ── CREATE LIST ──────────────────────────────────────────
+@router.post("/", status_code=201)
+async def create_list(
+    body: ListCreate, db: AsyncSession = Depends(get_db),
+    current_user: User = Depends(get_current_user),
+):
+    if not body.Name:
+        raise HTTPException(status_code=400, detail="Name is required")
+    slug = f"{body.Name.strip().lower().replace(' ', '-')}-{str(uuid.uuid4())[:8]}"
+    new_list = MangaList(
+        UserId=current_user.UserId, Name=body.Name, Description=body.Description,
+        Visibility=body.Visibility, Slug=slug,
+        CreatedAt=datetime.utcnow(), UpdatedAt=datetime.utcnow(),
+    )
+    db.add(new_list)
+    await db.commit()
+    await db.refresh(new_list)
+    return {"id": str(new_list.ListId), "slug": new_list.Slug}
+
+
+# ── PUBLIC LISTS ─────────────────────────────────────────
+@router.get("/public")
+async def search_public_lists(
+    page: int = Query(1, ge=1), limit: int = Query(12, ge=1, le=100),
+    sort: str = "updated_desc", q: str = "",
+    db: AsyncSession = Depends(get_db),
+    current_user: User = Depends(get_current_user),
+):
+    base = select(MangaList).where(
+        MangaList.Visibility == "public",
+        MangaList.UserId != current_user.UserId,
+    )
+    if q.strip():
+        like = f"%{q.strip()}%"
+        base = base.where(or_(MangaList.Name.ilike(like), MangaList.Description.ilike(like)))
+
+    if "_" in sort:
+        field, direction = sort.rsplit("_", 1)
+    else:
+        field, direction = sort, "desc"
+    order_fn = desc if direction == "desc" else asc
+    sort_map = {
+        "followers": MangaList.FollowerCount, "items": MangaList.ItemCount,
+        "name": MangaList.Name, "updated": MangaList.UpdatedAt,
+    }
+    base = base.order_by(order_fn(sort_map.get(field, MangaList.UpdatedAt)))
+
+    total = (await db.execute(select(func.count()).select_from(base.subquery()))).scalar() or 0
+    result = await db.execute(base.offset((page - 1) * limit).limit(limit))
+    lists = result.scalars().all()
+
+    followed_r = await db.execute(
+        select(ListFollower.ListId).where(ListFollower.UserId == current_user.UserId)
+    )
+    followed_ids = {r for (r,) in followed_r.all()}
+
+    items = []
+    for l in lists:
+        user_r = await db.execute(select(User.Username).where(User.UserId == l.UserId))
+        items.append(PublicListItem(
+            ListId=l.ListId, Name=l.Name, Description=l.Description, Slug=l.Slug,
+            Visibility=l.Visibility, ItemCount=l.ItemCount or 0,
+            FollowerCount=l.FollowerCount or 0, UpdatedAt=l.UpdatedAt,
+            owner_username=user_r.scalar(), owner_id=l.UserId,
+            is_following=l.ListId in followed_ids,
+        ).model_dump())
+
+    return PaginatedResponse(
+        items=items, page=page, per_page=limit, total=total,
+        total_pages=math.ceil(total / limit) if limit else 0,
+    )
+
+
+# ── GET LIST DETAIL ──────────────────────────────────────
+@router.get("/{list_id}")
+async def get_list(list_id: uuid.UUID, db: AsyncSession = Depends(get_db)):
+    result = await db.execute(select(MangaList).where(MangaList.ListId == list_id))
+    l = result.scalars().first()
+    if not l:
+        raise HTTPException(status_code=404, detail="List not found")
+
+    item_r = await db.execute(
+        select(ListManga, Manga)
+        .join(Manga, ListManga.MangaId == Manga.MangaId)
+        .where(ListManga.ListId == list_id)
+        .order_by(ListManga.Position.asc())
+    )
+    items = [
+        ListMangaItem(manga_id=m.MangaId, title=m.TitleEn, position=lm.Position).model_dump()
+        for lm, m in item_r.all()
+    ]
+    user_r = await db.execute(select(User.Username).where(User.UserId == l.UserId))
+
+    return ListDetailResponse(
+        ListId=l.ListId, Name=l.Name, Description=l.Description, Slug=l.Slug,
+        Visibility=l.Visibility, owner_id=l.UserId,
+        owner_username=user_r.scalar(),
+        ItemCount=l.ItemCount or 0, FollowerCount=l.FollowerCount or 0,
+        items=items,
+    )
+
+
+# ── UPDATE / DELETE LIST ─────────────────────────────────
+@router.put("/{list_id}")
+async def update_list(
+    list_id: uuid.UUID, body: ListUpdate,
+    db: AsyncSession = Depends(get_db), current_user: User = Depends(get_current_user),
+):
+    result = await db.execute(select(MangaList).where(MangaList.ListId == list_id))
+    l = result.scalars().first()
+    if not l:
+        raise HTTPException(status_code=404)
+    if l.UserId != current_user.UserId:
+        raise HTTPException(status_code=403)
+    if body.Name is not None:
+        l.Name = body.Name
+    if body.Description is not None:
+        l.Description = body.Description
+    if body.Visibility is not None:
+        l.Visibility = body.Visibility
+    l.UpdatedAt = datetime.utcnow()
+    await db.commit()
+    return {"success": True}
+
+
+@router.delete("/{list_id}", status_code=204)
+async def delete_list(
+    list_id: uuid.UUID,
+    db: AsyncSession = Depends(get_db), current_user: User = Depends(get_current_user),
+):
+    result = await db.execute(select(MangaList).where(MangaList.ListId == list_id))
+    l = result.scalars().first()
+    if not l:
+        raise HTTPException(status_code=404)
+    if l.UserId != current_user.UserId:
+        raise HTTPException(status_code=403)
+    await db.delete(l)
+    await db.commit()
+
+
+# ── ADD / REMOVE MANGA ───────────────────────────────────
+@router.post("/{list_id}/items", status_code=201)
+async def add_item(
+    list_id: uuid.UUID, manga_id: uuid.UUID = Query(...),
+    db: AsyncSession = Depends(get_db), current_user: User = Depends(get_current_user),
+):
+    result = await db.execute(select(MangaList).where(MangaList.ListId == list_id))
+    l = result.scalars().first()
+    if not l or l.UserId != current_user.UserId:
+        raise HTTPException(status_code=403)
+
+    existing = await db.execute(
+        select(ListManga).where(ListManga.ListId == list_id, ListManga.MangaId == manga_id)
+    )
+    if existing.scalars().first():
+        return {"message": "already exists", "item_count": l.ItemCount or 0}
+
+    max_pos = (await db.execute(
+        select(func.max(ListManga.Position)).where(ListManga.ListId == list_id)
+    )).scalar() or 0
+
+    db.add(ListManga(ListId=list_id, MangaId=manga_id, AddedAt=datetime.utcnow(), Position=max_pos + 1))
+    l.ItemCount = (l.ItemCount or 0) + 1
+    l.UpdatedAt = datetime.utcnow()
+    await db.commit()
+    return {"success": True, "item_count": l.ItemCount}
+
+
+@router.delete("/{list_id}/items/{manga_id}")
+async def remove_item(
+    list_id: uuid.UUID, manga_id: uuid.UUID,
+    db: AsyncSession = Depends(get_db), current_user: User = Depends(get_current_user),
+):
+    result = await db.execute(select(MangaList).where(MangaList.ListId == list_id))
+    l = result.scalars().first()
+    if not l or l.UserId != current_user.UserId:
+        raise HTTPException(status_code=403)
+
+    item = await db.execute(
+        select(ListManga).where(ListManga.ListId == list_id, ListManga.MangaId == manga_id)
+    )
+    lm = item.scalars().first()
+    if not lm:
+        raise HTTPException(status_code=404)
+    await db.delete(lm)
+    l.ItemCount = max(0, (l.ItemCount or 0) - 1)
+    l.UpdatedAt = datetime.utcnow()
+    await db.commit()
+    return {"success": True, "item_count": l.ItemCount}
+
+
+# ── FOLLOW / UNFOLLOW ────────────────────────────────────
+@router.post("/{list_id}/follow")
+async def follow_list(
+    list_id: uuid.UUID,
+    db: AsyncSession = Depends(get_db), current_user: User = Depends(get_current_user),
+):
+    result = await db.execute(select(MangaList).where(MangaList.ListId == list_id))
+    l = result.scalars().first()
+    if not l:
+        raise HTTPException(status_code=404)
+
+    existing = await db.execute(
+        select(ListFollower).where(ListFollower.ListId == list_id, ListFollower.UserId == current_user.UserId)
+    )
+    if existing.scalars().first():
+        return {"message": "already following"}
+
+    db.add(ListFollower(ListId=list_id, UserId=current_user.UserId))
+    l.FollowerCount = (l.FollowerCount or 0) + 1
+    await db.commit()
+    return {"success": True, "follower_count": l.FollowerCount}
+
+
+@router.delete("/{list_id}/follow")
+async def unfollow_list(
+    list_id: uuid.UUID,
+    db: AsyncSession = Depends(get_db), current_user: User = Depends(get_current_user),
+):
+    result = await db.execute(select(MangaList).where(MangaList.ListId == list_id))
+    l = result.scalars().first()
+    if not l:
+        raise HTTPException(status_code=404)
+
+    f = await db.execute(
+        select(ListFollower).where(ListFollower.ListId == list_id, ListFollower.UserId == current_user.UserId)
+    )
+    follower = f.scalars().first()
+    if not follower:
+        return {"message": "not following"}
+    await db.delete(follower)
+    l.FollowerCount = max(0, (l.FollowerCount or 0) - 1)
+    await db.commit()
+    return {"success": True, "follower_count": l.FollowerCount}
+
+--- File: D:\TDMU\2025-2026\HKII_2025-2026\KTTKPM\coursework\manga_backend\app\api\v1\manga.py ---
+"""Manga catalog API – browse, search, detail, random."""
+import math
+from fastapi import APIRouter, Depends, Query
+from sqlalchemy import func, or_, desc
+from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy.future import select
+from sqlalchemy.orm import selectinload
+from typing import Optional
+import uuid
+
+from app.core.database import get_db
+from app.api.dependencies import get_current_user_optional
+from app.models.models import (
+    Manga, MangaStatistics, MangaAltTitle, MangaTag, Tag,
+    Creator, CreatorRelationship, MangaRelated, Cover, User,
+)
+from app.schemas.manga import (
+    MangaListItem, MangaDetailResponse, StatisticsOut,
+    TagBrief, AltTitle, Description, LinkOut, CreatorOut, RelatedMangaOut,
+)
+from app.schemas.common import PaginatedResponse
+from app.services.minio_service import minio_service
+
+router = APIRouter()
+
+
+# ── helpers ──────────────────────────────────────────────
+async def _cover_url(manga_id: uuid.UUID, db: AsyncSession) -> str | None:
+    """Get primary cover URL from Covers table → MinIO presigned URL."""
+    result = await db.execute(
+        select(Cover)
+        .where(Cover.manga_id == manga_id)
+        .order_by(Cover.createdAt.desc())
+        .limit(1)
+    )
+    cover = result.scalars().first()
+    if cover and cover.url:
+        # If url is a MinIO object key, generate presigned URL
+        if cover.url.startswith("covers/"):
+            return await minio_service.get_presigned_url(cover.url)
+        return cover.url
+    return None
+
+
+async def _build_list_item(manga: Manga, db: AsyncSession) -> dict:
+    stat_r = await db.execute(
+        select(MangaStatistics).where(MangaStatistics.MangaId == manga.MangaId).limit(1)
+    )
+    stat = stat_r.scalars().first()
+    cover = await _cover_url(manga.MangaId, db)
+    return MangaListItem(
+        MangaId=manga.MangaId,
+        TitleEn=manga.TitleEn,
+        Status=manga.Status,
+        Year=manga.Year,
+        ContentRating=manga.ContentRating,
+        PublicationDemographic=manga.PublicationDemographic,
+        cover_url=cover,
+        stats=StatisticsOut(
+            Follows=stat.Follows if stat else 0,
+            AverageRating=stat.AverageRating if stat else 0,
+            BayesianRating=stat.BayesianRating if stat else 0,
+        ) if stat else None,
+    ).model_dump()
+
+
+# ── LIST MANGAS ──────────────────────────────────────────
+@router.get("/")
+async def list_mangas(
+    page: int = Query(1, ge=1),
+    limit: int = Query(20, ge=1, le=100),
+    sort: str = Query("follows_desc"),
+    status: Optional[str] = None,
+    content_rating: Optional[str] = None,
+    demographic: Optional[str] = None,
+    year: Optional[int] = None,
+    db: AsyncSession = Depends(get_db),
+):
+    query = select(Manga).outerjoin(MangaStatistics)
+
+    if status:
+        query = query.where(Manga.Status == status)
+    if content_rating:
+        query = query.where(Manga.ContentRating == content_rating)
+    if demographic:
+        query = query.where(Manga.PublicationDemographic == demographic)
+    if year:
+        query = query.where(Manga.Year == year)
+
+    # Sorting
+    if sort == "follows_desc":
+        query = query.order_by(desc(MangaStatistics.Follows))
+    elif sort == "rating_desc":
+        query = query.order_by(desc(MangaStatistics.AverageRating))
+    elif sort == "title_asc":
+        query = query.order_by(Manga.TitleEn.asc())
+    elif sort == "year_desc":
+        query = query.order_by(desc(Manga.Year))
+    elif sort == "recent":
+        query = query.order_by(desc(Manga.UpdatedAt))
+    else:
+        query = query.order_by(desc(MangaStatistics.Follows))
+
+    # Count
+    count_q = select(func.count()).select_from(query.subquery())
+    total = (await db.execute(count_q)).scalar() or 0
+
+    # Paginate
+    result = await db.execute(query.offset((page - 1) * limit).limit(limit))
+    mangas = result.scalars().unique().all()
+
+    items = []
+    for m in mangas:
+        items.append(await _build_list_item(m, db))
+
+    return PaginatedResponse(
+        items=items, page=page, per_page=limit, total=total,
+        total_pages=math.ceil(total / limit) if limit else 0,
+    )
+
+
+# ── SEARCH ───────────────────────────────────────────────
+@router.get("/search")
+async def search_mangas(
+    q: str = Query(..., min_length=1),
+    limit: int = Query(10, le=50),
+    db: AsyncSession = Depends(get_db),
+):
+    subq = (
+        select(Manga.MangaId)
+        .outerjoin(MangaAltTitle, Manga.MangaId == MangaAltTitle.MangaId)
+        .where(or_(Manga.TitleEn.ilike(f"%{q}%"), MangaAltTitle.AltTitle.ilike(f"%{q}%")))
+        .group_by(Manga.MangaId)
+        .subquery()
+    )
+    query = (
+        select(Manga)
+        .join(subq, Manga.MangaId == subq.c.MangaId)
+        .outerjoin(MangaStatistics)
+        .order_by(desc(MangaStatistics.Follows))
+        .limit(limit)
+    )
+    result = await db.execute(query)
+    mangas = result.scalars().unique().all()
+
+    items = []
+    for m in mangas:
+        items.append(await _build_list_item(m, db))
+    return items
+
+
+# ── ADVANCED SEARCH ──────────────────────────────────────
+@router.get("/advanced-search")
+async def advanced_search(
+    q: Optional[str] = None,
+    page: int = Query(1, ge=1),
+    limit: int = Query(20, le=100),
+    sort: str = "follows_desc",
+    include_tags: Optional[str] = None,
+    exclude_tags: Optional[str] = None,
+    content_rating: Optional[str] = None,
+    demographic: Optional[str] = None,
+    status: Optional[str] = None,
+    year_from: Optional[int] = None,
+    year_to: Optional[int] = None,
+    original_lang: Optional[str] = None,
+    db: AsyncSession = Depends(get_db),
+):
+    query = select(Manga).outerjoin(MangaStatistics)
+
+    if q:
+        subq = (
+            select(Manga.MangaId)
+            .outerjoin(MangaAltTitle)
+            .where(or_(Manga.TitleEn.ilike(f"%{q}%"), MangaAltTitle.AltTitle.ilike(f"%{q}%")))
+            .group_by(Manga.MangaId)
+            .subquery()
+        )
+        query = query.join(subq, Manga.MangaId == subq.c.MangaId)
+
+    if include_tags:
+        tag_ids = [t.strip() for t in include_tags.split(",") if t.strip()]
+        if tag_ids:
+            query = query.join(MangaTag).where(MangaTag.TagId.in_(tag_ids))
+
+    if exclude_tags:
+        ex_ids = [t.strip() for t in exclude_tags.split(",") if t.strip()]
+        if ex_ids:
+            excluded = select(MangaTag.MangaId).where(MangaTag.TagId.in_(ex_ids)).distinct().subquery()
+            query = query.where(~Manga.MangaId.in_(select(excluded.c.MangaId)))
+
+    if content_rating:
+        query = query.where(Manga.ContentRating.in_(content_rating.split(",")))
+    if demographic:
+        query = query.where(Manga.PublicationDemographic.in_(demographic.split(",")))
+    if status:
+        query = query.where(Manga.Status.in_(status.split(",")))
+    if original_lang:
+        query = query.where(Manga.OriginalLanguage.in_(original_lang.split(",")))
+    if year_from:
+        query = query.where(Manga.Year >= year_from)
+    if year_to:
+        query = query.where(Manga.Year <= year_to)
+
+    # Sort
+    order_map = {
+        "follows_desc": desc(MangaStatistics.Follows),
+        "rating_desc": desc(MangaStatistics.AverageRating),
+        "title_asc": Manga.TitleEn.asc(),
+        "title_desc": Manga.TitleEn.desc(),
+        "year_asc": Manga.Year.asc(),
+        "year_desc": desc(Manga.Year),
+        "recent": desc(Manga.UpdatedAt),
+    }
+    query = query.order_by(order_map.get(sort, desc(MangaStatistics.Follows)))
+
+    count_q = select(func.count()).select_from(query.subquery())
+    total = (await db.execute(count_q)).scalar() or 0
+    result = await db.execute(query.offset((page - 1) * limit).limit(limit))
+    mangas = result.scalars().unique().all()
+
+    items = []
+    for m in mangas:
+        items.append(await _build_list_item(m, db))
+
+    return PaginatedResponse(
+        items=items, page=page, per_page=limit, total=total,
+        total_pages=math.ceil(total / limit) if limit else 0,
+    )
+
+
+# ── RANDOM ───────────────────────────────────────────────
+@router.get("/random")
+async def random_manga(db: AsyncSession = Depends(get_db)):
+    result = await db.execute(select(Manga).order_by(func.newid()).limit(1))
+    manga = result.scalars().first()
+    if not manga:
+        return {"message": "No manga found"}
+    return await _build_list_item(manga, db)
+
+
+# ── RECENTLY ADDED ───────────────────────────────────────
+@router.get("/recently-added")
+async def recently_added(
+    page: int = Query(1, ge=1), limit: int = Query(20, le=100),
+    db: AsyncSession = Depends(get_db),
+):
+    query = select(Manga).order_by(desc(Manga.CreatedAt))
+    count_q = select(func.count()).select_from(query.subquery())
+    total = (await db.execute(count_q)).scalar() or 0
+    result = await db.execute(query.offset((page - 1) * limit).limit(limit))
+    items = [await _build_list_item(m, db) for m in result.scalars().unique().all()]
+    return PaginatedResponse(items=items, page=page, per_page=limit, total=total,
+                             total_pages=math.ceil(total / limit) if limit else 0)
+
+
+# ── LATEST UPDATES ───────────────────────────────────────
+@router.get("/latest-updates")
+async def latest_updates(
+    page: int = Query(1, ge=1), limit: int = Query(20, le=100),
+    db: AsyncSession = Depends(get_db),
+):
+    query = select(Manga).order_by(desc(Manga.UpdatedAt))
+    count_q = select(func.count()).select_from(query.subquery())
+    total = (await db.execute(count_q)).scalar() or 0
+    result = await db.execute(query.offset((page - 1) * limit).limit(limit))
+    items = [await _build_list_item(m, db) for m in result.scalars().unique().all()]
+    return PaginatedResponse(items=items, page=page, per_page=limit, total=total,
+                             total_pages=math.ceil(total / limit) if limit else 0)
+
+
+# ── MANGA DETAIL ─────────────────────────────────────────
+@router.get("/{manga_id}")
+async def manga_detail(manga_id: uuid.UUID, db: AsyncSession = Depends(get_db)):
+    result = await db.execute(
+        select(Manga)
+        .options(
+            selectinload(Manga.descriptions),
+            selectinload(Manga.alt_titles),
+            selectinload(Manga.links),
+            selectinload(Manga.stats),
+            selectinload(Manga.tags).selectinload(MangaTag.tag),
+            selectinload(Manga.available_languages),
+        )
+        .where(Manga.MangaId == manga_id)
+    )
+    manga = result.scalars().first()
+    if not manga:
+        from fastapi import HTTPException
+        raise HTTPException(status_code=404, detail="Manga not found")
+
+    # Creators
+    cr_result = await db.execute(
+        select(Creator.Name, CreatorRelationship.RelatedType)
+        .join(CreatorRelationship, Creator.CreatorId == CreatorRelationship.CreatorId)
+        .where(CreatorRelationship.RelatedId == manga_id)
+    )
+    creators = [CreatorOut(name=n, role=r) for n, r in cr_result.all()]
+
+    stat = manga.stats[0] if manga.stats else None
+    cover = await _cover_url(manga_id, db)
+    langs = sorted(set(l.LangCode for l in manga.available_languages if l.LangCode))
+
+    return MangaDetailResponse(
+        MangaId=manga.MangaId,
+        Type=manga.Type,
+        TitleEn=manga.TitleEn,
+        Status=manga.Status,
+        Year=manga.Year,
+        ContentRating=manga.ContentRating,
+        PublicationDemographic=manga.PublicationDemographic,
+        OriginalLanguage=manga.OriginalLanguage,
+        LastChapter=manga.LastChapter,
+        LastVolume=manga.LastVolume,
+        CreatedAt=manga.CreatedAt,
+        UpdatedAt=manga.UpdatedAt,
+        cover_url=cover,
+        stats=StatisticsOut(
+            Follows=stat.Follows if stat else 0,
+            AverageRating=stat.AverageRating if stat else 0,
+            BayesianRating=stat.BayesianRating if stat else 0,
+        ) if stat else None,
+        tags=[TagBrief(TagId=mt.tag.TagId, GroupName=mt.tag.GroupName, NameEn=mt.tag.NameEn) for mt in manga.tags if mt.tag],
+        alt_titles=[AltTitle(LangCode=a.LangCode, AltTitle=a.AltTitle) for a in manga.alt_titles],
+        descriptions=[Description(LangCode=d.LangCode, Description=d.Description) for d in manga.descriptions],
+        links=[LinkOut(Provider=l.Provider, Url=l.Url) for l in manga.links],
+        creators=creators,
+        available_languages=langs,
+    )
+
+
+# ── RELATED ──────────────────────────────────────────────
+@router.get("/{manga_id}/related")
+async def get_related(manga_id: uuid.UUID, db: AsyncSession = Depends(get_db)):
+    result = await db.execute(
+        select(MangaRelated).where(MangaRelated.MangaId == manga_id)
+    )
+    rels = result.scalars().all()
+
+    items = []
+    for r in rels:
+        title_r = await db.execute(select(Manga.TitleEn).where(Manga.MangaId == r.RelatedId))
+        title = title_r.scalar()
+        items.append(RelatedMangaOut(
+            RelatedId=r.RelatedId,
+            relation_type=r.Type,
+            related_label=r.Related,
+            title=title,
+        ))
+    return items
+--- File: D:\TDMU\2025-2026\HKII_2025-2026\KTTKPM\coursework\manga_backend\app\api\v1\rating.py ---
+"""Rating API – rate manga (upsert), get my rating."""
+import uuid
+from fastapi import APIRouter, Depends, HTTPException
+from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy.future import select
+
+from app.core.database import get_db
+from app.api.dependencies import get_current_user
+from app.models.models import Rating, Manga, User
+from app.schemas.rating import RatingCreate, RatingResponse
+
+router = APIRouter()
+
+
+@router.post("/manga/{manga_id}/rate")
+async def rate_manga(
+    manga_id: uuid.UUID,
+    body: RatingCreate,
+    db: AsyncSession = Depends(get_db),
+    current_user: User = Depends(get_current_user),
+):
+    if body.Score < 1 or body.Score > 10:
+        raise HTTPException(status_code=400, detail="Score must be 1-10")
+
+    manga_r = await db.execute(select(Manga).where(Manga.MangaId == manga_id))
+    if not manga_r.scalars().first():
+        raise HTTPException(status_code=404, detail="Manga not found")
+
+    result = await db.execute(
+        select(Rating).where(Rating.UserId == current_user.UserId, Rating.MangaId == manga_id)
+    )
+    existing = result.scalars().first()
+
+    if existing:
+        existing.Score = body.Score
+        await db.commit()
+        await db.refresh(existing)
+        return RatingResponse.model_validate(existing)
+    else:
+        new_rating = Rating(UserId=current_user.UserId, MangaId=manga_id, Score=body.Score)
+        db.add(new_rating)
+        await db.commit()
+        await db.refresh(new_rating)
+        return RatingResponse.model_validate(new_rating)
+
+
+@router.get("/manga/{manga_id}/my-rating")
+async def get_my_rating(
+    manga_id: uuid.UUID,
+    db: AsyncSession = Depends(get_db),
+    current_user: User = Depends(get_current_user),
+):
+    result = await db.execute(
+        select(Rating).where(Rating.UserId == current_user.UserId, Rating.MangaId == manga_id)
+    )
+    rating = result.scalars().first()
+    if not rating:
+        return {"score": None}
+    return RatingResponse.model_validate(rating)
+
+--- File: D:\TDMU\2025-2026\HKII_2025-2026\KTTKPM\coursework\manga_backend\app\api\v1\tag.py ---
+"""Tag API."""
+from fastapi import APIRouter, Depends
+from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy.future import select
+from collections import defaultdict
+
+from app.core.database import get_db
+from app.models.models import Tag
+from app.schemas.tag import TagResponse, TagGroup
+
+router = APIRouter()
+
+
+@router.get("/")
+async def list_tags(db: AsyncSession = Depends(get_db)):
+    """List all tags grouped by GroupName."""
+    result = await db.execute(select(Tag).order_by(Tag.GroupName, Tag.NameEn))
+    tags = result.scalars().all()
+
+    groups: dict[str, list] = defaultdict(list)
+    for t in tags:
+        groups[t.GroupName or "other"].append(
+            TagResponse(TagId=t.TagId, GroupName=t.GroupName, NameEn=t.NameEn).model_dump()
+        )
+
+    return [TagGroup(group_name=k, tags=v).model_dump() for k, v in groups.items()]
+
+=== Folder: app\core ===
+
+--- File: D:\TDMU\2025-2026\HKII_2025-2026\KTTKPM\coursework\manga_backend\app\core\config.py ---
+from pydantic_settings import BaseSettings
+
+
+class Settings(BaseSettings):
+    DATABASE_URL: str
+    SECRET_KEY: str
+    ACCESS_TOKEN_EXPIRE_MINUTES: int = 10080  # 7 days
+
+    MINIO_ENDPOINT: str = "localhost:9000"
+    MINIO_ACCESS_KEY: str = "admin"
+    MINIO_SECRET_KEY: str = "password"
+    MINIO_BUCKET: str = "manga-media"
+    MINIO_USE_SSL: bool = False
+
+    class Config:
+        env_file = ".env"
+
+
+settings = Settings()
+--- File: D:\TDMU\2025-2026\HKII_2025-2026\KTTKPM\coursework\manga_backend\app\core\database.py ---
+from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, async_sessionmaker
+from sqlalchemy.orm import DeclarativeBase
+from app.core.config import settings
+
+
+class Base(DeclarativeBase):
+    pass
+
+
+engine = create_async_engine(settings.DATABASE_URL, echo=False, future=True)
+
+AsyncSessionLocal = async_sessionmaker(
+    bind=engine, class_=AsyncSession, expire_on_commit=False
+)
+
+
+async def get_db():
+    """FastAPI dependency – yields an async DB session."""
+    async with AsyncSessionLocal() as session:
+        try:
+            yield session
+        finally:
+            await session.close()
+--- File: D:\TDMU\2025-2026\HKII_2025-2026\KTTKPM\coursework\manga_backend\app\core\security.py ---
+from datetime import datetime, timedelta
+from typing import Optional
+from jose import jwt, JWTError
+from passlib.context import CryptContext
+from app.core.config import settings
+
+pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+ALGORITHM = "HS256"
+
+
+def verify_password(plain_password: str, hashed_password: str) -> bool:
+    return pwd_context.verify(plain_password, hashed_password)
+
+
+def get_password_hash(password: str) -> str:
+    return pwd_context.hash(password)
+
+
+def create_access_token(data: dict, expires_delta: Optional[timedelta] = None) -> str:
+    to_encode = data.copy()
+    expire = datetime.utcnow() + (expires_delta or timedelta(minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES))
+    to_encode.update({"exp": expire})
+    return jwt.encode(to_encode, settings.SECRET_KEY, algorithm=ALGORITHM)
+
+
+def decode_access_token(token: str) -> Optional[dict]:
+    """Decode JWT. Returns payload dict or None if invalid."""
+    try:
+        return jwt.decode(token, settings.SECRET_KEY, algorithms=[ALGORITHM])
+    except JWTError:
+        return None
+=== Folder: app\models ===
+
+--- File: D:\TDMU\2025-2026\HKII_2025-2026\KTTKPM\coursework\manga_backend\app\models\__init__.py ---
+from app.models.models import (
+    User, Manga, Chapter, Comment, CommentReaction,
+    Creator, CreatorRelationship,
+    Tag, MangaTag, MangaAltTitle, MangaDescription,
+    MangaLink, MangaAvailableLanguage, MangaStatistics, MangaRelated,
+    Rating, ReadingHistory, Report,
+    MangaList, ListManga, ListFollower, Cover
+)
+
+--- File: D:\TDMU\2025-2026\HKII_2025-2026\KTTKPM\coursework\manga_backend\app\models\domain.py ---
+from datetime import datetime
+import uuid
+from flask_login import UserMixin
+from sqlalchemy.dialects.mssql import UNIQUEIDENTIFIER
+from sqlalchemy import Column, LargeBinary, PrimaryKeyConstraint, String, Integer, Boolean, DateTime, Text, Float, ForeignKey
+from sqlalchemy.orm import relationship
+from . import db
+
+# ------------------------
+# USER
+# ------------------------
+class User(UserMixin, db.Model):
+    __tablename__ = "User"
+    __table_args__ = {"schema": "dbo"}
+
+    UserId = Column(UNIQUEIDENTIFIER, primary_key=True, default=uuid.uuid4)
+    Username = Column(String(100), nullable=False)
+    Email = Column(String(255), nullable=False)
+    PasswordHash = Column(String(255), nullable=False)
+    Avatar = Column(Text)
+    Role = Column(String(20), nullable=False)
+    IsLocked = Column(Boolean)
+    CreatedAt = Column(DateTime, default=datetime.utcnow)
+
+    # relationships
+    comments = relationship("Comment", back_populates="user")
+    ratings = relationship("Rating", back_populates="user")
+    lists = relationship("List", back_populates="user")
+    histories = relationship("ReadingHistory", back_populates="user")
+    reports = relationship("Report", back_populates="user")
+    reactions = relationship("CommentReaction", back_populates="user")
+
+    def get_id(self):
+        return str(self.UserId)
+
+# ------------------------
+# MANGA
+# ------------------------
+class Manga(db.Model):
+    __tablename__ = "Manga"
+    __table_args__ = {"schema": "dbo"}
+
+    MangaId = Column(UNIQUEIDENTIFIER, primary_key=True, default=uuid.uuid4)
+    Type = Column(String(50))
+    TitleEn = Column(String(500))
+    ChapterNumbersResetOnNewVolume = Column(Boolean)
+    ContentRating = Column(String(50))
+    CreatedAt = Column(DateTime)
+    UpdatedAt = Column(DateTime)
+    IsLocked = Column(Boolean)
+    LastChapter = Column(String(50))
+    LastVolume = Column(String(50))
+    LatestUploadedChapter = Column(String(50))
+    OriginalLanguage = Column(String(10))
+    PublicationDemographic = Column(String(50))
+    State = Column(String(50))
+    Status = Column(String(50))
+    Year = Column(Integer)
+    OfficialLinks = Column(Text)
+
+    # relationships
+    chapters = relationship("Chapter", back_populates="manga")
+    comments = relationship("Comment", back_populates="manga")
+    ratings = relationship("Rating", back_populates="manga")
+    alt_titles = relationship("MangaAltTitle", back_populates="manga")
+    descriptions = relationship("MangaDescription", back_populates="manga")
+    links = relationship("MangaLink", back_populates="manga")
+    stats = relationship("MangaStatistics", back_populates="manga")
+    available_languages = relationship("MangaAvailableLanguage", back_populates="manga")
+    tags = relationship("MangaTag", back_populates="manga")
+    histories = relationship("ReadingHistory", back_populates="manga")
+
+
+# ------------------------
+# CHAPTER
+# ------------------------
+class Chapter(db.Model):
+    __tablename__ = "Chapter"
+    __table_args__ = {"schema": "dbo"}
+
+    ChapterId = Column(UNIQUEIDENTIFIER, primary_key=True, default=uuid.uuid4)
+    MangaId = Column(UNIQUEIDENTIFIER, ForeignKey("dbo.Manga.MangaId"))
+    Type = Column(String(50))
+    Volume = Column(String(50))
+    ChapterNumber = Column(String(50))
+    Title = Column(Text)
+    TranslatedLang = Column(String(10))
+    Pages = Column(Integer)
+    PublishAt = Column(DateTime)
+    ReadableAt = Column(DateTime)
+    IsUnavailable = Column(Boolean)
+    CreatedAt = Column(DateTime)
+    UpdatedAt = Column(DateTime)
+
+    manga = relationship("Manga", back_populates="chapters")
+    comments = relationship("Comment", back_populates="chapter")
+    histories = relationship("ReadingHistory", back_populates="chapter")
+
+
+# ------------------------
+# COMMENT
+# ------------------------
+# Mới: Sử dụng UNIQUEIDENTIFIER
+class Comment(db.Model):
+    __tablename__ = 'Comment'
+    __table_args__ = {'schema': 'dbo'}
+
+    # Thay đổi tất cả các cột ID thành UNIQUEIDENTIFIER
+    CommentId = Column(UNIQUEIDENTIFIER, primary_key=True, default=uuid.uuid4)
+    UserId = Column(UNIQUEIDENTIFIER, ForeignKey('dbo.User.UserId'), nullable=False)
+    MangaId = Column(UNIQUEIDENTIFIER, ForeignKey('dbo.Manga.MangaId'), nullable=False)
+    # Rất quan trọng: ChapterId phải là UNIQUEIDENTIFIER và nullable=True
+    ChapterId = Column(UNIQUEIDENTIFIER, ForeignKey('dbo.Chapter.ChapterId'), nullable=True) 
+
+    Content = Column(Text, nullable=False)
+    CreatedAt = Column(DateTime, default=datetime.utcnow)
+    UpdatedAt = Column(DateTime, default=datetime.utcnow)
+    IsDeleted = Column(Boolean, default=False)
+    IsSpoiler = Column(Boolean, default=False)
+    LikeCount = Column(Integer, default=0)
+    DislikeCount = Column(Integer, default=0)
+
+    user = relationship("User", back_populates="comments")
+    manga = relationship("Manga", back_populates="comments")
+    chapter = relationship("Chapter", back_populates="comments")
+    reports = relationship("Report", back_populates="comment")
+    reactions = relationship("CommentReaction", back_populates="comment")
+
+# ------------------------
+# COMMENT REACTION (new)
+# ------------------------
+class CommentReaction(db.Model):
+    __tablename__ = 'CommentReaction'
+    __table_args__ = {'schema': 'dbo'}
+
+    ReactionId = Column(UNIQUEIDENTIFIER, primary_key=True, default=uuid.uuid4)
+    CommentId = Column(UNIQUEIDENTIFIER, ForeignKey('dbo.Comment.CommentId'), nullable=False)
+    UserId = Column(UNIQUEIDENTIFIER, ForeignKey('dbo.User.UserId'), nullable=False)
+    Type = Column(String(10), nullable=False)  # 'like' or 'dislike'
+    CreatedAt = Column(DateTime, default=datetime.utcnow)
+
+    comment = relationship("Comment", back_populates="reactions")
+    user = relationship("User", back_populates="reactions")
+
+# ------------------------
+# CREATOR
+# ------------------------
+class Creator(db.Model):
+    __tablename__ = "Creator"
+    __table_args__ = {"schema": "dbo"}
+
+    CreatorId = Column(UNIQUEIDENTIFIER, primary_key=True, default=uuid.uuid4)
+    Type = Column(String(50))
+    Name = Column(String(500))
+    ImageUrl = Column(Text)
+    BiographyEn = Column(Text)
+    BiographyJa = Column(Text)
+    BiographyPtBr = Column(Text)
+    CreatedAt = Column(DateTime)
+    UpdatedAt = Column(DateTime)
+
+    relationships = relationship("CreatorRelationship", back_populates="creator")
+
+
+class CreatorRelationship(db.Model):
+    __tablename__ = "CreatorRelationship"
+    __table_args__ = {"schema": "dbo"}
+
+    Id = Column(Integer, primary_key=True, autoincrement=True)
+    CreatorId = Column(UNIQUEIDENTIFIER, ForeignKey("dbo.Creator.CreatorId"))
+    RelatedId = Column(UNIQUEIDENTIFIER, nullable=False)
+    RelatedType = Column(String(50))
+
+    creator = relationship("Creator", back_populates="relationships")
+
+
+# ------------------------
+# LIST
+# ------------------------
+class List(db.Model):
+    __tablename__ = "List"
+    __table_args__ = {"schema": "dbo"}
+
+    ListId = Column(UNIQUEIDENTIFIER, primary_key=True, default=uuid.uuid4)
+    UserId = Column(UNIQUEIDENTIFIER, ForeignKey("dbo.User.UserId"))
+    Name = Column(String(200))
+    Description = Column(Text)
+    IsPublic = Column(Boolean)
+
+    Slug = Column(String(255))
+    Visibility = Column(String(20))
+    CreatedAt = Column(DateTime)
+    UpdatedAt = Column(DateTime)
+
+    FollowerCount = Column(Integer, default=0)
+    ItemCount = Column(Integer, default=0)
+    # relationships
+
+    user = relationship("User", back_populates="lists")
+    mangas = relationship("ListManga", back_populates="list", cascade="all, delete-orphan")
+    followers = relationship("ListFollower", back_populates="list", cascade="all, delete-orphan")
+
+
+class ListManga(db.Model):
+    __tablename__ = "ListManga"
+    __table_args__ = {"schema": "dbo"}
+
+    ListId = Column(UNIQUEIDENTIFIER, ForeignKey("dbo.List.ListId"), primary_key=True)
+    MangaId = Column(UNIQUEIDENTIFIER, ForeignKey("dbo.Manga.MangaId"), primary_key=True)
+    AddedAt = Column(DateTime)
+    Position = Column(Integer, default=0)
+
+    list = relationship("List", back_populates="mangas")
+    manga = relationship("Manga")
+
+class ListFollower(db.Model):
+    __tablename__ = "ListFollower"
+    __table_args__ = {"schema": "dbo"}
+
+    ListId = Column(UNIQUEIDENTIFIER, ForeignKey("dbo.List.ListId"), primary_key=True)
+    UserId = Column(UNIQUEIDENTIFIER, ForeignKey("dbo.User.UserId"), primary_key=True)
+    FollowedAt = Column(DateTime, default=datetime.utcnow)
+
+    list = relationship("List", back_populates="followers")
+    user = relationship("User")
+
+# ------------------------
+# MANGA RELATED TABLES
+# ------------------------
+class MangaAltTitle(db.Model):
+    __tablename__ = "MangaAltTitle"
+    __table_args__ = {"schema": "dbo"}
+
+    AltTitleId = Column(Integer, primary_key=True, autoincrement=True)
+    MangaId = Column(UNIQUEIDENTIFIER, ForeignKey("dbo.Manga.MangaId"))
+    LangCode = Column(String(10))
+    AltTitle = Column(Text)
+
+    manga = relationship("Manga", back_populates="alt_titles")
+
+
+class MangaAvailableLanguage(db.Model):
+    __tablename__ = "MangaAvailableLanguage"
+    __table_args__ = {"schema": "dbo"}
+
+    LangId = Column(Integer, primary_key=True, autoincrement=True)
+    MangaId = Column(UNIQUEIDENTIFIER, ForeignKey("dbo.Manga.MangaId"))
+    LangCode = Column(String(10))
+
+    manga = relationship("Manga", back_populates="available_languages")
+
+
+class MangaDescription(db.Model):
+    __tablename__ = "MangaDescription"
+    __table_args__ = {"schema": "dbo"}
+
+    DescriptionId = Column(Integer, primary_key=True, autoincrement=True)
+    MangaId = Column(UNIQUEIDENTIFIER, ForeignKey("dbo.Manga.MangaId"))
+    LangCode = Column(String(10))
+    Description = Column(Text)
+
+    manga = relationship("Manga", back_populates="descriptions")
+
+
+class MangaLink(db.Model):
+    __tablename__ = "MangaLink"
+    __table_args__ = {"schema": "dbo"}
+
+    LinkId = Column(Integer, primary_key=True, autoincrement=True)
+    MangaId = Column(UNIQUEIDENTIFIER, ForeignKey("dbo.Manga.MangaId"))
+    Provider = Column(String(20))
+    Url = Column(Text)
+
+    manga = relationship("Manga", back_populates="links")
+
+
+class MangaRelated(db.Model):
+    __tablename__ = "MangaRelated"
+    __table_args__ = {"schema": "dbo"}
+
+    MangaId = Column(UNIQUEIDENTIFIER, ForeignKey("dbo.Manga.MangaId"), primary_key=True)
+    RelatedId = Column(UNIQUEIDENTIFIER, primary_key=True)
+    Type = Column(String(50), primary_key=True)
+    Related = Column(String(50))
+    FetchedAt = Column(DateTime)
+
+
+class MangaStatistics(db.Model):
+    __tablename__ = "MangaStatistics"
+    __table_args__ = {"schema": "dbo"}
+
+    StatisticId = Column(UNIQUEIDENTIFIER, primary_key=True, default=uuid.uuid4)
+    MangaId = Column(UNIQUEIDENTIFIER, ForeignKey("dbo.Manga.MangaId"))
+    Source = Column(String(50))
+    Follows = Column(Integer)
+    AverageRating = Column(Float)
+    BayesianRating = Column(Float)
+    UnavailableChapters = Column(Integer)
+    FetchedAt = Column(DateTime)
+
+    manga = relationship("Manga", back_populates="stats")
+
+
+class Tag(db.Model):
+    __tablename__ = "Tag"
+    __table_args__ = {"schema": "dbo"}
+
+    TagId = Column(UNIQUEIDENTIFIER, primary_key=True, default=uuid.uuid4)
+    GroupName = Column(String(100))
+    NameEn = Column(String(200))
+
+    mangas = relationship("MangaTag", back_populates="tag")
+
+
+class MangaTag(db.Model):
+    __tablename__ = "MangaTag"
+    __table_args__ = {"schema": "dbo"}
+
+    MangaId = Column(UNIQUEIDENTIFIER, ForeignKey("dbo.Manga.MangaId"), primary_key=True)
+    TagId = Column(UNIQUEIDENTIFIER, ForeignKey("dbo.Tag.TagId"), primary_key=True)
+
+    manga = relationship("Manga", back_populates="tags")
+    tag = relationship("Tag", back_populates="mangas")
+
+
+# ------------------------
+# RATING, HISTORY, REPORT
+# ------------------------
+class Rating(db.Model):
+    __tablename__ = "Rating"
+    __table_args__ = {"schema": "dbo"}
+
+    RatingId = Column(UNIQUEIDENTIFIER, primary_key=True, default=uuid.uuid4)
+    UserId = Column(UNIQUEIDENTIFIER, ForeignKey("dbo.User.UserId"))
+    MangaId = Column(UNIQUEIDENTIFIER, ForeignKey("dbo.Manga.MangaId"))
+    Score = Column(Integer)
+
+    user = relationship("User", back_populates="ratings")
+    manga = relationship("Manga", back_populates="ratings")
+
+
+class ReadingHistory(db.Model):
+    __tablename__ = "ReadingHistory"
+    __table_args__ = {"schema": "dbo"}
+
+    HistoryId = Column(UNIQUEIDENTIFIER, primary_key=True, default=uuid.uuid4)
+    UserId = Column(UNIQUEIDENTIFIER, ForeignKey("dbo.User.UserId"))
+    MangaId = Column(UNIQUEIDENTIFIER, ForeignKey("dbo.Manga.MangaId"))
+    ChapterId = Column(UNIQUEIDENTIFIER, ForeignKey("dbo.Chapter.ChapterId"))
+    LastPageRead = Column(Integer)
+    ReadAt = Column(DateTime)
+
+    user = relationship("User", back_populates="histories")
+    manga = relationship("Manga", back_populates="histories")
+    chapter = relationship("Chapter", back_populates="histories")
+
+
+class Report(db.Model):
+    __tablename__ = "Report"
+    __table_args__ = {"schema": "dbo"}
+
+    ReportId = Column(UNIQUEIDENTIFIER, primary_key=True, default=uuid.uuid4)
+    UserId = Column(UNIQUEIDENTIFIER, ForeignKey("dbo.User.UserId"))
+    CommentId = Column(UNIQUEIDENTIFIER, ForeignKey("dbo.Comment.CommentId"))
+    Reason = Column(Text)
+    Status = Column(String(50))
+    CreatedAt = Column(DateTime)
+
+    user = relationship("User", back_populates="reports")
+    comment = relationship("Comment", back_populates="reports")
+    
+# ------------------------
+# MANGA COVER
+# ------------------------
+class MangaCover(db.Model):
+    __tablename__ = "MangaCover"
+    __table_args__ = (
+        PrimaryKeyConstraint("MangaId", "CoverId", "FileName", name="PK_MangaCover"),
+        {"schema": "dbo"}
+    )
+
+    MangaId = Column(UNIQUEIDENTIFIER, nullable=False)
+    CoverId = Column(UNIQUEIDENTIFIER, nullable=False)
+    FileName = Column(String(255), nullable=False)
+    DownloadDate = Column(DateTime, nullable=False, default=datetime.utcnow)
+    ImageData = Column(LargeBinary, nullable=False)
+
+
+class Cover(db.Model):
+    __tablename__ = "Covers"
+
+    cover_id = db.Column(db.String(36), primary_key=True)  # UUID string
+    manga_id = db.Column(db.String(36), nullable=False)
+    type = db.Column(db.String(50))
+    description = db.Column(db.Text)
+    volume = db.Column(db.String(50))
+    fileName = db.Column(db.String(255))
+    locale = db.Column(db.String(10))
+    createdAt = db.Column(db.DateTime)
+    updatedAt = db.Column(db.DateTime)
+    version = db.Column(db.Integer)
+    rel_user_id = db.Column(db.String(36))
+    url = db.Column(db.String(500))
+    image_data = db.Column(db.LargeBinary)  # lưu binary ảnh
+--- File: D:\TDMU\2025-2026\HKII_2025-2026\KTTKPM\coursework\manga_backend\app\models\models.py ---
+"""
+SQLAlchemy ORM models – khớp 100% với DB [MangaLibrary] hiện có.
+Không dùng create_all(); chỉ map vào các bảng đã tồn tại.
+"""
+from __future__ import annotations
+
+import uuid
+from datetime import datetime
+from typing import List as PyList, Optional
+
+from sqlalchemy import (
+    String, Text, Boolean, Integer, Float, DateTime,
+    ForeignKey, LargeBinary, PrimaryKeyConstraint,
+)
+from sqlalchemy.orm import Mapped, mapped_column, relationship
+from sqlalchemy.dialects.mssql import UNIQUEIDENTIFIER
+
+from app.core.database import Base
+
+
+# ═══════════════════════════════════════════
+#  USER
+# ═══════════════════════════════════════════
+class User(Base):
+    __tablename__ = "User"
+    __table_args__ = {"schema": "dbo"}
+
+    UserId: Mapped[uuid.UUID] = mapped_column(UNIQUEIDENTIFIER, primary_key=True, default=uuid.uuid4)
+    Username: Mapped[str] = mapped_column(String(100), nullable=False)
+    Email: Mapped[str] = mapped_column(String(255), nullable=False, unique=True)
+    PasswordHash: Mapped[str] = mapped_column(String(255), nullable=False)
+    Avatar: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
+    Role: Mapped[str] = mapped_column(String(20), nullable=False, default="user")
+    IsLocked: Mapped[Optional[bool]] = mapped_column(Boolean, nullable=True, default=False)
+    CreatedAt: Mapped[Optional[datetime]] = mapped_column(DateTime, nullable=True, default=datetime.utcnow)
+
+    # relationships
+    comments: Mapped[PyList[Comment]] = relationship(back_populates="user", lazy="selectin")
+    ratings: Mapped[PyList[Rating]] = relationship(back_populates="user", lazy="selectin")
+    lists: Mapped[PyList[MangaList]] = relationship(back_populates="user", lazy="selectin")
+    histories: Mapped[PyList[ReadingHistory]] = relationship(back_populates="user", lazy="selectin")
+    reports: Mapped[PyList[Report]] = relationship(back_populates="user", lazy="selectin")
+    reactions: Mapped[PyList[CommentReaction]] = relationship(back_populates="user", lazy="selectin")
+
+
+# ═══════════════════════════════════════════
+#  MANGA
+# ═══════════════════════════════════════════
+class Manga(Base):
+    __tablename__ = "Manga"
+    __table_args__ = {"schema": "dbo"}
+
+    MangaId: Mapped[uuid.UUID] = mapped_column(UNIQUEIDENTIFIER, primary_key=True, default=uuid.uuid4)
+    Type: Mapped[Optional[str]] = mapped_column(String(50), nullable=True)
+    TitleEn: Mapped[Optional[str]] = mapped_column(String(500), nullable=True)
+    ChapterNumbersResetOnNewVolume: Mapped[Optional[bool]] = mapped_column(Boolean, nullable=True)
+    ContentRating: Mapped[Optional[str]] = mapped_column(String(50), nullable=True)
+    CreatedAt: Mapped[Optional[datetime]] = mapped_column(DateTime, nullable=True)
+    UpdatedAt: Mapped[Optional[datetime]] = mapped_column(DateTime, nullable=True)
+    IsLocked: Mapped[Optional[bool]] = mapped_column(Boolean, nullable=True)
+    LastChapter: Mapped[Optional[str]] = mapped_column(String(50), nullable=True)
+    LastVolume: Mapped[Optional[str]] = mapped_column(String(50), nullable=True)
+    LatestUploadedChapter: Mapped[Optional[str]] = mapped_column(String(50), nullable=True)
+    OriginalLanguage: Mapped[Optional[str]] = mapped_column(String(10), nullable=True)
+    PublicationDemographic: Mapped[Optional[str]] = mapped_column(String(50), nullable=True)
+    State: Mapped[Optional[str]] = mapped_column(String(50), nullable=True)
+    Status: Mapped[Optional[str]] = mapped_column(String(50), nullable=True)
+    Year: Mapped[Optional[int]] = mapped_column(Integer, nullable=True)
+    OfficialLinks: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
+
+    # relationships
+    chapters: Mapped[PyList[Chapter]] = relationship(back_populates="manga", lazy="selectin")
+    comments: Mapped[PyList[Comment]] = relationship(back_populates="manga", lazy="selectin")
+    ratings: Mapped[PyList[Rating]] = relationship(back_populates="manga", lazy="selectin")
+    alt_titles: Mapped[PyList[MangaAltTitle]] = relationship(back_populates="manga", lazy="selectin")
+    descriptions: Mapped[PyList[MangaDescription]] = relationship(back_populates="manga", lazy="selectin")
+    links: Mapped[PyList[MangaLink]] = relationship(back_populates="manga", lazy="selectin")
+    stats: Mapped[PyList[MangaStatistics]] = relationship(back_populates="manga", lazy="selectin")
+    available_languages: Mapped[PyList[MangaAvailableLanguage]] = relationship(back_populates="manga", lazy="selectin")
+    tags: Mapped[PyList[MangaTag]] = relationship(back_populates="manga", lazy="selectin")
+    histories: Mapped[PyList[ReadingHistory]] = relationship(back_populates="manga", lazy="selectin")
+
+
+# ═══════════════════════════════════════════
+#  CHAPTER
+# ═══════════════════════════════════════════
+class Chapter(Base):
+    __tablename__ = "Chapter"
+    __table_args__ = {"schema": "dbo"}
+
+    ChapterId: Mapped[uuid.UUID] = mapped_column(UNIQUEIDENTIFIER, primary_key=True, default=uuid.uuid4)
+    MangaId: Mapped[uuid.UUID] = mapped_column(UNIQUEIDENTIFIER, ForeignKey("dbo.Manga.MangaId"), nullable=False)
+    Type: Mapped[Optional[str]] = mapped_column(String(50), nullable=True)
+    Volume: Mapped[Optional[str]] = mapped_column(String(50), nullable=True)
+    ChapterNumber: Mapped[Optional[str]] = mapped_column(String(50), nullable=True)
+    Title: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
+    TranslatedLang: Mapped[Optional[str]] = mapped_column(String(10), nullable=True)
+    Pages: Mapped[Optional[int]] = mapped_column(Integer, nullable=True)
+    PublishAt: Mapped[Optional[datetime]] = mapped_column(DateTime, nullable=True)
+    ReadableAt: Mapped[Optional[datetime]] = mapped_column(DateTime, nullable=True)
+    IsUnavailable: Mapped[Optional[bool]] = mapped_column(Boolean, nullable=True)
+    CreatedAt: Mapped[Optional[datetime]] = mapped_column(DateTime, nullable=True)
+    UpdatedAt: Mapped[Optional[datetime]] = mapped_column(DateTime, nullable=True)
+
+    manga: Mapped[Manga] = relationship(back_populates="chapters")
+    comments: Mapped[PyList[Comment]] = relationship(back_populates="chapter", lazy="selectin")
+    histories: Mapped[PyList[ReadingHistory]] = relationship(back_populates="chapter", lazy="selectin")
+
+
+# ═══════════════════════════════════════════
+#  COMMENT
+# ═══════════════════════════════════════════
+class Comment(Base):
+    __tablename__ = "Comment"
+    __table_args__ = {"schema": "dbo"}
+
+    CommentId: Mapped[uuid.UUID] = mapped_column(UNIQUEIDENTIFIER, primary_key=True, default=uuid.uuid4)
+    UserId: Mapped[uuid.UUID] = mapped_column(UNIQUEIDENTIFIER, ForeignKey("dbo.User.UserId"), nullable=False)
+    MangaId: Mapped[uuid.UUID] = mapped_column(UNIQUEIDENTIFIER, ForeignKey("dbo.Manga.MangaId"), nullable=False)
+    ChapterId: Mapped[Optional[uuid.UUID]] = mapped_column(UNIQUEIDENTIFIER, ForeignKey("dbo.Chapter.ChapterId"), nullable=True)
+    Content: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
+    CreatedAt: Mapped[Optional[datetime]] = mapped_column(DateTime, nullable=True, default=datetime.utcnow)
+    UpdatedAt: Mapped[Optional[datetime]] = mapped_column(DateTime, nullable=True, default=datetime.utcnow)
+    IsDeleted: Mapped[Optional[bool]] = mapped_column(Boolean, nullable=True, default=False)
+    IsSpoiler: Mapped[bool] = mapped_column(Boolean, nullable=False, default=False)
+    LikeCount: Mapped[int] = mapped_column(Integer, nullable=False, default=0)
+    DislikeCount: Mapped[int] = mapped_column(Integer, nullable=False, default=0)
+
+    user: Mapped[User] = relationship(back_populates="comments")
+    manga: Mapped[Manga] = relationship(back_populates="comments")
+    chapter: Mapped[Optional[Chapter]] = relationship(back_populates="comments")
+    reports: Mapped[PyList[Report]] = relationship(back_populates="comment", lazy="selectin")
+    reactions: Mapped[PyList[CommentReaction]] = relationship(back_populates="comment", lazy="selectin")
+
+
+# ═══════════════════════════════════════════
+#  COMMENT REACTION
+# ═══════════════════════════════════════════
+class CommentReaction(Base):
+    __tablename__ = "CommentReaction"
+    __table_args__ = {"schema": "dbo"}
+
+    ReactionId: Mapped[uuid.UUID] = mapped_column(UNIQUEIDENTIFIER, primary_key=True, default=uuid.uuid4)
+    CommentId: Mapped[uuid.UUID] = mapped_column(UNIQUEIDENTIFIER, ForeignKey("dbo.Comment.CommentId"), nullable=False)
+    UserId: Mapped[uuid.UUID] = mapped_column(UNIQUEIDENTIFIER, ForeignKey("dbo.User.UserId"), nullable=False)
+    Type: Mapped[str] = mapped_column(String(10), nullable=False)
+    CreatedAt: Mapped[datetime] = mapped_column(DateTime, nullable=False, default=datetime.utcnow)
+
+    comment: Mapped[Comment] = relationship(back_populates="reactions")
+    user: Mapped[User] = relationship(back_populates="reactions")
+
+
+# ═══════════════════════════════════════════
+#  CREATOR
+# ═══════════════════════════════════════════
+class Creator(Base):
+    __tablename__ = "Creator"
+    __table_args__ = {"schema": "dbo"}
+
+    CreatorId: Mapped[uuid.UUID] = mapped_column(UNIQUEIDENTIFIER, primary_key=True, default=uuid.uuid4)
+    Type: Mapped[Optional[str]] = mapped_column(String(50), nullable=True)
+    Name: Mapped[Optional[str]] = mapped_column(String(500), nullable=True)
+    ImageUrl: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
+    BiographyEn: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
+    BiographyJa: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
+    BiographyPtBr: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
+    CreatedAt: Mapped[Optional[datetime]] = mapped_column(DateTime, nullable=True)
+    UpdatedAt: Mapped[Optional[datetime]] = mapped_column(DateTime, nullable=True)
+
+    creator_relationships: Mapped[PyList[CreatorRelationship]] = relationship(back_populates="creator", lazy="selectin")
+
+
+class CreatorRelationship(Base):
+    __tablename__ = "CreatorRelationship"
+    __table_args__ = {"schema": "dbo"}
+
+    Id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    CreatorId: Mapped[uuid.UUID] = mapped_column(UNIQUEIDENTIFIER, ForeignKey("dbo.Creator.CreatorId"), nullable=False)
+    RelatedId: Mapped[uuid.UUID] = mapped_column(UNIQUEIDENTIFIER, nullable=False)
+    RelatedType: Mapped[Optional[str]] = mapped_column(String(50), nullable=True)
+
+    creator: Mapped[Creator] = relationship(back_populates="creator_relationships")
+
+
+# ═══════════════════════════════════════════
+#  TAG
+# ═══════════════════════════════════════════
+class Tag(Base):
+    __tablename__ = "Tag"
+    __table_args__ = {"schema": "dbo"}
+
+    TagId: Mapped[uuid.UUID] = mapped_column(UNIQUEIDENTIFIER, primary_key=True, default=uuid.uuid4)
+    GroupName: Mapped[Optional[str]] = mapped_column(String(100), nullable=True)
+    NameEn: Mapped[Optional[str]] = mapped_column(String(200), nullable=True)
+
+    mangas: Mapped[PyList[MangaTag]] = relationship(back_populates="tag", lazy="selectin")
+
+
+class MangaTag(Base):
+    __tablename__ = "MangaTag"
+    __table_args__ = {"schema": "dbo"}
+
+    MangaId: Mapped[uuid.UUID] = mapped_column(UNIQUEIDENTIFIER, ForeignKey("dbo.Manga.MangaId"), primary_key=True)
+    TagId: Mapped[uuid.UUID] = mapped_column(UNIQUEIDENTIFIER, ForeignKey("dbo.Tag.TagId"), primary_key=True)
+
+    manga: Mapped[Manga] = relationship(back_populates="tags")
+    tag: Mapped[Tag] = relationship(back_populates="mangas")
+
+
+# ═══════════════════════════════════════════
+#  MANGA – BẢNG PHỤ
+# ═══════════════════════════════════════════
+class MangaAltTitle(Base):
+    __tablename__ = "MangaAltTitle"
+    __table_args__ = {"schema": "dbo"}
+
+    AltTitleId: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    MangaId: Mapped[uuid.UUID] = mapped_column(UNIQUEIDENTIFIER, ForeignKey("dbo.Manga.MangaId"), nullable=False)
+    LangCode: Mapped[Optional[str]] = mapped_column(String(10), nullable=True)
+    AltTitle: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
+
+    manga: Mapped[Manga] = relationship(back_populates="alt_titles")
+
+
+class MangaAvailableLanguage(Base):
+    __tablename__ = "MangaAvailableLanguage"
+    __table_args__ = {"schema": "dbo"}
+
+    LangId: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    MangaId: Mapped[uuid.UUID] = mapped_column(UNIQUEIDENTIFIER, ForeignKey("dbo.Manga.MangaId"), nullable=False)
+    LangCode: Mapped[Optional[str]] = mapped_column(String(10), nullable=True)
+
+    manga: Mapped[Manga] = relationship(back_populates="available_languages")
+
+
+class MangaDescription(Base):
+    __tablename__ = "MangaDescription"
+    __table_args__ = {"schema": "dbo"}
+
+    DescriptionId: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    MangaId: Mapped[uuid.UUID] = mapped_column(UNIQUEIDENTIFIER, ForeignKey("dbo.Manga.MangaId"), nullable=False)
+    LangCode: Mapped[Optional[str]] = mapped_column(String(10), nullable=True)
+    Description: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
+
+    manga: Mapped[Manga] = relationship(back_populates="descriptions")
+
+
+class MangaLink(Base):
+    __tablename__ = "MangaLink"
+    __table_args__ = {"schema": "dbo"}
+
+    LinkId: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    MangaId: Mapped[uuid.UUID] = mapped_column(UNIQUEIDENTIFIER, ForeignKey("dbo.Manga.MangaId"), nullable=False)
+    Provider: Mapped[Optional[str]] = mapped_column(String(20), nullable=True)
+    Url: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
+
+    manga: Mapped[Manga] = relationship(back_populates="links")
+
+
+class MangaStatistics(Base):
+    __tablename__ = "MangaStatistics"
+    __table_args__ = {"schema": "dbo"}
+
+    StatisticId: Mapped[uuid.UUID] = mapped_column(UNIQUEIDENTIFIER, primary_key=True, default=uuid.uuid4)
+    MangaId: Mapped[uuid.UUID] = mapped_column(UNIQUEIDENTIFIER, ForeignKey("dbo.Manga.MangaId"), nullable=False)
+    Source: Mapped[Optional[str]] = mapped_column(String(50), nullable=True)
+    Follows: Mapped[Optional[int]] = mapped_column(Integer, nullable=True)
+    AverageRating: Mapped[Optional[float]] = mapped_column(Float, nullable=True)
+    BayesianRating: Mapped[Optional[float]] = mapped_column(Float, nullable=True)
+    UnavailableChapters: Mapped[Optional[int]] = mapped_column(Integer, nullable=True)
+    FetchedAt: Mapped[Optional[datetime]] = mapped_column(DateTime, nullable=True)
+
+    manga: Mapped[Manga] = relationship(back_populates="stats")
+
+
+class MangaRelated(Base):
+    __tablename__ = "MangaRelated"
+    __table_args__ = {"schema": "dbo"}
+
+    MangaId: Mapped[uuid.UUID] = mapped_column(UNIQUEIDENTIFIER, ForeignKey("dbo.Manga.MangaId"), primary_key=True)
+    RelatedId: Mapped[uuid.UUID] = mapped_column(UNIQUEIDENTIFIER, primary_key=True)
+    Type: Mapped[str] = mapped_column(String(50), primary_key=True, nullable=False)
+    Related: Mapped[Optional[str]] = mapped_column(String(50), nullable=True)
+    FetchedAt: Mapped[Optional[datetime]] = mapped_column(DateTime, nullable=True)
+
+
+# ═══════════════════════════════════════════
+#  RATING / HISTORY / REPORT
+# ═══════════════════════════════════════════
+class Rating(Base):
+    __tablename__ = "Rating"
+    __table_args__ = {"schema": "dbo"}
+
+    RatingId: Mapped[uuid.UUID] = mapped_column(UNIQUEIDENTIFIER, primary_key=True, default=uuid.uuid4)
+    UserId: Mapped[uuid.UUID] = mapped_column(UNIQUEIDENTIFIER, ForeignKey("dbo.User.UserId"), nullable=False)
+    MangaId: Mapped[uuid.UUID] = mapped_column(UNIQUEIDENTIFIER, ForeignKey("dbo.Manga.MangaId"), nullable=False)
+    Score: Mapped[Optional[int]] = mapped_column(Integer, nullable=True)
+
+    user: Mapped[User] = relationship(back_populates="ratings")
+    manga: Mapped[Manga] = relationship(back_populates="ratings")
+
+
+class ReadingHistory(Base):
+    __tablename__ = "ReadingHistory"
+    __table_args__ = {"schema": "dbo"}
+
+    HistoryId: Mapped[uuid.UUID] = mapped_column(UNIQUEIDENTIFIER, primary_key=True, default=uuid.uuid4)
+    UserId: Mapped[uuid.UUID] = mapped_column(UNIQUEIDENTIFIER, ForeignKey("dbo.User.UserId"), nullable=False)
+    MangaId: Mapped[uuid.UUID] = mapped_column(UNIQUEIDENTIFIER, ForeignKey("dbo.Manga.MangaId"), nullable=False)
+    ChapterId: Mapped[uuid.UUID] = mapped_column(UNIQUEIDENTIFIER, ForeignKey("dbo.Chapter.ChapterId"), nullable=False)
+    LastPageRead: Mapped[Optional[int]] = mapped_column(Integer, nullable=True)
+    ReadAt: Mapped[Optional[datetime]] = mapped_column(DateTime, nullable=True)
+
+    user: Mapped[User] = relationship(back_populates="histories")
+    manga: Mapped[Manga] = relationship(back_populates="histories")
+    chapter: Mapped[Chapter] = relationship(back_populates="histories")
+
+
+class Report(Base):
+    __tablename__ = "Report"
+    __table_args__ = {"schema": "dbo"}
+
+    ReportId: Mapped[uuid.UUID] = mapped_column(UNIQUEIDENTIFIER, primary_key=True, default=uuid.uuid4)
+    UserId: Mapped[uuid.UUID] = mapped_column(UNIQUEIDENTIFIER, ForeignKey("dbo.User.UserId"), nullable=False)
+    CommentId: Mapped[uuid.UUID] = mapped_column(UNIQUEIDENTIFIER, ForeignKey("dbo.Comment.CommentId"), nullable=False)
+    Reason: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
+    Status: Mapped[Optional[str]] = mapped_column(String(50), nullable=True)
+    CreatedAt: Mapped[Optional[datetime]] = mapped_column(DateTime, nullable=True)
+
+    user: Mapped[User] = relationship(back_populates="reports")
+    comment: Mapped[Comment] = relationship(back_populates="reports")
+
+
+# ═══════════════════════════════════════════
+#  LIST (MDList)
+# ═══════════════════════════════════════════
+class MangaList(Base):
+    """Tên model = MangaList để tránh xung đột với typing.List"""
+    __tablename__ = "List"
+    __table_args__ = {"schema": "dbo"}
+
+    ListId: Mapped[uuid.UUID] = mapped_column(UNIQUEIDENTIFIER, primary_key=True, default=uuid.uuid4)
+    UserId: Mapped[uuid.UUID] = mapped_column(UNIQUEIDENTIFIER, ForeignKey("dbo.User.UserId"), nullable=False)
+    Name: Mapped[Optional[str]] = mapped_column(String(200), nullable=True)
+    Description: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
+    IsPublic: Mapped[Optional[bool]] = mapped_column(Boolean, nullable=True)
+    Slug: Mapped[Optional[str]] = mapped_column(String(255), nullable=True)
+    Visibility: Mapped[str] = mapped_column(String(20), nullable=False, default="private")
+    CreatedAt: Mapped[datetime] = mapped_column(DateTime, nullable=False, default=datetime.utcnow)
+    UpdatedAt: Mapped[datetime] = mapped_column(DateTime, nullable=False, default=datetime.utcnow)
+    FollowerCount: Mapped[int] = mapped_column(Integer, nullable=False, default=0)
+    ItemCount: Mapped[int] = mapped_column(Integer, nullable=False, default=0)
+
+    user: Mapped[User] = relationship(back_populates="lists")
+    mangas: Mapped[PyList[ListManga]] = relationship(back_populates="list_obj", cascade="all, delete-orphan", lazy="selectin")
+    followers: Mapped[PyList[ListFollower]] = relationship(back_populates="list_obj", cascade="all, delete-orphan", lazy="selectin")
+
+
+class ListManga(Base):
+    __tablename__ = "ListManga"
+    __table_args__ = {"schema": "dbo"}
+
+    ListId: Mapped[uuid.UUID] = mapped_column(UNIQUEIDENTIFIER, ForeignKey("dbo.List.ListId"), primary_key=True)
+    MangaId: Mapped[uuid.UUID] = mapped_column(UNIQUEIDENTIFIER, ForeignKey("dbo.Manga.MangaId"), primary_key=True)
+    AddedAt: Mapped[Optional[datetime]] = mapped_column(DateTime, nullable=True)
+    Position: Mapped[int] = mapped_column(Integer, nullable=False, default=0)
+
+    list_obj: Mapped[MangaList] = relationship(back_populates="mangas")
+    manga: Mapped[Manga] = relationship()
+
+
+class ListFollower(Base):
+    __tablename__ = "ListFollower"
+    __table_args__ = (
+        PrimaryKeyConstraint("ListId", "UserId", name="PK_ListFollower"),
+        {"schema": "dbo"},
+    )
+
+    ListId: Mapped[uuid.UUID] = mapped_column(UNIQUEIDENTIFIER, ForeignKey("dbo.List.ListId"))
+    UserId: Mapped[uuid.UUID] = mapped_column(UNIQUEIDENTIFIER, ForeignKey("dbo.User.UserId"))
+    FollowedAt: Mapped[datetime] = mapped_column(DateTime, nullable=False, default=datetime.utcnow)
+
+    list_obj: Mapped[MangaList] = relationship(back_populates="followers")
+    user: Mapped[User] = relationship()
+
+
+# ═══════════════════════════════════════════
+#  COVER  (Bảng duy nhất cho cover – MinIO URLs)
+# ═══════════════════════════════════════════
+class Cover(Base):
+    __tablename__ = "Covers"
+
+    cover_id: Mapped[uuid.UUID] = mapped_column(UNIQUEIDENTIFIER, primary_key=True, default=uuid.uuid4)
+    manga_id: Mapped[uuid.UUID] = mapped_column(UNIQUEIDENTIFIER, nullable=False)
+    type: Mapped[Optional[str]] = mapped_column(String(50), nullable=True)
+    description: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
+    volume: Mapped[Optional[str]] = mapped_column(String(50), nullable=True)
+    fileName: Mapped[Optional[str]] = mapped_column(String(255), nullable=True)
+    locale: Mapped[Optional[str]] = mapped_column(String(10), nullable=True)
+    createdAt: Mapped[Optional[datetime]] = mapped_column(DateTime, nullable=True)
+    updatedAt: Mapped[Optional[datetime]] = mapped_column(DateTime, nullable=True)
+    version: Mapped[Optional[int]] = mapped_column(Integer, nullable=True)
+    rel_user_id: Mapped[Optional[uuid.UUID]] = mapped_column(UNIQUEIDENTIFIER, nullable=True)
+    url: Mapped[Optional[str]] = mapped_column(String(500), nullable=True)
+    image_data: Mapped[Optional[bytes]] = mapped_column(LargeBinary, nullable=True)
+=== Folder: app\schemas ===
+
+--- File: D:\TDMU\2025-2026\HKII_2025-2026\KTTKPM\coursework\manga_backend\app\schemas\__init__.py ---
+from app.schemas.auth import *
+from app.schemas.manga import *
+from app.schemas.chapter import *
+from app.schemas.comment import *
+from app.schemas.rating import *
+from app.schemas.history import *
+from app.schemas.list import *
+from app.schemas.tag import *
+from app.schemas.common import *
+
+--- File: D:\TDMU\2025-2026\HKII_2025-2026\KTTKPM\coursework\manga_backend\app\schemas\auth.py ---
+import uuid
+from pydantic import BaseModel, EmailStr, ConfigDict
+
+
+class Token(BaseModel):
+    access_token: str
+    token_type: str = "bearer"
+
+
+class UserCreate(BaseModel):
+    username: str
+    email: EmailStr
+    password: str
+
+
+class UserUpdate(BaseModel):
+    username: str | None = None
+    avatar: str | None = None
+
+
+class UserResponse(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
+    UserId: uuid.UUID
+    Username: str
+    Email: str
+    Avatar: str | None = None
+    Role: str
+    IsLocked: bool | None = False
+    CreatedAt: str | None = None
+
+--- File: D:\TDMU\2025-2026\HKII_2025-2026\KTTKPM\coursework\manga_backend\app\schemas\chapter.py ---
+import uuid
+from datetime import datetime
+from pydantic import BaseModel, ConfigDict
+
+
+class ChapterResponse(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+    ChapterId: uuid.UUID
+    MangaId: uuid.UUID
+    Type: str | None = None
+    Volume: str | None = None
+    ChapterNumber: str | None = None
+    Title: str | None = None
+    TranslatedLang: str | None = None
+    Pages: int | None = None
+    PublishAt: datetime | None = None
+    CreatedAt: datetime | None = None
+
+
+class ChapterNav(BaseModel):
+    """Returned together with chapter detail for prev/next navigation."""
+    current: ChapterResponse
+    prev_chapter: ChapterResponse | None = None
+    next_chapter: ChapterResponse | None = None
+    page_urls: list[str] = []
+
+
+class ChapterGroupItem(BaseModel):
+    chapter_number: str | None = None
+    chapters: list[ChapterResponse] = []
+
+--- File: D:\TDMU\2025-2026\HKII_2025-2026\KTTKPM\coursework\manga_backend\app\schemas\comment.py ---
+import uuid
+from datetime import datetime
+from pydantic import BaseModel, ConfigDict
+
+
+class CommentCreate(BaseModel):
+    Content: str
+    ChapterId: uuid.UUID | None = None
+    IsSpoiler: bool = False
+
+
+class CommentUpdate(BaseModel):
+    Content: str
+
+
+class CommentResponse(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+    CommentId: uuid.UUID
+    UserId: uuid.UUID
+    MangaId: uuid.UUID
+    Username: str | None = None
+    Avatar: str | None = None
+    Content: str | None = None
+    IsSpoiler: bool = False
+    LikeCount: int = 0
+    DislikeCount: int = 0
+    IsDeleted: bool | None = False
+    CreatedAt: datetime | None = None
+    UpdatedAt: datetime | None = None
+
+
+class ReportCreate(BaseModel):
+    Reason: str
+
+--- File: D:\TDMU\2025-2026\HKII_2025-2026\KTTKPM\coursework\manga_backend\app\schemas\common.py ---
+from typing import Any
+from pydantic import BaseModel
+
+
+class MessageResponse(BaseModel):
+    message: str
+    data: Any = None
+
+
+class PaginatedResponse(BaseModel):
+    items: list[Any] = []
+    page: int = 1
+    per_page: int = 20
+    total: int = 0
+    total_pages: int = 0
+
+--- File: D:\TDMU\2025-2026\HKII_2025-2026\KTTKPM\coursework\manga_backend\app\schemas\history.py ---
+import uuid
+from datetime import datetime
+from pydantic import BaseModel, ConfigDict
+
+
+class HistoryCreate(BaseModel):
+    MangaId: uuid.UUID
+    ChapterId: uuid.UUID
+    LastPageRead: int | None = None
+
+
+class HistoryResponse(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+    HistoryId: uuid.UUID
+    MangaId: uuid.UUID
+    ChapterId: uuid.UUID
+    LastPageRead: int | None = None
+    ReadAt: datetime | None = None
+    manga_title: str | None = None
+    chapter_number: str | None = None
+
+--- File: D:\TDMU\2025-2026\HKII_2025-2026\KTTKPM\coursework\manga_backend\app\schemas\list.py ---
+import uuid
+from datetime import datetime
+from pydantic import BaseModel, ConfigDict
+
+
+class ListCreate(BaseModel):
+    Name: str
+    Description: str | None = ""
+    Visibility: str = "private"  # private | public
+
+
+class ListUpdate(BaseModel):
+    Name: str | None = None
+    Description: str | None = None
+    Visibility: str | None = None
+
+
+class ListBrief(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+    ListId: uuid.UUID
+    Name: str | None = None
+    Slug: str | None = None
+    Description: str | None = None
+    Visibility: str = "private"
+    ItemCount: int = 0
+    FollowerCount: int = 0
+    UpdatedAt: datetime | None = None
+    contains: bool | None = None  # whether list contains a specific manga
+
+
+class ListMangaItem(BaseModel):
+    manga_id: uuid.UUID
+    title: str | None = None
+    position: int = 0
+    cover_url: str | None = None
+
+
+class ListDetailResponse(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+    ListId: uuid.UUID
+    Name: str | None = None
+    Description: str | None = None
+    Slug: str | None = None
+    Visibility: str = "private"
+    owner_id: uuid.UUID
+    owner_username: str | None = None
+    ItemCount: int = 0
+    FollowerCount: int = 0
+    items: list[ListMangaItem] = []
+    is_following: bool = False
+
+
+class PublicListItem(BaseModel):
+    ListId: uuid.UUID
+    Name: str | None = None
+    Description: str | None = None
+    Slug: str | None = None
+    Visibility: str = "public"
+    ItemCount: int = 0
+    FollowerCount: int = 0
+    UpdatedAt: datetime | None = None
+    owner_username: str | None = None
+    owner_id: uuid.UUID | None = None
+    is_following: bool = False
+
+--- File: D:\TDMU\2025-2026\HKII_2025-2026\KTTKPM\coursework\manga_backend\app\schemas\manga.py ---
+import uuid
+from datetime import datetime
+from pydantic import BaseModel, ConfigDict
+
+
+class TagBrief(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+    TagId: uuid.UUID
+    GroupName: str | None = None
+    NameEn: str | None = None
+
+
+class AltTitle(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+    LangCode: str | None = None
+    AltTitle: str | None = None
+
+
+class Description(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+    LangCode: str | None = None
+    Description: str | None = None
+
+
+class LinkOut(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+    Provider: str | None = None
+    Url: str | None = None
+
+
+class StatisticsOut(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+    Follows: int | None = 0
+    AverageRating: float | None = 0
+    BayesianRating: float | None = 0
+
+
+class CreatorOut(BaseModel):
+    name: str | None = None
+    role: str | None = None  # author / artist
+
+
+class MangaListItem(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+    MangaId: uuid.UUID
+    TitleEn: str | None = None
+    Status: str | None = None
+    Year: int | None = None
+    ContentRating: str | None = None
+    PublicationDemographic: str | None = None
+    cover_url: str | None = None
+    stats: StatisticsOut | None = None
+
+
+class MangaDetailResponse(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+    MangaId: uuid.UUID
+    Type: str | None = None
+    TitleEn: str | None = None
+    Status: str | None = None
+    Year: int | None = None
+    ContentRating: str | None = None
+    PublicationDemographic: str | None = None
+    OriginalLanguage: str | None = None
+    LastChapter: str | None = None
+    LastVolume: str | None = None
+    CreatedAt: datetime | None = None
+    UpdatedAt: datetime | None = None
+    cover_url: str | None = None
+    stats: StatisticsOut | None = None
+    tags: list[TagBrief] = []
+    alt_titles: list[AltTitle] = []
+    descriptions: list[Description] = []
+    links: list[LinkOut] = []
+    creators: list[CreatorOut] = []
+    available_languages: list[str] = []
+
+
+class RelatedMangaOut(BaseModel):
+    RelatedId: uuid.UUID
+    relation_type: str | None = None
+    related_label: str | None = None
+    title: str | None = None
+
+--- File: D:\TDMU\2025-2026\HKII_2025-2026\KTTKPM\coursework\manga_backend\app\schemas\rating.py ---
+import uuid
+from pydantic import BaseModel, ConfigDict
+
+
+class RatingCreate(BaseModel):
+    Score: int  # 1-10
+
+
+class RatingResponse(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+    RatingId: uuid.UUID
+    UserId: uuid.UUID
+    MangaId: uuid.UUID
+    Score: int | None = None
+
+--- File: D:\TDMU\2025-2026\HKII_2025-2026\KTTKPM\coursework\manga_backend\app\schemas\tag.py ---
+import uuid
+from pydantic import BaseModel, ConfigDict
+
+
+class TagResponse(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+    TagId: uuid.UUID
+    GroupName: str | None = None
+    NameEn: str | None = None
+
+
+class TagGroup(BaseModel):
+    group_name: str
+    tags: list[TagResponse] = []
+
+=== Folder: app\services ===
+
+--- File: D:\TDMU\2025-2026\HKII_2025-2026\KTTKPM\coursework\manga_backend\app\services\minio_service.py ---
+"""MinIO service – upload, presigned URLs, list chapter pages."""
+import aioboto3
+from uuid import uuid4
+from app.core.config import settings
+
+session = aioboto3.Session()
+
+
+class MinioService:
+
+    def _client(self):
+        return session.client(
+            "s3",
+            endpoint_url=f"{'https' if settings.MINIO_USE_SSL else 'http'}://{settings.MINIO_ENDPOINT}",
+            aws_access_key_id=settings.MINIO_ACCESS_KEY,
+            aws_secret_access_key=settings.MINIO_SECRET_KEY,
+        )
+
+    async def ensure_bucket(self):
+        """Create bucket if it doesn't exist."""
+        async with self._client() as s3:
+            try:
+                await s3.head_bucket(Bucket=settings.MINIO_BUCKET)
+            except Exception:
+                await s3.create_bucket(Bucket=settings.MINIO_BUCKET)
+
+    async def upload_file(self, file, folder: str) -> dict:
+        """Upload an UploadFile to MinIO, return object info."""
+        ext = file.filename.rsplit(".", 1)[-1] if "." in file.filename else "jpg"
+        filename = f"{uuid4()}.{ext}"
+        object_name = f"{folder}/{filename}"
+
+        async with self._client() as s3:
+            await s3.upload_fileobj(file.file, settings.MINIO_BUCKET, object_name)
+            url = await s3.generate_presigned_url(
+                "get_object",
+                Params={"Bucket": settings.MINIO_BUCKET, "Key": object_name},
+                ExpiresIn=86400,
+            )
+        return {"filename": filename, "object_name": object_name, "url": url}
+
+    async def upload_bytes(self, data: bytes, object_name: str, content_type: str = "image/jpeg") -> str:
+        """Upload raw bytes to MinIO. Returns the object key."""
+        from io import BytesIO
+        async with self._client() as s3:
+            await s3.upload_fileobj(
+                BytesIO(data), settings.MINIO_BUCKET, object_name,
+                ExtraArgs={"ContentType": content_type},
+            )
+        return object_name
+
+    async def get_presigned_url(self, object_name: str, expires: int = 86400) -> str:
+        """Generate a presigned GET URL for an object."""
+        async with self._client() as s3:
+            return await s3.generate_presigned_url(
+                "get_object",
+                Params={"Bucket": settings.MINIO_BUCKET, "Key": object_name},
+                ExpiresIn=expires,
+            )
+
+    async def list_chapter_pages(self, chapter_id: str) -> list[str]:
+        """List all page image URLs for a chapter from MinIO."""
+        prefix = f"chapters/{chapter_id}/"
+        urls = []
+        async with self._client() as s3:
+            try:
+                response = await s3.list_objects_v2(Bucket=settings.MINIO_BUCKET, Prefix=prefix)
+                contents = response.get("Contents", [])
+                # Sort by key (page order)
+                contents.sort(key=lambda x: x["Key"])
+                for obj in contents:
+                    url = await s3.generate_presigned_url(
+                        "get_object",
+                        Params={"Bucket": settings.MINIO_BUCKET, "Key": obj["Key"]},
+                        ExpiresIn=86400,
+                    )
+                    urls.append(url)
+            except Exception:
+                pass
+        return urls
+
+    async def delete_object(self, object_name: str):
+        """Delete an object from MinIO."""
+        async with self._client() as s3:
+            await s3.delete_object(Bucket=settings.MINIO_BUCKET, Key=object_name)
+
+
+minio_service = MinioService()
+=== Folder: ref ===
+
+=== Folder: scripts ===
+
+--- File: D:\TDMU\2025-2026\HKII_2025-2026\KTTKPM\coursework\manga_backend\scripts\image_downloader.py ---
+"""
+Image Downloader Worker
+-----------------------
+Standalone script that downloads cover images (and optionally chapter pages)
+from MangaDex API and uploads them to MinIO.
+
+Usage:
+    python -m scripts.image_downloader --covers          # Download covers only
+    python -m scripts.image_downloader --chapters <id>   # Download chapter pages
+    python -m scripts.image_downloader --all-covers      # Batch all manga in DB
+"""
+import asyncio
+import argparse
+import sys
+import os
+import httpx
+
+# Ensure project root is on path
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+from app.core.config import settings
+from app.core.database import AsyncSessionLocal
+from app.services.minio_service import minio_service
+from app.models.models import Manga, Cover, Chapter
+
+from sqlalchemy.future import select
+from sqlalchemy import func
+
+MANGADEX_API = "https://api.mangadex.org"
+MANGADEX_UPLOADS = "https://uploads.mangadex.org"
+
+
+async def download_cover_for_manga(manga_id: str, db_session):
+    """Download primary cover from MangaDex → MinIO, update Covers table."""
+    manga_id_lower = manga_id.lower()
+    print(f"  [cover] Processing manga {manga_id_lower}...")
+
+    async with httpx.AsyncClient(timeout=30) as client:
+        # Fetch cover info from MangaDex
+        resp = await client.get(
+            f"{MANGADEX_API}/cover",
+            params={"manga[]": manga_id_lower, "limit": 1},
+        )
+        if resp.status_code != 200:
+            print(f"    ✗ MangaDex API error: {resp.status_code}")
+            return
+
+        data = resp.json()
+        covers = data.get("data", [])
+        if not covers:
+            print(f"    ✗ No cover found on MangaDex")
+            return
+
+        cover_item = covers[0]
+        cover_id = cover_item["id"]
+        attrs = cover_item.get("attributes", {})
+        file_name = attrs.get("fileName")
+        if not file_name:
+            return
+
+        # Check if already in DB with MinIO URL
+        existing = await db_session.execute(
+            select(Cover).where(Cover.cover_id == cover_id)
+        )
+        existing_cover = existing.scalars().first()
+        if existing_cover and existing_cover.url and existing_cover.url.startswith("covers/"):
+            print(f"    ✓ Already in MinIO: {existing_cover.url}")
+            return
+
+        # Download image
+        image_url = f"{MANGADEX_UPLOADS}/covers/{manga_id_lower}/{file_name}"
+        img_resp = await client.get(image_url)
+        if img_resp.status_code != 200:
+            print(f"    ✗ Failed to download image: {img_resp.status_code}")
+            return
+
+        # Upload to MinIO
+        ext = file_name.rsplit(".", 1)[-1] if "." in file_name else "jpg"
+        minio_key = f"covers/{manga_id_lower}/{file_name}"
+        content_type = f"image/{ext}" if ext in ("jpg", "jpeg", "png", "webp", "gif") else "image/jpeg"
+        await minio_service.upload_bytes(img_resp.content, minio_key, content_type)
+
+        # Upsert into Covers table
+        if existing_cover:
+            existing_cover.url = minio_key
+            existing_cover.fileName = file_name
+        else:
+            import uuid
+            new_cover = Cover(
+                cover_id=uuid.UUID(cover_id),
+                manga_id=uuid.UUID(manga_id),
+                type=cover_item.get("type"),
+                description=attrs.get("description"),
+                volume=attrs.get("volume"),
+                fileName=file_name,
+                locale=attrs.get("locale"),
+                version=attrs.get("version"),
+                url=minio_key,
+            )
+            db_session.add(new_cover)
+
+        await db_session.commit()
+        print(f"    ✓ Uploaded to MinIO: {minio_key}")
+
+
+async def download_chapter_pages(chapter_id: str):
+    """Download chapter pages from MangaDex at-home API → MinIO."""
+    print(f"  [pages] Processing chapter {chapter_id}...")
+
+    async with httpx.AsyncClient(timeout=30) as client:
+        resp = await client.get(f"{MANGADEX_API}/at-home/server/{chapter_id}")
+        if resp.status_code != 200:
+            print(f"    ✗ at-home API error: {resp.status_code}")
+            return
+
+        data = resp.json()
+        base_url = data.get("baseUrl", "")
+        chapter_data = data.get("chapter", {})
+        chapter_hash = chapter_data.get("hash", "")
+        pages = chapter_data.get("data", [])
+
+        if not pages:
+            print(f"    ✗ No pages found")
+            return
+
+        for i, page_filename in enumerate(pages):
+            page_url = f"{base_url}/data/{chapter_hash}/{page_filename}"
+            img_resp = await client.get(page_url)
+            if img_resp.status_code != 200:
+                print(f"    ✗ Failed page {i+1}: {img_resp.status_code}")
+                continue
+
+            ext = page_filename.rsplit(".", 1)[-1] if "." in page_filename else "jpg"
+            minio_key = f"chapters/{chapter_id}/{i+1:04d}.{ext}"
+            content_type = f"image/{ext}" if ext in ("jpg", "jpeg", "png", "webp") else "image/jpeg"
+            await minio_service.upload_bytes(img_resp.content, minio_key, content_type)
+            print(f"    ✓ Page {i+1}/{len(pages)} → {minio_key}")
+
+        print(f"    ✓ All {len(pages)} pages uploaded for chapter {chapter_id}")
+
+
+async def batch_all_covers():
+    """Download covers for ALL manga in DB that don't have a MinIO cover yet."""
+    await minio_service.ensure_bucket()
+    async with AsyncSessionLocal() as db:
+        result = await db.execute(select(Manga.MangaId))
+        manga_ids = [str(r) for (r,) in result.all()]
+        print(f"Found {len(manga_ids)} manga in DB")
+
+        for i, mid in enumerate(manga_ids):
+            try:
+                await download_cover_for_manga(mid, db)
+            except Exception as e:
+                print(f"    ✗ Error: {e}")
+            if (i + 1) % 10 == 0:
+                print(f"  Progress: {i+1}/{len(manga_ids)}")
+                await asyncio.sleep(0.5)  # Rate limit
+
+
+async def main():
+    parser = argparse.ArgumentParser(description="MangaDex Image Downloader → MinIO")
+    parser.add_argument("--cover", type=str, help="Download cover for a specific manga ID")
+    parser.add_argument("--chapter", type=str, help="Download pages for a specific chapter ID")
+    parser.add_argument("--all-covers", action="store_true", help="Batch download covers for all manga")
+    args = parser.parse_args()
+
+    await minio_service.ensure_bucket()
+
+    if args.cover:
+        async with AsyncSessionLocal() as db:
+            await download_cover_for_manga(args.cover, db)
+    elif args.chapter:
+        await download_chapter_pages(args.chapter)
+    elif args.all_covers:
+        await batch_all_covers()
+    else:
+        parser.print_help()
+
+
+if __name__ == "__main__":
+    asyncio.run(main())

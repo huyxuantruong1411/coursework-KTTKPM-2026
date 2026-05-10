@@ -1,0 +1,355 @@
+GET
+/manga/{id}/recommendation
+Get up to 20 similar Manga Recommendations
+
+Parameters
+Cancel
+Name	Description
+includes[]
+array<string>
+(query)
+--manga
+order
+object
+(query)
+Edit Value
+Schema
+{
+  "score": "desc"
+}
+contentRating[]
+array<string>
+(query)
+--safesuggestiveeroticapornographic
+id *
+string($uuid)
+(path)
+Manga ID
+
+f13ab102-fc55-4afc-8cd8-d2515c28eb10
+Execute
+Clear
+Responses
+Curl
+
+curl -X 'GET' \
+  'https://api.mangadex.org/manga/f13ab102-fc55-4afc-8cd8-d2515c28eb10/recommendation?includes%5B%5D=manga&order%5Bscore%5D=desc&contentRating%5B%5D=safe&contentRating%5B%5D=suggestive&contentRating%5B%5D=erotica' \
+  -H 'accept: application/json'
+Request URL
+https://api.mangadex.org/manga/f13ab102-fc55-4afc-8cd8-d2515c28eb10/recommendation?includes%5B%5D=manga&order%5Bscore%5D=desc&contentRating%5B%5D=safe&contentRating%5B%5D=suggestive&contentRating%5B%5D=erotica
+Server response
+Code	Details
+200	
+Response body
+Download
+{
+  "result": "ok",
+  "response": "collection",
+  "data": [
+    {
+      "id": "f13ab102-fc55-4afc-8cd8-d2515c28eb10_8e7ac573-25fd-460f-9969-9178e2c561e4",
+      "type": "manga_recommendation",
+      "attributes": {
+        "score": 0.9019345552843168
+      },
+      "relationships": [
+        {
+          "id": "f13ab102-fc55-4afc-8cd8-d2515c28eb10",
+          "type": "manga",
+          "attributes": {
+            "title": {
+              "ja-ro": "Jitaku de Natural ni Josou-suru Danshi"
+            },
+            "altTitles": [
+              {
+                "ja": "自宅でナチュラルに女装する男子"
+              },
+              {
+                "en": "A Boy Who Naturally Dresses as a Girl at Home"
+              },
+              {
+                "en": "A Boy Who Feels Natural Cross-Dressing at Home"
+              }
+            ],
+            "description": {
+              "en": "Alternative Raw:\n* [Animate-Onlineshop](https://www.animate-onlineshop.jp/pn/pd/2373438/\n)\n* [Melonbooks](https://www.melonbooks.co.jp/detail/detail.php?product_id=2185227\n)",
+              "ja": "友人（♂）の家に遊びに行ったら立っていたのはスカート履いた女の子！？\n\nある日友人のあゆむの家を訪ねると、そこには見た目「めっちゃ女子」のあゆむが立っていた。様子を窺っていると、どうやらこの女装姿は家族にも受け入れられているらしい……！？洋服のことが気になって尋ねると、「うそ…マジ？もしかして似合ってない？＞＜」～～～ッ！似合ってるから気になるんだよ！！学校では制服、家では女装男子。そんなあゆむのニュートラルな可愛さを直視できるのか、俺！？"
+            },
+            "isLocked": false,
+            "links": {
+              "ap": "jitaku-de-natural-josou-danshi",
+              "bw": "series/216912",
+              "mu": "thrfhtp",
+              "amz": "https://www.amazon.co.jp/dp/B0CSYMK3BL",
+              "ebj": "https://ebookjapan.yahoo.co.jp/books/810316",
+              "mal": "167037",
+              "raw": "https://manga.nicovideo.jp/comic/49568"
+            },
+            "officialLinks": null,
+            "originalLanguage": "ja",
+            "lastVolume": null,
+            "lastChapter": null,
+            "publicationDemographic": "seinen",
+            "status": "ongoing",
+            "year": 2018,
+            "contentRating": "suggestive",
+            "tags": [
+              {
+                "id": "9ab53f92-3eed-4e9b-903a-917c86035ee3",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Crossdressing"
+                  },
+                  "description": {},
+                  "group": "theme",
+                  "version": 1
+                },
+                "relationships": []
+              },
+              {
+                "id": "caaa44eb-cd40-4177-b930-79d3ef2afe87",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "School Life"
+                  },
+                  "description": {},
+                  "group": "theme",
+                  "version": 1
+                },
+                "relationships": []
+              },
+              {
+                "id": "ddefd648-5140-4e5f-ba18-4eca4071d19b",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Shota"
+                  },
+                  "description": {},
+                  "group": "theme",
+                  "version": 1
+                },
+                "relationships": []
+              },
+              {
+                "id": "e197df38-d0e7-43b5-9b09-2842d0c326dd",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Web Comic"
+                  },
+                  "description": {},
+                  "group": "format",
+                  "version": 1
+                },
+                "relationships": []
+              },
+              {
+                "id": "e5301a23-ebd9-49dd-a0cb-2add944c7fe9",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Slice of Life"
+                  },
+                  "description": {},
+                  "group": "genre",
+                  "version": 1
+                },
+                "relationships": []
+              }
+            ],
+            "state": "published",
+            "chapterNumbersResetOnNewVolume": false,
+            "createdAt": "2019-09-12T04:42:19+00:00",
+            "updatedAt": "2026-04-01T11:27:36+00:00",
+            "version": 11,
+            "availableTranslatedLanguages": [
+              "en",
+              "it",
+              "de"
+            ],
+            "latestUploadedChapter": "45287e5e-d4d3-48ce-919d-5a8ee931e00a"
+          }
+        },
+        {
+          "id": "10939bf2-2dc7-4aae-8e4b-e96ba25c94de",
+          "type": "manga",
+          "attributes": {
+            "title": {
+              "en": "Sotozura wa Saikou na no ni, Ie de wa Honsei Mukidashi no Gimai"
+            },
+            "altTitles": [
+              {
+                "ja": "外面は最高なのに、家では本性むき出しの義姉"
+              },
+              {
+                "ja-ro": "Sotozura wa Saikou na no ni, Ie de wa Honsei Mukidashi no Gimai"
+              },
+              {
+                "en": "Even Though the Outside Is the Best, Her Sister-in-Law Has a Bare Nature at Home"
+              },
+              {
+                "es-la": "Mi hermanastra que es perfecta en público, muestra su verdadera cara en casa."
+              },
+              {
+                "en": "My Stepsister Who Is Perfect in Public, Shows Her True Colors at Home"
+              },
+              {
+                "fr": "Ma belle-sœur, parfaite, en apparence, montre son vrai visage à la maison"
+              }
+            ],
+            "description": {
+              "en": "One of my classmates is the most beautiful girl in our grade, and I was just gazing at her from afar.\n\nBut when I came home, I found her there and she was acting strangely...\n\nThis is a manga about a sister and brother who are classmates, but turn out to be a “neeshota”!\n\n---\n\n**Note:** The alternative English title (Even Though the Outside Is the Best, Her Sister-in-Law Has a Bare Nature at Home) is the one used on Amazon."
+            },
+            "isLocked": false,
+            "links": {
+              "amz": "https://www.amazon.co.jp/dp/B0BWY5JG49",
+              "raw": "https://twitter.com/unpocooo/status/1800090945175838935"
+            },
+            "officialLinks": null,
+            "originalLanguage": "ja",
+            "lastVolume": "",
+            "lastChapter": "11",
+            "publicationDemographic": null,
+            "status": "completed",
+            "year": 2023,
+            "contentRating": "suggestive",
+            "tags": [
+              {
+                "id": "caaa44eb-cd40-4177-b930-79d3ef2afe87",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "School Life"
+                  },
+                  "description": {},
+                  "group": "theme",
+                  "version": 1
+                },
+                "relationships": []
+              },
+              {
+                "id": "ddefd648-5140-4e5f-ba18-4eca4071d19b",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Shota"
+                  },
+                  "description": {},
+                  "group": "theme",
+                  "version": 1
+                },
+                "relationships": []
+              },
+              {
+                "id": "e197df38-d0e7-43b5-9b09-2842d0c326dd",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Web Comic"
+                  },
+                  "description": {},
+                  "group": "format",
+                  "version": 1
+                },
+                "relationships": []
+              },
+              {
+                "id": "e5301a23-ebd9-49dd-a0cb-2add944c7fe9",
+                "type": "tag",
+                "attributes": {
+                  "name": {
+                    "en": "Slice of Life"
+                  },
+                  "description": {},
+                  "group": "genre",
+                  "version": 1
+                },
+                "relationships": []
+              }
+            ],
+            "state": "published",
+            "chapterNumbersResetOnNewVolume": false,
+            "createdAt": "2024-06-29T12:37:34+00:00",
+            "updatedAt": "2026-03-23T00:28:08+00:00",
+            "version": 19,
+            "availableTranslatedLanguages": [
+              "en",
+              "pt-br",
+              "es-la",
+              "fr",
+              "ru",
+              "vi"
+            ],
+            "latestUploadedChapter": "d8e7b10a-0ac1-4120-9a21-563d45f44734"
+          }
+        }
+      ]
+    }
+  ],
+  "limit": 50,
+  "offset": 0,
+  "total": 29
+}
+Response headers
+ accept-ranges: bytes 
+ access-control-allow-credentials: true 
+ access-control-expose-headers: * 
+ alt-svc: h3=":443"; ma=86400 
+ cache-control: max-age=15,public,s-maxage=86400,stale-while-revalidate=15 
+ content-encoding: gzip 
+ content-type: application/json 
+ cross-origin-embedder-policy: unsafe-none 
+ cross-origin-opener-policy: same-origin-allow-popups 
+ cross-origin-resource-policy: cross-origin 
+ date: Sun,10 May 2026 00:36:25 GMT 
+ md-edge-crs: Tk9ORQ 
+ md-progressive-rollout-bucket: 364100166 
+ permissions-policy: fullscreen=(self) 
+ referrer-policy: strict-origin 
+ server: MangaDex 
+ strict-transport-security: max-age=63072000; includeSubDomains; preload 
+ vary: Origin 
+ via: HTTP/3.0 AS-SOUTHEAST-S1x1 
+ x-cache: MISS 
+ x-content-type-options: nosniff 
+ x-frame-options: DENY 
+ x-request-id: fb5ce46c-b8d8-42ed-984d-7f716c94b482 
+ x-xss-protection: 1; mode=block 
+Responses
+Code	Description	Links
+200	
+OK
+
+Media type
+
+application/json
+Controls Accept header.
+Example Value
+Schema
+{
+  "result": "ok",
+  "response": "collection",
+  "data": [
+    {
+      "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "type": "manga_recommendation",
+      "attributes": {
+        "score": 0
+      },
+      "relationships": [
+        {
+          "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+          "type": "string",
+          "related": "monochrome",
+          "attributes": {}
+        }
+      ]
+    }
+  ],
+  "limit": 0,
+  "offset": 0,
+  "total": 0
+}

@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  proto-redis:
+    image: redis:alpine
+    # KHÔNG EXPOSE PORT: Bảo vệ tuyệt đối, không đụng tới manga-redis ở port 6379
+  proto-api:
+    image: python:3.10-slim
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: sh -c "pip install fastapi uvicorn redis && uvicorn main:app --host 0.0.0.0 --port 8000"
+    ports:
+      - "8012:8000" # API chạy ở 8012
+    depends_on:
+      - proto-redis

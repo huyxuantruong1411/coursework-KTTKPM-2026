@@ -1,0 +1,74 @@
+# Advanced Search
+
+## Mission
+Create implementation-ready, token-driven UI guidance for Advanced Search that is optimized for consistency, accessibility, and fast delivery across marketing site.
+
+## Brand
+- Product/brand: Advanced Search
+- URL: https://mangadex.org/titles
+- Audience: readers and knowledge seekers
+- Product surface: marketing site
+
+## Style Foundations
+- Visual style: clean, functional, implementation-oriented
+- Main font style: `font.family.primary=Poppins`, `font.family.stack=Poppins, sans-serif`, `font.size.base=10px`, `font.weight.base=700`, `font.lineHeight.base=15px`
+- Typography scale: `font.size.xs=10px`, `font.size.sm=12px`, `font.size.md=14px`, `font.size.lg=16px`, `font.size.xl=24px`
+- Color palette: `color.text.primary=#ffffff`, `color.text.secondary=#ff6740`, `color.surface.base=#000000`, `color.surface.muted=#2c2c2c`, `color.border.default=#e5e7eb`
+- Spacing scale: `space.1=4px`, `space.2=6px`, `space.3=8px`, `space.4=12px`, `space.5=14px`, `space.6=16px`, `space.7=95.34px`, `space.8=107.19px`
+- Radius/shadow/motion tokens: `radius.xs=4px`, `radius.sm=8px`, `radius.md=9999px` | `motion.duration.instant=100ms`
+
+## Accessibility
+- Target: WCAG 2.2 AA
+- Keyboard-first interactions required.
+- Focus-visible rules required.
+- Contrast constraints required.
+
+## Writing Tone
+Concise, confident, implementation-focused.
+
+## Rules: Do
+- Use semantic tokens, not raw hex values, in component guidance.
+- Every component must define states for default, hover, focus-visible, active, disabled, loading, and error.
+- Component behavior should specify responsive and edge-case handling.
+- Interactive components must document keyboard, pointer, and touch behavior.
+- Accessibility acceptance criteria must be testable in implementation.
+
+## Rules: Don't
+- Do not allow low-contrast text or hidden focus indicators.
+- Do not introduce one-off spacing or typography exceptions.
+- Do not use ambiguous labels or non-descriptive actions.
+- Do not ship component guidance without explicit state rules.
+
+## Guideline Authoring Workflow
+1. Restate design intent in one sentence.
+2. Define foundations and semantic tokens.
+3. Define component anatomy, variants, interactions, and state behavior.
+4. Add accessibility acceptance criteria with pass/fail checks.
+5. Add anti-patterns, migration notes, and edge-case handling.
+6. End with a QA checklist.
+
+## Required Output Structure
+- Context and goals.
+- Design tokens and foundations.
+- Component-level rules (anatomy, variants, states, responsive behavior).
+- Accessibility requirements and testable acceptance criteria.
+- Content and tone standards with examples.
+- Anti-patterns and prohibited implementations.
+- QA checklist.
+
+## Component Rule Expectations
+- Include keyboard, pointer, and touch behavior.
+- Include spacing and typography token requirements.
+- Include long-content, overflow, and empty-state handling.
+- Include known page component density: links (384), inputs (69), cards (64), buttons (51), lists (4).
+
+- Extraction diagnostics: Audience and product surface inference confidence is low; verify generated brand context.
+
+## Quality Gates
+- Every non-negotiable rule must use "must".
+- Every recommendation should use "should".
+- Every accessibility rule must be testable in implementation.
+- Teams should prefer system consistency over local visual exceptions.
+
+
+<div data-v-c84f1bc6="" class="expander grid grid-rows-[1fr_0fr]"><div data-v-c84f1bc6="" class="" style=""><div class="hidden md:grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 3xl:grid-cols-5 gap-8 my-4"><div class="relative space-y-1"><!----><label id="headlessui-listbox-label-v-0-1-1" data-headlessui-state="" class="text-midTone text-sm xl:text-base">Sort by</label><button id="headlessui-listbox-button-v-0-1-2" type="button" aria-haspopup="listbox" aria-expanded="false" data-headlessui-state="" class="w-full text-left" aria-labelledby="headlessui-listbox-label-v-0-1-1 headlessui-listbox-button-v-0-1-2"><div class="w-full grid grid-cols-[1fr_1rem] px-2 py-1 rounded-md transition-[background-color] outline outline-1 outline-transparent focus:outline-primary font-medium bg-accent"><span class="text-left truncate" title="None">None</span><svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 my-auto text-midTone" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m8 9l4-4l4 4m0 6l-4 4l-4-4"></path></svg></div></button><!----></div><div class="relative space-y-1" mode="AND" data-headlessui-state=""><!----><label data-v-d1023aab="" class="text-midTone xl:text-base text-sm">Filter tags <!----><!----></label><button class="w-full grid grid-cols-[1fr_1rem] px-2 py-1 rounded-md transition-[background-color,outline-color] outline outline-1 outline-transparent focus:outline-primary font-medium bg-accent" title="Include any" id="headlessui-popover-button-v-0-1-4" type="button" aria-expanded="false" data-headlessui-state=""><span data-v-d1023aab="" class="truncate text-left">Include any</span><svg data-v-d1023aab="" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 my-auto text-midTone" viewBox="0 0 24 24"><path data-v-d1023aab="" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m8 9l4-4l4 4m0 6l-4 4l-4-4"></path></svg></button><!----><!----></div><div hidden="" style="position: fixed; height: 0px; padding: 0px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; display: none;"></div><div class="relative space-y-1 grid"><!----><label id="headlessui-listbox-label-v-0-1-9" data-headlessui-state="" class="text-midTone truncate xl:text-base text-sm"><span title="Content Rating">Content Rating</span><!----></label><button id="headlessui-listbox-button-v-0-1-10" type="button" aria-haspopup="listbox" aria-expanded="false" data-headlessui-state="" class="w-full grid grid-cols-[1fr_1rem] px-2 py-1 rounded-md transition-[background-color] outline outline-1 outline-transparent focus:outline-primary font-medium bg-accent" aria-labelledby="headlessui-listbox-label-v-0-1-9 headlessui-listbox-button-v-0-1-10"><span class="text-left truncate">Any</span><svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 my-auto text-midTone" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m8 9l4-4l4 4m0 6l-4 4l-4-4"></path></svg></button><!----></div><div class="relative space-y-1 grid"><!----><label id="headlessui-listbox-label-v-0-1-12" data-headlessui-state="" class="text-midTone truncate xl:text-base text-sm"><span title="Magazine Demographic">Magazine Demographic</span><!----></label><button id="headlessui-listbox-button-v-0-1-13" type="button" aria-haspopup="listbox" aria-expanded="false" data-headlessui-state="" class="w-full grid grid-cols-[1fr_1rem] px-2 py-1 rounded-md transition-[background-color] outline outline-1 outline-transparent focus:outline-primary font-medium bg-accent" aria-labelledby="headlessui-listbox-label-v-0-1-12 headlessui-listbox-button-v-0-1-13"><span class="text-left truncate">Any</span><svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 my-auto text-midTone" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m8 9l4-4l4 4m0 6l-4 4l-4-4"></path></svg></button><!----></div><div class="relative space-y-1 grid" disablefilter="true" data-headlessui-state=""><!----><label id="headlessui-listbox-label-v-0-1-15" data-headlessui-state="" class="text-midTone truncate xl:text-base text-sm"><span title="Authors">Authors</span><!----></label><button id="headlessui-listbox-button-v-0-1-16" type="button" aria-haspopup="listbox" aria-expanded="false" data-headlessui-state="" class="w-full grid grid-cols-[1fr_1rem] px-2 py-1 rounded-md transition-[background-color] outline outline-1 outline-transparent focus:outline-primary font-medium bg-accent" aria-labelledby="headlessui-listbox-label-v-0-1-15 headlessui-listbox-button-v-0-1-16"><span class="text-left truncate">Any</span><svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 my-auto text-midTone" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m8 9l4-4l4 4m0 6l-4 4l-4-4"></path></svg></button><!----></div><div class="relative space-y-1 grid" disablefilter="true" data-headlessui-state=""><!----><label id="headlessui-listbox-label-v-0-1-18" data-headlessui-state="" class="text-midTone truncate xl:text-base text-sm"><span title="Artists">Artists</span><!----></label><button id="headlessui-listbox-button-v-0-1-19" type="button" aria-haspopup="listbox" aria-expanded="false" data-headlessui-state="" class="w-full grid grid-cols-[1fr_1rem] px-2 py-1 rounded-md transition-[background-color] outline outline-1 outline-transparent focus:outline-primary font-medium bg-accent" aria-labelledby="headlessui-listbox-label-v-0-1-18 headlessui-listbox-button-v-0-1-19"><span class="text-left truncate">Any</span><svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 my-auto text-midTone" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m8 9l4-4l4 4m0 6l-4 4l-4-4"></path></svg></button><!----></div><div class="relative space-y-1 grid" disablefilter="false" data-headlessui-state=""><!----><label id="headlessui-listbox-label-v-0-1-21" data-headlessui-state="" class="text-midTone truncate xl:text-base text-sm"><span title="Original languages">Original languages</span><!----></label><button id="headlessui-listbox-button-v-0-1-22" type="button" aria-haspopup="listbox" aria-expanded="false" data-headlessui-state="" class="w-full grid grid-cols-[1fr_1rem] px-2 py-1 rounded-md transition-[background-color] outline outline-1 outline-transparent focus:outline-primary font-medium bg-accent" aria-labelledby="headlessui-listbox-label-v-0-1-21 headlessui-listbox-button-v-0-1-22"><span class="text-left truncate"><span>All languages</span></span><svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 my-auto text-midTone" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m8 9l4-4l4 4m0 6l-4 4l-4-4"></path></svg></button><!----></div><label data-v-de36b068="" class="text-midTone truncate xl:text-base text-sm relative space-y-1 grid"><span data-v-de36b068="" title="Publication year">Publication year</span><div data-v-de36b068="" class="grid grid-cols-[1fr_3rem] gap-2 rounded-md outline outline-0 outline-transparent bg-accent pointer-events-none"><input data-v-de36b068="" class="px-2 py-[0.3rem] bg-accent rounded-md text-color outline-none outline-1 -outline-offset-1 transition-[outline-color] w-full font-medium pointer-events-auto placeholder:text-color focus:outline-primary" type="number" min="0" inputmode="numeric" placeholder="Any" value=""><!----><div data-v-de36b068="" class="flex my-auto gap-2 pointer-events-auto"><svg data-v-2b1100a4="" data-v-de36b068="" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="feather feather-minus icon size-6 small text-icon-contrast text-undefined hover:text-primary cursor-pointer" viewBox="0 0 24 24"><path d="M5 12h14"></path></svg><svg data-v-2b1100a4="" data-v-de36b068="" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="feather feather-plus icon size-6 small text-icon-contrast text-undefined hover:text-primary cursor-pointer" viewBox="0 0 24 24"><path d="M12 5v14m-7-7h14"></path></svg></div></div></label><div class="relative space-y-1 grid"><!----><label id="headlessui-listbox-label-v-0-1-24" data-headlessui-state="" class="text-midTone truncate xl:text-base text-sm"><span title="Publication Status">Publication Status</span><!----></label><button id="headlessui-listbox-button-v-0-1-25" type="button" aria-haspopup="listbox" aria-expanded="false" data-headlessui-state="" class="w-full grid grid-cols-[1fr_1rem] px-2 py-1 rounded-md transition-[background-color] outline outline-1 outline-transparent focus:outline-primary font-medium bg-accent" aria-labelledby="headlessui-listbox-label-v-0-1-24 headlessui-listbox-button-v-0-1-25"><span class="text-left truncate">Any</span><svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 my-auto text-midTone" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m8 9l4-4l4 4m0 6l-4 4l-4-4"></path></svg></button><!----></div><div class="relative space-y-1 grid" disablefilter="false" data-headlessui-state=""><!----><label id="headlessui-listbox-label-v-0-1-27" data-headlessui-state="" class="text-midTone truncate xl:text-base text-sm"><div class="flex items-center gap-2"><div data-v-e5d18c36="" class="!pointer-events-auto"><label data-v-e5d18c36="" tabindex="0" class="md-checkbox focus-within:outline-white gap-2 cursor-pointer" role="checkbox" for="chk-0.6106953485348253" aria-disabled="false" aria-checked="false"><span data-v-e5d18c36="" class="md-checkbox__wrap"><svg data-v-2b1100a4="" data-v-e5d18c36="" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="feather feather-square icon size-6 text-icon-contrast text-undefined" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"></rect></svg><input data-v-e5d18c36="" type="checkbox" id="chk-0.6106953485348253" hidden="" modelvalue="false"></span><span data-v-e5d18c36="">Has translated chapters</span><!----></label><!----></div></div></label><button id="headlessui-listbox-button-v-0-1-28" type="button" aria-haspopup="listbox" aria-expanded="false" data-headlessui-state="" class="w-full grid grid-cols-[1fr_1rem] px-2 py-1 rounded-md transition-[background-color] outline outline-1 outline-transparent focus:outline-primary font-medium bg-accent pointer-events-none opacity-50" aria-labelledby="headlessui-listbox-label-v-0-1-27 headlessui-listbox-button-v-0-1-28"><span class="text-left truncate"><span>Any language</span></span><svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 my-auto text-midTone" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m8 9l4-4l4 4m0 6l-4 4l-4-4"></path></svg></button><!----></div></div></div><div data-v-c84f1bc6=""></div></div>
