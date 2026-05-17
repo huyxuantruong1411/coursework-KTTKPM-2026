@@ -193,6 +193,7 @@ function ChatThread({
 }: {
   room: ChatRoom; userId: string; token: string | null; onBack: () => void;
 }) {
+  const queryClient = useQueryClient();
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [input, setInput] = useState("");
   const [typingUsers, setTypingUsers] = useState<Set<string>>(new Set());
@@ -209,8 +210,9 @@ function ChatThread({
   useEffect(() => {
     if (historyQuery.data?.messages) {
       setMessages(historyQuery.data.messages);
+      void chatApi.markRoomRead(room.room_id);
     }
-  }, [historyQuery.data]);
+  }, [historyQuery.data, queryClient, room.room_id]);
 
   // Connect WebSocket
   useEffect(() => {
@@ -219,10 +221,17 @@ function ChatThread({
     const unsub = chatService.onMessage((event: WsEvent) => {
       if (event.type === "message") {
         const msg = event as unknown as ChatMessage;
-        setMessages((prev) => [...prev, {
-          ...msg,
-          is_own: msg.sender_id === userId,
-        }]);
+        setMessages((prev) => {
+          if (msg.message_id && prev.some((m) => m.message_id === msg.message_id)) return prev;
+          return [...prev, {
+            ...msg,
+            message_type: msg.message_type || "text",
+            status: msg.status || "sent",
+            is_own: msg.sender_id === userId,
+          }];
+        });
+        void chatApi.markRoomRead(room.room_id);
+        void queryClient.invalidateQueries({ queryKey: ["chat", "rooms"] });
       } else if (event.type === "typing") {
         const uid = event.user_id as string;
         const isTyping = event.is_typing as boolean;
@@ -239,7 +248,7 @@ function ChatThread({
       unsub();
       chatService.disconnect();
     };
-  }, [room.room_id, token, userId]);
+  }, [queryClient, room.room_id, token, userId]);
 
   // Auto-scroll
   useEffect(() => {
@@ -247,12 +256,28 @@ function ChatThread({
   }, [messages]);
 
   // Send message
-  function handleSend() {
+  async function handleSend() {
     const text = input.trim();
     if (!text) return;
-    chatService.sendMessage(text);
     setInput("");
     chatService.sendTyping(false);
+    if (chatService.isConnected) {
+      chatService.sendMessage(text);
+      return;
+    }
+    const result = await chatApi.sendMessage(room.room_id, text);
+    const localMsg: ChatMessage = {
+      message_id: result.message_id,
+      room_id: room.room_id,
+      sender_id: userId,
+      content: text,
+      message_type: "text",
+      status: "sent",
+      created_at: result.created_at ?? new Date().toISOString(),
+      is_own: true,
+    };
+    setMessages((prev) => [...prev, localMsg]);
+    void queryClient.invalidateQueries({ queryKey: ["chat", "rooms"] });
   }
 
   // Handle typing indicator
@@ -286,7 +311,11 @@ function ChatThread({
         created_at: new Date().toISOString(),
         is_own: true,
       };
-      setMessages((prev) => [...prev, optimisticMsg]);
+      setMessages((prev) => {
+        if (prev.some((m) => m.message_id === optimisticMsg.message_id)) return prev;
+        return [...prev, optimisticMsg];
+      });
+      void queryClient.invalidateQueries({ queryKey: ["chat", "rooms"] });
     } catch (err) {
       console.error("Image upload failed:", err);
     }
@@ -437,7 +466,7 @@ function MessageBubble({ message, isOwn }: { message: ChatMessage; isOwn: boolea
               )}
             </>
           ) : (
-            renderContent(message.content)
+            renderContent(message.content ?? "")
           )}
         </div>
         {message.created_at && (

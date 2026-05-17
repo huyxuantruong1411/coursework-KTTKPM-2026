@@ -56,8 +56,10 @@ type ConnectionHandler = (connected: boolean) => void;
 
 /* ─── REST API ────────────────────────────────────────── */
 export const chatApi = {
-  async getRooms() {
-    const { data } = await api.get<{ rooms: ChatRoom[] }>("/chat/rooms");
+  async getRooms(page = 1, limit = 50) {
+    const { data } = await api.get<{ rooms: ChatRoom[] }>("/chat/rooms", {
+      params: { page, limit },
+    });
     return data.rooms;
   },
 
@@ -101,6 +103,31 @@ export const chatApi = {
   async markRead(messageId: string) {
     await api.put(`/chat/messages/${messageId}/read`);
   },
+
+  async markRoomRead(roomId: string) {
+    await api.post(`/chat/rooms/${roomId}/read`);
+  },
+
+  async renameRoom(roomId: string, name: string) {
+    await api.put(`/chat/rooms/${roomId}`, { name });
+  },
+
+  async leaveRoom(roomId: string) {
+    await api.delete(`/chat/rooms/${roomId}/members/me`);
+  },
+
+  async getMembers(roomId: string) {
+    const { data } = await api.get<{ members: ChatRoomMember[] }>(`/chat/rooms/${roomId}/members`);
+    return data.members;
+  },
+
+  async addMember(roomId: string, userId: string) {
+    await api.post(`/chat/rooms/${roomId}/members`, { user_id: userId });
+  },
+
+  async removeMember(roomId: string, userId: string) {
+    await api.delete(`/chat/rooms/${roomId}/members/${userId}`);
+  },
 };
 
 /* ─── WebSocket Service ───────────────────────────────── */
@@ -140,13 +167,20 @@ class ChatWebSocketService {
       return;
     }
 
-    if (this.ws?.readyState === WebSocket.OPEN) return;
+    if (this.ws?.readyState === WebSocket.OPEN && this._currentRoomId === roomId) return;
 
-    const defaultWsHost = typeof window !== "undefined" 
-      ? `ws://${window.location.hostname}:8000`
-      : "ws://localhost:8000";
-    const wsHost = process.env.NEXT_PUBLIC_WS_URL ?? defaultWsHost;
-    const url = `${wsHost}/chat/${roomId}?token=${this._token}`;
+    if (this.ws) {
+      this.ws.onclose = null; // tắt auto-reconnect của WS cũ
+      this.ws.close();
+      this.ws = null;
+    }
+
+    const defaultWsHost = typeof window !== "undefined"
+      ? `ws://${window.location.hostname}:8000/ws`
+      : "ws://localhost:8000/ws";
+    const rawWsHost = (process.env.NEXT_PUBLIC_WS_URL ?? defaultWsHost).replace(/\/$/, "");
+    const wsHost = rawWsHost.endsWith("/ws") ? rawWsHost : `${rawWsHost}/ws`;
+    const url = `${wsHost}/chat/${roomId}?token=${encodeURIComponent(this._token)}`;
 
     try {
       this.ws = new WebSocket(url);

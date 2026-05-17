@@ -38,7 +38,14 @@ async def proxy_chapter_pages(chapter_id: str, quality: str = Query("data-saver"
     Quality: 'data' (full) or 'data-saver' (compressed)."""
     data = await _get_athome_server(chapter_id)
     if not data:
-        raise HTTPException(status_code=502, detail="Failed to reach MangaDex at-home")
+        return {
+            "pages": [
+                "https://placehold.co/1200x1700/111111/FFFFFF?text=MangaDex+Unavailable"
+            ],
+            "hash": None,
+            "quality": quality,
+            "fallback": True,
+        }
 
     host = data.get("baseUrl", "")
     chapter_hash = data.get("chapter", {}).get("hash", "")

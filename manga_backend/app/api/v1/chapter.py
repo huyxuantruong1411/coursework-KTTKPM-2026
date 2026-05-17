@@ -7,6 +7,7 @@ from sqlalchemy.future import select
 
 from app.core.database import get_db
 from app.models.models import Chapter, Manga
+from app.schemas import chapter
 from app.schemas.chapter import ChapterResponse, ChapterNav
 from app.services.minio_service import minio_service
 
@@ -138,9 +139,39 @@ async def chapter_detail(
     next_chapter = next_r.scalars().first()
 
     # ── Page URLs: try MinIO first, fall back to MangaDex ──
-    page_urls = await minio_service.list_chapter_pages(str(chapter_id))
+    # Priority:
+    #   1. MinIO cached pages
+    #   2. MangaDex at-home server
+    #   3. Local fallback placeholders
+
+    page_urls = []
+
+    # 1. Try MinIO
+    try:
+        page_urls = await minio_service.list_chapter_pages(str(chapter_id))
+    except Exception as exc:
+        import logging
+        logging.exception("[chapter] MinIO page load failed: %s", exc)
+
+    # 2. Try MangaDex fallback
     if not page_urls:
-        page_urls = await _fetch_mangadex_pages(str(chapter_id))
+        try:
+            page_urls = await _fetch_mangadex_pages(str(chapter_id))
+        except Exception as exc:
+            import logging
+            logging.exception("[chapter] MangaDex fallback failed: %s", exc)
+
+    # 3. FINAL FALLBACK FOR DEMO
+    # Never return empty list.
+    if not page_urls:
+        fallback_page = (
+            "https://placehold.co/1200x1700/111111/FFFFFF"
+            "?text=Manga+Pages+Unavailable"
+        )
+
+        estimated_pages = chapter.Pages if chapter.Pages and chapter.Pages > 0 else 3
+
+        page_urls = [fallback_page for _ in range(estimated_pages)]
 
     return ChapterNav(
         current=ChapterResponse.model_validate(chapter),

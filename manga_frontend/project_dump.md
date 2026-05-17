@@ -1,7 +1,7 @@
 
 # PROJECT DUMP
 
-Generated: 2026-05-10 16:24:09.672701
+Generated: 2026-05-16 21:42:35.419624
 Root: D:\TDMU\2025-2026\HKII_2025-2026\KTTKPM\coursework\manga_frontend
 
 
@@ -9,12 +9,12 @@ Root: D:\TDMU\2025-2026\HKII_2025-2026\KTTKPM\coursework\manga_frontend
 
 ```json
 {
-  "total_files": 72,
+  "total_files": 74,
   "total_dirs": 31,
-  "total_size": "350.91 KB",
+  "total_size": "376.34 KB",
   "extensions": {
-    ".tsx": 33,
-    ".ts": 30,
+    ".tsx": 34,
+    ".ts": 31,
     ".json": 2,
     ".md": 2,
     ".css": 2,
@@ -83,7 +83,8 @@ D:\TDMU\2025-2026\HKII_2025-2026\KTTKPM\coursework\manga_frontend
 │   │   │   ├── MangaCard.tsx
 │   │   │   ├── MangaCover.tsx
 │   │   │   ├── MangaGrid.tsx
-│   │   │   └── RatingPanel.tsx
+│   │   │   ├── RatingPanel.tsx
+│   │   │   └── TranslatedImage.tsx
 │   │   ├── layout/
 │   │   │   └── AppShell.tsx
 │   │   └── ui/
@@ -117,7 +118,8 @@ D:\TDMU\2025-2026\HKII_2025-2026\KTTKPM\coursework\manga_frontend
 │   │   ├── list.service.ts
 │   │   ├── manga.service.ts
 │   │   ├── rating.service.ts
-│   │   └── tag.service.ts
+│   │   ├── tag.service.ts
+│   │   └── translate.service.ts
 │   ├── store/
 │   │   └── useAppStore.ts
 │   ├── styles/
@@ -149,7 +151,7 @@ D:\TDMU\2025-2026\HKII_2025-2026\KTTKPM\coursework\manga_frontend
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --webpack --hostname 0.0.0.0",
     "build": "next build",
     "start": "next start",
     "typecheck": "tsc --noEmit"
@@ -178,7 +180,6 @@ D:\TDMU\2025-2026\HKII_2025-2026\KTTKPM\coursework\manga_frontend
     "typescript": "6.0.3"
   }
 }
-
 ```
 
 
@@ -1081,8 +1082,8 @@ import "./.next/dev/types/routes.d.ts";
 
 # FILE: package.json
 
-- SIZE: 786.00 B
-- SHA256: d418b4d45b210ff4ed88ef18ee9f648fb7c500f798f39254649abf0b88edab18
+- SIZE: 814.00 B
+- SHA256: 0a6c37c903daa40a7de46877284a9a43544243f97048d284bade87e79033ca61
 
 ```json
 {
@@ -1090,7 +1091,7 @@ import "./.next/dev/types/routes.d.ts";
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --webpack --hostname 0.0.0.0",
     "build": "next build",
     "start": "next start",
     "typecheck": "tsc --noEmit"
@@ -1119,7 +1120,6 @@ import "./.next/dev/types/routes.d.ts";
     "typescript": "6.0.3"
   }
 }
-
 ```
 
 
@@ -2920,8 +2920,8 @@ export default function RegisterPage() {
 
 # FILE: src\app\chat\page.tsx
 
-- SIZE: 19.16 KB
-- SHA256: 7b92d304a6937c7c40f008c48cf40c2a3221b11fc88f4981a562466c8a4ef2b5
+- SIZE: 20.34 KB
+- SHA256: db221efb1f6fd0c27d751100ba74c89b09c61b443ca658984879f94bf8f23ad6
 
 ```tsx
 "use client";
@@ -3119,6 +3119,7 @@ function ChatThread({
 }: {
   room: ChatRoom; userId: string; token: string | null; onBack: () => void;
 }) {
+  const queryClient = useQueryClient();
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [input, setInput] = useState("");
   const [typingUsers, setTypingUsers] = useState<Set<string>>(new Set());
@@ -3135,8 +3136,9 @@ function ChatThread({
   useEffect(() => {
     if (historyQuery.data?.messages) {
       setMessages(historyQuery.data.messages);
+      void chatApi.markRoomRead(room.room_id);
     }
-  }, [historyQuery.data]);
+  }, [historyQuery.data, queryClient, room.room_id]);
 
   // Connect WebSocket
   useEffect(() => {
@@ -3145,10 +3147,17 @@ function ChatThread({
     const unsub = chatService.onMessage((event: WsEvent) => {
       if (event.type === "message") {
         const msg = event as unknown as ChatMessage;
-        setMessages((prev) => [...prev, {
-          ...msg,
-          is_own: msg.sender_id === userId,
-        }]);
+        setMessages((prev) => {
+          if (msg.message_id && prev.some((m) => m.message_id === msg.message_id)) return prev;
+          return [...prev, {
+            ...msg,
+            message_type: msg.message_type || "text",
+            status: msg.status || "sent",
+            is_own: msg.sender_id === userId,
+          }];
+        });
+        void chatApi.markRoomRead(room.room_id);
+        void queryClient.invalidateQueries({ queryKey: ["chat", "rooms"] });
       } else if (event.type === "typing") {
         const uid = event.user_id as string;
         const isTyping = event.is_typing as boolean;
@@ -3165,7 +3174,7 @@ function ChatThread({
       unsub();
       chatService.disconnect();
     };
-  }, [room.room_id, token, userId]);
+  }, [queryClient, room.room_id, token, userId]);
 
   // Auto-scroll
   useEffect(() => {
@@ -3173,12 +3182,28 @@ function ChatThread({
   }, [messages]);
 
   // Send message
-  function handleSend() {
+  async function handleSend() {
     const text = input.trim();
     if (!text) return;
-    chatService.sendMessage(text);
     setInput("");
     chatService.sendTyping(false);
+    if (chatService.isConnected) {
+      chatService.sendMessage(text);
+      return;
+    }
+    const result = await chatApi.sendMessage(room.room_id, text);
+    const localMsg: ChatMessage = {
+      message_id: result.message_id,
+      room_id: room.room_id,
+      sender_id: userId,
+      content: text,
+      message_type: "text",
+      status: "sent",
+      created_at: result.created_at ?? new Date().toISOString(),
+      is_own: true,
+    };
+    setMessages((prev) => [...prev, localMsg]);
+    void queryClient.invalidateQueries({ queryKey: ["chat", "rooms"] });
   }
 
   // Handle typing indicator
@@ -3212,7 +3237,11 @@ function ChatThread({
         created_at: new Date().toISOString(),
         is_own: true,
       };
-      setMessages((prev) => [...prev, optimisticMsg]);
+      setMessages((prev) => {
+        if (prev.some((m) => m.message_id === optimisticMsg.message_id)) return prev;
+        return [...prev, optimisticMsg];
+      });
+      void queryClient.invalidateQueries({ queryKey: ["chat", "rooms"] });
     } catch (err) {
       console.error("Image upload failed:", err);
     }
@@ -3363,7 +3392,7 @@ function MessageBubble({ message, isOwn }: { message: ChatMessage; isOwn: boolea
               )}
             </>
           ) : (
-            renderContent(message.content)
+            renderContent(message.content ?? "")
           )}
         </div>
         {message.created_at && (
@@ -5765,24 +5794,27 @@ function RecCover({ mangaId }: { mangaId: string }) {
 
 # FILE: src\app\read\[mangaId]\[chapterId]\page.tsx
 
-- SIZE: 9.22 KB
-- SHA256: f70586b0f7475c5552f12f153b4fa655d5329aba0797f0ede21e25227c9724e0
+- SIZE: 18.75 KB
+- SHA256: 62df61a6bde29bad9e3a82cef3498f20128bf0eabd41c8be59cf75c44a73f4fd
 
 ```tsx
 "use client";
 
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {
   ArrowLeft,
   BookOpen,
   ChevronLeft,
   ChevronRight,
   Home,
+  Languages,
+  Loader2,
   Maximize2,
   Minimize2,
   PanelsTopLeft,
+  RefreshCw,
   Settings2,
 } from "lucide-react";
 import { Button } from "@/components/ui/Button";
@@ -5791,15 +5823,37 @@ import { Skeleton } from "@/components/ui/Skeleton";
 import { useReader } from "@/hooks/useReader";
 import { cn } from "@/lib/utils";
 import { useAppStore } from "@/store/useAppStore";
+import { TRANSLATE_LANGS } from "@/services/translate.service";
 
 export default function ReaderPage() {
   const params = useParams<{ mangaId: string; chapterId: string }>();
   const router = useRouter();
   const mangaId = params.mangaId;
   const chapterId = params.chapterId;
-  const { chapterQuery, chapter, currentPage, totalPages, progress, goToPage, setCurrentPage } = useReader(mangaId, chapterId);
+
+  const {
+    chapterQuery,
+    chapter,
+    currentPage,
+    totalPages,
+    progress,
+    goToPage,
+    setCurrentPage,
+    translateStates,
+    translateLang,
+    translatePage,
+    translateAllPages,
+    resetAllTranslations,
+    changeTranslateLang,
+  } = useReader(mangaId, chapterId);
+
   const reader = useAppStore((state) => state.reader);
   const updateReader = useAppStore((state) => state.updateReader);
+
+  // Whether the translate lang picker is open
+  const [showLangPicker, setShowLangPicker] = useState(false);
+  // Whether bulk-translate is in progress
+  const [isBulkTranslating, setIsBulkTranslating] = useState(false);
 
   useEffect(() => {
     const page = Number(new URLSearchParams(window.location.search).get("page"));
@@ -5840,8 +5894,64 @@ export default function ReaderPage() {
   const current = chapter?.current;
   const currentImage = chapter?.page_urls[currentPage - 1];
 
+  /** Resolve what URL to show for a given page (translated or original). */
+  function resolvePageUrl(originalUrl: string, pageIndex: number): string {
+    const state = translateStates[pageIndex];
+    if (state?.status === "done") return state.url;
+    return originalUrl;
+  }
+
+  /** Translate button for a single page. */
+  function TranslatePageButton({ pageIndex }: { pageIndex: number }) {
+    const state = translateStates[pageIndex];
+    const isLoading = state?.status === "loading";
+    const isDone = state?.status === "done";
+    const isError = state?.status === "error";
+
+    return (
+      <div className="flex items-center gap-1.5">
+        {isDone ? (
+          // Show "revert" button when page is translated
+          <button
+            onClick={() => {
+              // Reset to original by removing state
+              resetAllTranslations();
+            }}
+            className="flex items-center gap-1 rounded-full bg-brand-orange/20 px-2.5 py-1 text-xs font-medium text-brand-orange hover:bg-brand-orange/30 transition"
+            title="Xem bản gốc"
+          >
+            <RefreshCw className="h-3 w-3" aria-hidden />
+            Gốc
+          </button>
+        ) : (
+          <button
+            disabled={isLoading}
+            onClick={() => translatePage(pageIndex)}
+            className={cn(
+              "flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-medium transition",
+              isLoading
+                ? "bg-white/10 text-white/50 cursor-not-allowed"
+                : isError
+                  ? "bg-red-500/20 text-red-400 hover:bg-red-500/30"
+                  : "bg-white/10 text-white/80 hover:bg-white/20",
+            )}
+            title={isError ? (translateStates[pageIndex] as { status: "error"; message: string }).message : `Dịch sang ${translateLang}`}
+          >
+            {isLoading ? (
+              <Loader2 className="h-3 w-3 animate-spin" aria-hidden />
+            ) : (
+              <Languages className="h-3 w-3" aria-hidden />
+            )}
+            {isLoading ? "Đang dịch..." : isError ? "Thử lại" : "Dịch"}
+          </button>
+        )}
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-[#111] text-white">
+      {/* ── Top toolbar ── */}
       <div
         className={cn(
           "fixed left-0 right-0 top-0 z-40 border-b border-white/10 bg-[#171717]/95 backdrop-blur transition",
@@ -5863,6 +5973,69 @@ export default function ReaderPage() {
               Page {currentPage} / {Math.max(totalPages, 1)}
             </p>
           </div>
+
+          {/* ── Language picker trigger ── */}
+          <div className="relative">
+            <Button
+              variant="ghost"
+              size="icon"
+              className={cn(
+                "text-white hover:bg-white/10",
+                showLangPicker && "bg-white/10",
+              )}
+              onClick={() => setShowLangPicker((v) => !v)}
+              aria-label="Translate language"
+              title={`Ngôn ngữ dịch: ${translateLang}`}
+            >
+              <Languages className="h-5 w-5" aria-hidden />
+            </Button>
+
+            {/* Dropdown */}
+            {showLangPicker && (
+              <div className="absolute right-0 top-12 z-50 w-48 rounded-xl border border-white/10 bg-[#222] py-1 shadow-xl">
+                <p className="px-3 py-1.5 text-xs font-semibold text-white/50 uppercase tracking-wide">
+                  Dịch sang
+                </p>
+                {TRANSLATE_LANGS.map((lang) => (
+                  <button
+                    key={lang.code}
+                    className={cn(
+                      "w-full px-3 py-2 text-left text-sm hover:bg-white/10 transition",
+                      translateLang === lang.code ? "text-brand-orange font-semibold" : "text-white",
+                    )}
+                    onClick={() => {
+                      changeTranslateLang(lang.code);
+                      setShowLangPicker(false);
+                    }}
+                  >
+                    {lang.label}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* ── Translate all pages button ── */}
+          <Button
+            variant="ghost"
+            size="icon"
+            className="text-white hover:bg-white/10"
+            disabled={isBulkTranslating || !chapter?.page_urls.length}
+            onClick={async () => {
+              setIsBulkTranslating(true);
+              await translateAllPages();
+              setIsBulkTranslating(false);
+            }}
+            aria-label="Translate all pages"
+            title="Dịch tất cả trang"
+          >
+            {isBulkTranslating ? (
+              <Loader2 className="h-5 w-5 animate-spin" aria-hidden />
+            ) : (
+              <RefreshCw className="h-5 w-5" aria-hidden />
+            )}
+          </Button>
+
           <Button
             variant="ghost"
             size="icon"
@@ -5891,11 +6064,14 @@ export default function ReaderPage() {
             <Settings2 className="h-5 w-5" aria-hidden />
           </Button>
         </div>
+
+        {/* Progress bar */}
         <div className="h-1 bg-white/10">
           <div className="h-full bg-brand-orange transition-all" style={{ width: `${progress}%` }} />
         </div>
       </div>
 
+      {/* Show toolbar FAB */}
       <button
         className={cn("fixed right-4 top-4 z-50 rounded-full bg-white/10 p-3 backdrop-blur transition", reader.showToolbar && "opacity-0")}
         onClick={() => updateReader({ showToolbar: true })}
@@ -5904,6 +6080,7 @@ export default function ReaderPage() {
         <Settings2 className="h-5 w-5" aria-hidden />
       </button>
 
+      {/* ── Main content ── */}
       <main className="mx-auto min-h-screen max-w-6xl px-2 py-20">
         {chapterQuery.isLoading ? (
           <div className="mx-auto max-w-3xl space-y-3">
@@ -5913,52 +6090,147 @@ export default function ReaderPage() {
           </div>
         ) : chapter?.page_urls.length ? (
           reader.direction === "paged" ? (
+            /* ── PAGED MODE ── */
             <div className="flex min-h-[calc(100vh-10rem)] items-center justify-center">
-              <button className="fixed left-3 top-1/2 z-20 rounded-full bg-white/10 p-3" onClick={() => goToPage(currentPage - 1)} aria-label="Previous page">
+              <button
+                className="fixed left-3 top-1/2 z-20 rounded-full bg-white/10 p-3"
+                onClick={() => goToPage(currentPage - 1)}
+                aria-label="Previous page"
+              >
                 <ChevronLeft className="h-6 w-6" aria-hidden />
               </button>
+
               {currentImage ? (
-                <img
-                  src={currentImage}
-                  alt={`Page ${currentPage}`}
-                  className={cn(
-                    "mx-auto bg-black object-contain",
-                    reader.fit === "height" ? "max-h-[calc(100vh-9rem)] w-auto" : "h-auto w-full max-w-4xl",
+                <div className="relative flex flex-col items-center gap-2">
+                  {/* Translate button above the current paged image */}
+                  <div className="flex items-center gap-2 rounded-full bg-white/10 px-3 py-1.5">
+                    <span className="text-xs text-white/60">Trang {currentPage}</span>
+                    <TranslatePageButton pageIndex={currentPage} />
+                  </div>
+
+                  {/* Image – show translated URL if available */}
+                  {translateStates[currentPage]?.status === "loading" ? (
+                    <div
+                      className={cn(
+                        "mx-auto bg-black flex items-center justify-center",
+                        reader.fit === "height"
+                          ? "max-h-[calc(100vh-9rem)] w-auto min-w-[300px]"
+                          : "h-auto w-full max-w-4xl min-h-[400px]",
+                      )}
+                    >
+                      <div className="flex flex-col items-center gap-3 text-white/50">
+                        <Loader2 className="h-8 w-8 animate-spin" />
+                        <p className="text-sm">Đang dịch trang {currentPage}...</p>
+                        <p className="text-xs text-white/30">Có thể mất 10–20 giây</p>
+                      </div>
+                    </div>
+                  ) : (
+                    <img
+                      src={resolvePageUrl(currentImage, currentPage)}
+                      alt={`Page ${currentPage}`}
+                      className={cn(
+                        "mx-auto bg-black object-contain",
+                        reader.fit === "height" ? "max-h-[calc(100vh-9rem)] w-auto" : "h-auto w-full max-w-4xl",
+                      )}
+                    />
                   )}
-                />
+                </div>
               ) : null}
-              <button className="fixed right-3 top-1/2 z-20 rounded-full bg-white/10 p-3" onClick={() => goToPage(currentPage + 1)} aria-label="Next page">
+
+              <button
+                className="fixed right-3 top-1/2 z-20 rounded-full bg-white/10 p-3"
+                onClick={() => goToPage(currentPage + 1)}
+                aria-label="Next page"
+              >
                 <ChevronRight className="h-6 w-6" aria-hidden />
               </button>
             </div>
           ) : (
-            <div className="mx-auto max-w-4xl space-y-3">
-              {chapter.page_urls.map((url, index) => (
-                <img
-                  id={`reader-page-${index + 1}`}
-                  key={url}
-                  src={url}
-                  alt={`Page ${index + 1}`}
-                  loading={index < 3 ? "eager" : "lazy"}
-                  className={cn(
-                    "mx-auto bg-black object-contain",
-                    reader.fit === "height" ? "max-h-screen w-auto" : "h-auto w-full",
-                  )}
-                />
-              ))}
+            /* ── VERTICAL SCROLL MODE ── */
+            <div className="mx-auto max-w-4xl space-y-1">
+              {chapter.page_urls.map((url, index) => {
+                const pageIndex = index + 1;
+                const state = translateStates[pageIndex];
+                const displayUrl = state?.status === "done" ? state.url : url;
+
+                return (
+                  <div
+                    key={`${pageIndex}-${url}`}
+                    id={`reader-page-${pageIndex}`}
+                    className="relative group"
+                  >
+                    {/* Per-page translate button (visible on hover) */}
+                    <div
+                      className={cn(
+                        "absolute right-3 top-3 z-10 flex items-center gap-1.5 rounded-full bg-black/60 px-2.5 py-1.5 backdrop-blur transition",
+                        "opacity-0 group-hover:opacity-100",
+                        state?.status === "loading" && "opacity-100",
+                        state?.status === "done" && "opacity-100",
+                        state?.status === "error" && "opacity-100",
+                      )}
+                    >
+                      <span className="text-xs text-white/50">T.{pageIndex}</span>
+                      <TranslatePageButton pageIndex={pageIndex} />
+                    </div>
+
+                    {/* Loading overlay */}
+                    {state?.status === "loading" && (
+                      <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-black/70 gap-3">
+                        <Loader2 className="h-8 w-8 animate-spin text-brand-orange" />
+                        <p className="text-sm text-white/70">Đang dịch trang {pageIndex}...</p>
+                        <p className="text-xs text-white/40">Có thể mất 10–20 giây</p>
+                      </div>
+                    )}
+
+                    <img
+                      src={displayUrl}
+                      alt={`Page ${pageIndex}`}
+                      loading={index < 3 ? "eager" : "lazy"}
+                      className={cn(
+                        "mx-auto bg-black object-contain",
+                        reader.fit === "height" ? "max-h-screen w-auto" : "h-auto w-full",
+                        state?.status === "loading" && "opacity-20",
+                      )}
+                    />
+                  </div>
+                );
+              })}
             </div>
           )
         ) : (
-          <div className="mx-auto max-w-xl pt-20">
+          <div className="mx-auto flex max-w-xl flex-col items-center justify-center gap-6 pt-20 px-4 text-center">
+            <img
+              src="https://placehold.co/600x900/111111/FFFFFF?text=Pages+Unavailable"
+              alt="Pages unavailable"
+              className="w-full max-w-sm rounded-2xl border border-white/10"
+            />
+
             <EmptyState
-              title="No pages returned"
-              description="Backend chapter endpoint responded, but MinIO did not return presigned page URLs."
+              title="Pages temporarily unavailable"
+              description="MinIO hoặc MangaDex hiện không trả về image pages. Hệ thống đã chuyển sang chế độ fallback để tránh crash demo."
               className="border-white/10 bg-white/5 text-white"
             />
+
+            <div className="flex items-center gap-3">
+              <Button
+                onClick={() => window.location.reload()}
+                className="bg-brand-orange hover:bg-brand-orangeHover"
+              >
+                Retry
+              </Button>
+
+              <Button
+                variant="ghost"
+                onClick={() => router.push(`/manga/${mangaId}`)}
+              >
+                Back to manga
+              </Button>
+            </div>
           </div>
         )}
       </main>
 
+      {/* ── Bottom toolbar ── */}
       <div
         className={cn(
           "fixed bottom-0 left-0 right-0 z-40 border-t border-white/10 bg-[#171717]/95 px-3 py-3 backdrop-blur transition",
@@ -6006,10 +6278,17 @@ export default function ReaderPage() {
           )}
         </div>
       </div>
+
+      {/* Close lang picker when clicking outside */}
+      {showLangPicker && (
+        <div
+          className="fixed inset-0 z-30"
+          onClick={() => setShowLangPicker(false)}
+        />
+      )}
     </div>
   );
 }
-
 ```
 
 
@@ -6477,19 +6756,20 @@ function CommentItem({ comment, mangaId, canManage }: { comment: Comment; mangaI
 
 # FILE: src\components\features\ListPicker.tsx
 
-- SIZE: 3.54 KB
-- SHA256: 78e14103023f7b1f4973dad3ea8c9518b034b52f00812a94c293c9eda3d75e84
+- SIZE: 4.96 KB
+- SHA256: 8e51f790718379fbb175aa6d4fc105be6d60e5dffc816c5ed1a7457ac94ad6b5
 
 ```tsx
 "use client";
 
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { BookmarkPlus, Check, Plus } from "lucide-react";
+import { BookmarkPlus, Check, Plus, X } from "lucide-react";
 import { FormEvent, useState } from "react";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Select } from "@/components/ui/Select";
+import { useToast } from "@/components/ui/Toast";
 import { useAuth } from "@/hooks/useAuth";
 import { listService } from "@/services/list.service";
 import type { UUID } from "@/types/common";
@@ -6501,6 +6781,7 @@ interface ListPickerProps {
 export function ListPicker({ mangaId }: ListPickerProps) {
   const queryClient = useQueryClient();
   const { isAuthenticated } = useAuth();
+  const { toast } = useToast();
   const [name, setName] = useState("");
   const [visibility, setVisibility] = useState("private");
 
@@ -6515,12 +6796,24 @@ export function ListPicker({ mangaId }: ListPickerProps) {
     onSuccess: () => {
       setName("");
       queryClient.invalidateQueries({ queryKey: ["lists"] });
+      toast("Đã tạo danh sách mới!", "success");
     },
   });
 
   const addMutation = useMutation({
     mutationFn: (listId: UUID) => listService.addItem(listId, mangaId),
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["lists"] }),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["lists"] });
+      toast("Đã thêm vào danh sách!", "success");
+    },
+  });
+
+  const removeMutation = useMutation({
+    mutationFn: (listId: UUID) => listService.removeItem(listId, mangaId),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["lists"] });
+      toast("Đã xóa khỏi danh sách!", "success");
+    },
   });
 
   function createList(event: FormEvent<HTMLFormElement>) {
@@ -6548,21 +6841,41 @@ export function ListPicker({ mangaId }: ListPickerProps) {
       </h2>
       <div className="mt-4 space-y-2">
         {lists.map((list) => (
-          <div key={list.ListId} className="flex items-center gap-3 border border-bd p-2">
+          <div key={list.ListId} className="flex items-center gap-3 border border-bd p-2 rounded-md">
             <div className="min-w-0 flex-1">
               <p className="truncate text-sm font-bold">{list.Name}</p>
               <p className="text-xs text-tx-muted">{list.ItemCount} items - {list.Visibility}</p>
             </div>
+
+            {/* Logic Toggle Thêm/Xóa bằng Button Group Hover */}
             {list.contains ? (
-              <Badge tone="orange">
-                <Check className="mr-1 h-3.5 w-3.5" aria-hidden />
-                Added
-              </Badge>
+              <Button
+                size="sm"
+                className="group relative min-w-[90px] bg-brand-orange/10 text-brand-orange hover:bg-[var(--red)] hover:text-white border border-brand-orange/30 hover:border-[var(--red)]"
+                onClick={() => removeMutation.mutate(list.ListId)}
+                isLoading={removeMutation.isPending && removeMutation.variables === list.ListId}
+              >
+                <span className="flex items-center justify-center group-hover:hidden">
+                  <Check className="mr-1 h-3.5 w-3.5" aria-hidden />
+                  Added
+                </span>
+                <span className="hidden items-center justify-center group-hover:flex">
+                  <X className="mr-1 h-3.5 w-3.5" aria-hidden />
+                  Remove
+                </span>
+              </Button>
             ) : (
-              <Button size="sm" variant="light" onClick={() => addMutation.mutate(list.ListId)}>
+              <Button
+                size="sm"
+                variant="light"
+                className="min-w-[90px]"
+                onClick={() => addMutation.mutate(list.ListId)}
+                isLoading={addMutation.isPending && addMutation.variables === list.ListId}
+              >
                 Add
               </Button>
             )}
+
           </div>
         ))}
       </div>
@@ -6582,7 +6895,6 @@ export function ListPicker({ mangaId }: ListPickerProps) {
     </section>
   );
 }
-
 ```
 
 
@@ -6878,6 +7190,81 @@ export function RatingPanel({ mangaId, stats }: RatingPanelProps) {
   );
 }
 
+```
+
+
+
+# FILE: src\components\features\TranslatedImage.tsx
+
+- SIZE: 2.60 KB
+- SHA256: 531be12ed0c5baf9a0a40fe8fbd1afc4d45a40095714e1084fb8d7b73e59afa5
+
+```tsx
+"use client";
+
+import React, { useState } from 'react';
+import { Loader2, Languages } from 'lucide-react';
+import { Button } from '@/components/ui/Button';
+
+interface TranslatedImageProps {
+    imageUrl: string;
+    className?: string;
+    alt?: string;
+}
+
+export function TranslatedImage({ imageUrl, className, alt = "Manga Page" }: TranslatedImageProps) {
+    const [imgSrc, setImgSrc] = useState<string>(imageUrl);
+    const [isTranslating, setIsTranslating] = useState<boolean>(false);
+
+    const handleTranslate = async () => {
+        setIsTranslating(true);
+        try {
+            // Gọi API Backend vừa tạo
+            const response = await fetch('/api/v1/translate/page', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ image_url: imageUrl, target_lang: 'vi' })
+            });
+
+            if (!response.ok) throw new Error("Translation failed");
+
+            // Nhận blob hình ảnh đã được vẽ chữ tiếng việt
+            const blob = await response.blob();
+            const translatedUrl = URL.createObjectURL(blob);
+            setImgSrc(translatedUrl); // Đổi src của ảnh hiện tại thành ảnh đã dịch
+        } catch (error) {
+            console.error(error);
+            // Hiển thị thông báo lỗi (có thể dùng react-hot-toast của bạn)
+            alert("Có lỗi xảy ra khi dịch trang này.");
+        } finally {
+            setIsTranslating(false);
+        }
+    };
+
+    return (
+        <div className={`relative group inline-block w-full ${className || ''}`}>
+            {/* Ảnh truyện */}
+            <img src={imgSrc} alt={alt} className="w-full h-auto object-contain transition-all" loading="lazy" />
+
+            {/* Nút Dịch nổi lên khi rê chuột (Hover) */}
+            <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                <Button
+                    onClick={handleTranslate}
+                    disabled={isTranslating}
+                    className="bg-black/70 hover:bg-black text-white shadow-lg backdrop-blur-sm"
+                    size="sm"
+                >
+                    {isTranslating ? (
+                        <Loader2 className="animate-spin w-4 h-4 mr-2" />
+                    ) : (
+                        <Languages className="w-4 h-4 mr-2" />
+                    )}
+                    {isTranslating ? "Đang dịch..." : "Dịch trang"}
+                </Button>
+            </div>
+        </div>
+    );
+}
 ```
 
 
@@ -7913,18 +8300,31 @@ export function useTagGroups() {
 
 # FILE: src\hooks\useReader.ts
 
-- SIZE: 2.12 KB
-- SHA256: 72f9bfec96313cbd7f1582b20fb1115eda5e7037f5b7aa90680ab25b5dabb8a5
+- SIZE: 5.34 KB
+- SHA256: 680f88e5f05f2c9cf8895473d1ad1ea94f27dd0edd28b1381bfbe38cc68d59c6
 
 ```typescript
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { chapterService } from "@/services/chapter.service";
 import { historyService } from "@/services/history.service";
+import { translateService } from "@/services/translate.service";
 import type { UUID } from "@/types/common";
+
+export type TranslateState =
+  | { status: "idle" }
+  | { status: "loading" }
+  | { status: "done"; url: string }
+  | { status: "error"; message: string };
 
 export function useReader(mangaId?: UUID, chapterId?: UUID) {
   const [currentPage, setCurrentPage] = useState(1);
+
+  // ── Per-page translation state: pageIndex (1-based) → TranslateState ──
+  const [translateStates, setTranslateStates] = useState<Record<number, TranslateState>>({});
+
+  // ── Target language for translation ──────────────────────────────────────
+  const [translateLang, setTranslateLang] = useState<string>("vi");
 
   const chapterQuery = useQuery({
     queryKey: ["reader", mangaId, chapterId],
@@ -7948,8 +8348,10 @@ export function useReader(mangaId?: UUID, chapterId?: UUID) {
     return Math.round((currentPage / totalPages) * 100);
   }, [currentPage, totalPages]);
 
+  // Reset per-page translation states when chapter changes
   useEffect(() => {
     setCurrentPage(1);
+    setTranslateStates({});
   }, [chapterId]);
 
   useEffect(() => {
@@ -7978,6 +8380,85 @@ export function useReader(mangaId?: UUID, chapterId?: UUID) {
     [totalPages],
   );
 
+  /**
+   * Translate a single page (1-based index).
+   * If already translated with the same language, does nothing.
+   */
+  const translatePage = useCallback(
+    async (pageIndex: number) => {
+      const pageUrls = chapterQuery.data?.page_urls;
+      if (!pageUrls || pageIndex < 1 || pageIndex > pageUrls.length) return;
+
+      const currentState = translateStates[pageIndex];
+      // Skip if already loading or successfully translated in the same language
+      if (currentState?.status === "loading") return;
+      if (currentState?.status === "done") return;
+
+      const imageUrl = pageUrls[pageIndex - 1];
+
+      setTranslateStates((prev) => ({
+        ...prev,
+        [pageIndex]: { status: "loading" },
+      }));
+
+      try {
+        const result = await translateService.translatePage({
+          image_url: imageUrl,
+          target_lang: translateLang,
+          source_lang: "auto",
+        });
+        setTranslateStates((prev) => ({
+          ...prev,
+          [pageIndex]: { status: "done", url: result.translated_url },
+        }));
+      } catch (err) {
+        const message = err instanceof Error ? err.message : "Translation failed";
+        setTranslateStates((prev) => ({
+          ...prev,
+          [pageIndex]: { status: "error", message },
+        }));
+      }
+    },
+    [chapterQuery.data?.page_urls, translateLang, translateStates],
+  );
+
+  /**
+   * Translate all pages of the current chapter sequentially.
+   */
+  const translateAllPages = useCallback(async () => {
+    const pageUrls = chapterQuery.data?.page_urls ?? [];
+    for (let i = 1; i <= pageUrls.length; i++) {
+      await translatePage(i);
+    }
+  }, [chapterQuery.data?.page_urls, translatePage]);
+
+  /**
+   * Reset translation for a page (revert to original).
+   */
+  const resetPageTranslation = useCallback((pageIndex: number) => {
+    setTranslateStates((prev) => {
+      const next = { ...prev };
+      delete next[pageIndex];
+      return next;
+    });
+  }, []);
+
+  /**
+   * Reset all translations for the current chapter.
+   */
+  const resetAllTranslations = useCallback(() => {
+    setTranslateStates({});
+  }, []);
+
+  /**
+   * Change target language and clear existing translations so they
+   * are re-requested with the new language on next translate call.
+   */
+  const changeTranslateLang = useCallback((lang: string) => {
+    setTranslateLang(lang);
+    setTranslateStates({});
+  }, []);
+
   return {
     chapterQuery,
     chapter: chapterQuery.data,
@@ -7987,9 +8468,16 @@ export function useReader(mangaId?: UUID, chapterId?: UUID) {
     setCurrentPage,
     goToPage,
     recordHistory: recordHistoryMutation,
+    // Translation
+    translateStates,
+    translateLang,
+    translatePage,
+    translateAllPages,
+    resetPageTranslation,
+    resetAllTranslations,
+    changeTranslateLang,
   };
 }
-
 ```
 
 
@@ -8110,8 +8598,8 @@ export const adminService = {
 
 # FILE: src\services\analytics.service.ts
 
-- SIZE: 3.12 KB
-- SHA256: 2de09a1deb64eb3bf55739cc9776c3512ba085f1ef2911ce7814002bce9f464a
+- SIZE: 8.17 KB
+- SHA256: 4392ecfa906f19fc2a34b4af2d4d36545e00ad3d96779195d21da906790887a7
 
 ```typescript
 import { api } from "./api";
@@ -8145,6 +8633,66 @@ export interface SimilarMangaItem extends MangaListItem {
   relation_type: string;
 }
 
+// ─── Helpers ────────────────────────────────────────────────────
+
+/** Pick the best English-ish title from a MangaDex title map. */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function pickMdTitle(titleObj: any): string {
+  if (!titleObj) return "Unknown";
+  return (
+    titleObj["en"] ??
+    titleObj["ja-ro"] ??
+    titleObj["ja"] ??
+    (Object.values(titleObj)[0] as string | undefined) ??
+    "Unknown"
+  );
+}
+
+/**
+ * Fetch manga details (title + cover) for a list of IDs straight from
+ * the public MangaDex API. Returns a map of id → partial SimilarMangaItem.
+ */
+async function fetchMdDetails(
+  ids: string[],
+): Promise<Map<string, Partial<SimilarMangaItem>>> {
+  const map = new Map<string, Partial<SimilarMangaItem>>();
+  if (!ids.length) return map;
+
+  try {
+    const query = ids.map((id) => `ids[]=${id}`).join("&");
+    const res = await fetch(
+      `https://api.mangadex.org/manga?includes[]=cover_art&limit=${ids.length}&${query}`,
+      { headers: { accept: "application/json" } },
+    );
+    if (!res.ok) return map;
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const json = await res.json();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    for (const m of json.data ?? [] as any[]) {
+      const attrs = m.attributes ?? {};
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const coverRel = (m.relationships ?? []).find((r: any) => r.type === "cover_art");
+      const coverUrl = coverRel?.attributes?.fileName
+        ? `https://uploads.mangadex.org/covers/${m.id}/${coverRel.attributes.fileName}.256.jpg`
+        : undefined;
+
+      map.set(m.id, {
+        TitleEn: pickMdTitle(attrs.title),
+        Status: attrs.status ?? undefined,
+        Year: attrs.year ?? undefined,
+        ContentRating: attrs.contentRating ?? undefined,
+        cover_url: coverUrl,
+      });
+    }
+  } catch (e) {
+    console.error("[analytics] fetchMdDetails failed", e);
+  }
+  return map;
+}
+
+// ─── Services ───────────────────────────────────────────────────
+
 export const analyticsService = {
   async getUserStats() {
     const { data } = await api.get<UserStats>("/analytics/user-stats");
@@ -8161,56 +8709,122 @@ export const recommendationService = {
     return data;
   },
 
-  async getSimilar(mangaId: string) {
+  async getSimilar(mangaId: string): Promise<{ recommendations: SimilarMangaItem[]; source: string }> {
+    // ── Step 1: Try backend endpoint first ────────────────────────
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const { data } = await api.get<any>(
-      `/recommendations/manga/${mangaId}/similar`
-    );
+    let backendData: any = { recommendations: [] };
+    try {
+      const { data } = await api.get<any>(`/recommendations/manga/${mangaId}/similar`);
+      backendData = data;
+    } catch (e) {
+      // Backend may 404 or error — we will fall through to the MangaDex fallback below.
+      console.warn("[analytics] Backend /recommendations/manga similar failed, falling back to MangaDex", e);
+    }
 
     let valid: SimilarMangaItem[] = [];
 
-    if (Array.isArray(data.recommendations)) {
-      valid = data.recommendations.map((r: any) => ({
+    if (Array.isArray(backendData.recommendations) && backendData.recommendations.length > 0) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      valid = backendData.recommendations.map((r: any) => ({
         MangaId: r.manga_id,
-        TitleEn: r.title,
-        cover_url: r.cover_url,
-        Status: r.status,
+        TitleEn: r.title ?? null,
+        cover_url: r.cover_url ?? null,
+        Status: r.status ?? null,
+        Year: r.year ?? null,
+        ContentRating: r.content_rating ?? null,
         score: r.score ?? 0,
         relation_type: r.relation_type ?? "similar",
       }));
     }
 
-    const missingIds = valid.filter(v => !v.TitleEn || !v.cover_url).map(v => v.MangaId);
-    if (missingIds.length > 0) {
+    // ── Step 2: Fallback — call MangaDex recommendation API directly ──
+    // Triggered when the backend returns nothing (empty DB, endpoint not
+    // implemented, or request failed). We call MangaDex from the browser.
+    if (valid.length === 0) {
       try {
-        // Bulk fetch from mangadex directly from the browser to avoid backend blocks
-        const query = missingIds.map(id => `ids[]=${id}`).join('&');
-        const res = await fetch(`https://api.mangadex.org/manga?includes[]=cover_art&${query}`);
-        if (res.ok) {
-          const mangadexData = await res.json();
-          mangadexData.data?.forEach((m: any) => {
-            const item = valid.find(v => v.MangaId === m.id);
-            if (item) {
-              const attrs = m.attributes || {};
-              item.TitleEn = attrs.title?.en || attrs.title?.['ja-ro'] || attrs.title?.ja || Object.values(attrs.title || {})[0] || 'Unknown';
-              item.Status = attrs.status;
-              
-              const coverRel = m.relationships?.find((rel: any) => rel.type === 'cover_art');
-              if (coverRel?.attributes?.fileName) {
-                item.cover_url = `https://uploads.mangadex.org/covers/${m.id}/${coverRel.attributes.fileName}`;
-              }
+        const mdRes = await fetch(
+          `https://api.mangadex.org/manga/${mangaId}/recommendation` +
+          `?order[score]=desc` +
+          `&contentRating[]=safe&contentRating[]=suggestive&contentRating[]=erotica`,
+          { headers: { accept: "application/json" } },
+        );
+
+        if (mdRes.ok) {
+          const mdJson = await mdRes.json();
+
+          // Each recommendation entry has two relationships:
+          //   [0] = source manga (same as mangaId)
+          //   [1] = the recommended manga
+          // We want the ID that is NOT mangaId.
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          const scoreMap = new Map<string, number>();
+          const recIds: string[] = [];
+
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          for (const entry of mdJson.data ?? [] as any[]) {
+            const score: number = entry.attributes?.score ?? 0;
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            const otherRel = (entry.relationships ?? [] as any[]).find(
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              (r: any) => r.type === "manga" && r.id !== mangaId,
+            );
+            if (otherRel?.id) {
+              recIds.push(otherRel.id);
+              scoreMap.set(otherRel.id, score);
             }
-          });
+          }
+
+          if (recIds.length > 0) {
+            // Fetch full details (title + cover) for all recommended IDs.
+            const detailMap = await fetchMdDetails(recIds.slice(0, 20));
+
+            valid = recIds
+              .slice(0, 20)
+              .map((id) => {
+                const detail = detailMap.get(id) ?? {};
+                return {
+                  MangaId: id,
+                  TitleEn: detail.TitleEn ?? null,
+                  cover_url: detail.cover_url ?? null,
+                  Status: detail.Status ?? null,
+                  Year: detail.Year ?? null,
+                  ContentRating: detail.ContentRating ?? null,
+                  score: scoreMap.get(id) ?? 0,
+                  relation_type: "similar",
+                } as SimilarMangaItem;
+              })
+              .filter((item) => item.TitleEn); // drop items we couldn't resolve
+          }
         }
       } catch (e) {
-        console.error("Failed to enrich missing manga data from Mangadex", e);
+        console.error("[analytics] MangaDex recommendation fallback failed", e);
       }
     }
 
-    return { recommendations: valid, source: data.source ?? "mangadex" };
+    // ── Step 3: Enrich any backend items still missing title / cover ──
+    // (Only needed when the backend returned items but with incomplete data.)
+    const missingIds = valid
+      .filter((v) => !v.TitleEn || !v.cover_url)
+      .map((v) => v.MangaId);
+
+    if (missingIds.length > 0) {
+      const detailMap = await fetchMdDetails(missingIds);
+      for (const item of valid) {
+        if ((!item.TitleEn || !item.cover_url) && detailMap.has(item.MangaId)) {
+          const detail = detailMap.get(item.MangaId)!;
+          item.TitleEn = item.TitleEn || detail.TitleEn || null;
+          item.cover_url = item.cover_url || detail.cover_url || null;
+          item.Status = item.Status || detail.Status || null;
+        }
+      }
+    }
+
+    return {
+      recommendations: valid,
+      source: backendData.source ?? "mangadex",
+    };
   },
 };
-
 ```
 
 
@@ -8362,8 +8976,8 @@ export const chapterService = {
 
 # FILE: src\services\chat.service.ts
 
-- SIZE: 7.03 KB
-- SHA256: ad94cabfadfad45cb62f5c8690c277f665e8fd549f9a12a70967633d8c3a49ec
+- SIZE: 8.09 KB
+- SHA256: 1d4c20fbd701cc8e2fd83e94946690c1eabd30eb95148164bdecf1a20c55ae1b
 
 ```typescript
 /**
@@ -8424,8 +9038,10 @@ type ConnectionHandler = (connected: boolean) => void;
 
 /* ─── REST API ────────────────────────────────────────── */
 export const chatApi = {
-  async getRooms() {
-    const { data } = await api.get<{ rooms: ChatRoom[] }>("/chat/rooms");
+  async getRooms(page = 1, limit = 50) {
+    const { data } = await api.get<{ rooms: ChatRoom[] }>("/chat/rooms", {
+      params: { page, limit },
+    });
     return data.rooms;
   },
 
@@ -8469,6 +9085,31 @@ export const chatApi = {
   async markRead(messageId: string) {
     await api.put(`/chat/messages/${messageId}/read`);
   },
+
+  async markRoomRead(roomId: string) {
+    await api.post(`/chat/rooms/${roomId}/read`);
+  },
+
+  async renameRoom(roomId: string, name: string) {
+    await api.put(`/chat/rooms/${roomId}`, { name });
+  },
+
+  async leaveRoom(roomId: string) {
+    await api.delete(`/chat/rooms/${roomId}/members/me`);
+  },
+
+  async getMembers(roomId: string) {
+    const { data } = await api.get<{ members: ChatRoomMember[] }>(`/chat/rooms/${roomId}/members`);
+    return data.members;
+  },
+
+  async addMember(roomId: string, userId: string) {
+    await api.post(`/chat/rooms/${roomId}/members`, { user_id: userId });
+  },
+
+  async removeMember(roomId: string, userId: string) {
+    await api.delete(`/chat/rooms/${roomId}/members/${userId}`);
+  },
 };
 
 /* ─── WebSocket Service ───────────────────────────────── */
@@ -8508,13 +9149,20 @@ class ChatWebSocketService {
       return;
     }
 
-    if (this.ws?.readyState === WebSocket.OPEN) return;
+    if (this.ws?.readyState === WebSocket.OPEN && this._currentRoomId === roomId) return;
 
-    const defaultWsHost = typeof window !== "undefined" 
-      ? `ws://${window.location.hostname}:8000`
-      : "ws://localhost:8000";
-    const wsHost = process.env.NEXT_PUBLIC_WS_URL ?? defaultWsHost;
-    const url = `${wsHost}/chat/${roomId}?token=${this._token}`;
+    if (this.ws) {
+      this.ws.onclose = null; // tắt auto-reconnect của WS cũ
+      this.ws.close();
+      this.ws = null;
+    }
+
+    const defaultWsHost = typeof window !== "undefined"
+      ? `ws://${window.location.hostname}:8000/ws`
+      : "ws://localhost:8000/ws";
+    const rawWsHost = (process.env.NEXT_PUBLIC_WS_URL ?? defaultWsHost).replace(/\/$/, "");
+    const wsHost = rawWsHost.endsWith("/ws") ? rawWsHost : `${rawWsHost}/ws`;
+    const url = `${wsHost}/chat/${roomId}?token=${encodeURIComponent(this._token)}`;
 
     try {
       this.ws = new WebSocket(url);
@@ -8983,6 +9631,54 @@ export const tagService = {
   },
 };
 
+```
+
+
+
+# FILE: src\services\translate.service.ts
+
+- SIZE: 1.33 KB
+- SHA256: eab2fdfd9363ad6427ce4b28bdd037f0340e5321e2f18755db6e695692768296
+
+```typescript
+import { api } from "./api";
+
+export interface TranslatePageRequest {
+    image_url: string;
+    target_lang?: string;  // default "vi"
+    source_lang?: string;  // default "auto"
+}
+
+export interface TranslatePageResponse {
+    translated_url: string;
+}
+
+export const translateService = {
+    async translatePage(payload: TranslatePageRequest): Promise<TranslatePageResponse> {
+        const { data } = await api.post<TranslatePageResponse>("/translate/page", {
+            image_url: payload.image_url,
+            target_lang: payload.target_lang ?? "vi",
+            source_lang: payload.source_lang ?? "auto",
+        });
+        return data;
+    },
+};
+
+/** Map of ISO 639-1 codes to display names (for the language picker). */
+export const TRANSLATE_LANGS: { code: string; label: string }[] = [
+    { code: "vi", label: "Tiếng Việt" },
+    { code: "en", label: "English" },
+    { code: "zh-CN", label: "中文 (简体)" },
+    { code: "zh-TW", label: "中文 (繁體)" },
+    { code: "ko", label: "한국어" },
+    { code: "ja", label: "日本語" },
+    { code: "fr", label: "Français" },
+    { code: "de", label: "Deutsch" },
+    { code: "es", label: "Español" },
+    { code: "pt", label: "Português" },
+    { code: "th", label: "ภาษาไทย" },
+    { code: "id", label: "Bahasa Indonesia" },
+];
 ```
 
 

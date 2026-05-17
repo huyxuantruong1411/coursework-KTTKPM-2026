@@ -1,12 +1,13 @@
 "use client";
 
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { BookmarkPlus, Check, Plus } from "lucide-react";
+import { BookmarkPlus, Check, Plus, X } from "lucide-react";
 import { FormEvent, useState } from "react";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Select } from "@/components/ui/Select";
+import { useToast } from "@/components/ui/Toast";
 import { useAuth } from "@/hooks/useAuth";
 import { listService } from "@/services/list.service";
 import type { UUID } from "@/types/common";
@@ -18,6 +19,7 @@ interface ListPickerProps {
 export function ListPicker({ mangaId }: ListPickerProps) {
   const queryClient = useQueryClient();
   const { isAuthenticated } = useAuth();
+  const { toast } = useToast();
   const [name, setName] = useState("");
   const [visibility, setVisibility] = useState("private");
 
@@ -32,12 +34,24 @@ export function ListPicker({ mangaId }: ListPickerProps) {
     onSuccess: () => {
       setName("");
       queryClient.invalidateQueries({ queryKey: ["lists"] });
+      toast("Đã tạo danh sách mới!", "success");
     },
   });
 
   const addMutation = useMutation({
     mutationFn: (listId: UUID) => listService.addItem(listId, mangaId),
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["lists"] }),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["lists"] });
+      toast("Đã thêm vào danh sách!", "success");
+    },
+  });
+
+  const removeMutation = useMutation({
+    mutationFn: (listId: UUID) => listService.removeItem(listId, mangaId),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["lists"] });
+      toast("Đã xóa khỏi danh sách!", "success");
+    },
   });
 
   function createList(event: FormEvent<HTMLFormElement>) {
@@ -65,21 +79,41 @@ export function ListPicker({ mangaId }: ListPickerProps) {
       </h2>
       <div className="mt-4 space-y-2">
         {lists.map((list) => (
-          <div key={list.ListId} className="flex items-center gap-3 border border-bd p-2">
+          <div key={list.ListId} className="flex items-center gap-3 border border-bd p-2 rounded-md">
             <div className="min-w-0 flex-1">
               <p className="truncate text-sm font-bold">{list.Name}</p>
               <p className="text-xs text-tx-muted">{list.ItemCount} items - {list.Visibility}</p>
             </div>
+
+            {/* Logic Toggle Thêm/Xóa bằng Button Group Hover */}
             {list.contains ? (
-              <Badge tone="orange">
-                <Check className="mr-1 h-3.5 w-3.5" aria-hidden />
-                Added
-              </Badge>
+              <Button
+                size="sm"
+                className="group relative min-w-[90px] bg-brand-orange/10 text-brand-orange hover:bg-[var(--red)] hover:text-white border border-brand-orange/30 hover:border-[var(--red)]"
+                onClick={() => removeMutation.mutate(list.ListId)}
+                isLoading={removeMutation.isPending && removeMutation.variables === list.ListId}
+              >
+                <span className="flex items-center justify-center group-hover:hidden">
+                  <Check className="mr-1 h-3.5 w-3.5" aria-hidden />
+                  Added
+                </span>
+                <span className="hidden items-center justify-center group-hover:flex">
+                  <X className="mr-1 h-3.5 w-3.5" aria-hidden />
+                  Remove
+                </span>
+              </Button>
             ) : (
-              <Button size="sm" variant="light" onClick={() => addMutation.mutate(list.ListId)}>
+              <Button
+                size="sm"
+                variant="light"
+                className="min-w-[90px]"
+                onClick={() => addMutation.mutate(list.ListId)}
+                isLoading={addMutation.isPending && addMutation.variables === list.ListId}
+              >
                 Add
               </Button>
             )}
+
           </div>
         ))}
       </div>

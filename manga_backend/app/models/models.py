@@ -24,28 +24,49 @@ from app.core.database import Base
 class User(Base):
     __tablename__ = "User"
     __table_args__ = {"schema": "dbo"}
-
-    UserId: Mapped[uuid.UUID] = mapped_column(UNIQUEIDENTIFIER, primary_key=True, default=uuid.uuid4)
+ 
+    UserId: Mapped[uuid.UUID] = mapped_column(
+        UNIQUEIDENTIFIER, primary_key=True, default=uuid.uuid4
+    )
     Username: Mapped[str] = mapped_column(String(100), nullable=False)
     Email: Mapped[str] = mapped_column(String(255), nullable=False, unique=True)
     PasswordHash: Mapped[str] = mapped_column(String(255), nullable=False)
     Avatar: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
     Role: Mapped[str] = mapped_column(String(20), nullable=False, default="user")
-    IsLocked: Mapped[Optional[bool]] = mapped_column(Boolean, nullable=True, default=False)
-    CreatedAt: Mapped[Optional[datetime]] = mapped_column(DateTime, nullable=True, default=datetime.utcnow)
-    # ── New profile fields ──
+    IsLocked: Mapped[Optional[bool]] = mapped_column(
+        Boolean, nullable=True, default=False
+    )
+    # ── Xác thực email qua OTP ──
+    IsVerified: Mapped[Optional[bool]] = mapped_column(
+        Boolean, nullable=True, default=False
+    )
+    CreatedAt: Mapped[Optional[datetime]] = mapped_column(
+        DateTime, nullable=True, default=datetime.utcnow
+    )
     Bio: Mapped[Optional[str]] = mapped_column(String(500), nullable=True)
     DisplayName: Mapped[Optional[str]] = mapped_column(String(100), nullable=True)
     AvatarObjectKey: Mapped[Optional[str]] = mapped_column(String(500), nullable=True)
     UpdatedAt: Mapped[Optional[datetime]] = mapped_column(DateTime, nullable=True)
-
+ 
     # relationships
-    comments: Mapped[PyList[Comment]] = relationship(back_populates="user", lazy="raise")
-    ratings: Mapped[PyList[Rating]] = relationship(back_populates="user", lazy="raise")
-    lists: Mapped[PyList[MangaList]] = relationship(back_populates="user", lazy="raise")
-    histories: Mapped[PyList[ReadingHistory]] = relationship(back_populates="user", lazy="raise")
-    reports: Mapped[PyList[Report]] = relationship(back_populates="user", lazy="raise")
-    reactions: Mapped[PyList[CommentReaction]] = relationship(back_populates="user", lazy="raise")
+    comments: Mapped[PyList["Comment"]] = relationship(
+        back_populates="user", lazy="raise"
+    )
+    ratings: Mapped[PyList["Rating"]] = relationship(
+        back_populates="user", lazy="raise"
+    )
+    lists: Mapped[PyList["MangaList"]] = relationship(
+        back_populates="user", lazy="raise"
+    )
+    histories: Mapped[PyList["ReadingHistory"]] = relationship(
+        back_populates="user", lazy="raise"
+    )
+    reports: Mapped[PyList["Report"]] = relationship(
+        back_populates="user", lazy="raise"
+    )
+    reactions: Mapped[PyList["CommentReaction"]] = relationship(
+        back_populates="user", lazy="raise"
+    )
 
 
 # ═══════════════════════════════════════════

@@ -89,6 +89,30 @@ async def list_requests(
     return {"requests": items}
 
 
+@router.get("/sent")
+async def list_sent_requests(
+    db: AsyncSession = Depends(get_db),
+    current_user: User = Depends(get_current_user),
+):
+    """List pending friend requests sent by current user."""
+    result = await db.execute(
+        select(Friendship).where(
+            Friendship.UserId == current_user.UserId,
+            Friendship.Status == "pending",
+        )
+    )
+    requests = result.scalars().all()
+
+    items = []
+    for f in requests:
+        info = await _user_info(f.FriendId, db)
+        if info:
+            info["requested_at"] = f.CreatedAt.isoformat() if f.CreatedAt else None
+            items.append(info)
+
+    return {"requests": items}
+
+
 @router.post("/request/{user_id}")
 async def send_request(
     user_id: uuid.UUID,

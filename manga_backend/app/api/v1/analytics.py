@@ -82,31 +82,31 @@ async def get_user_stats(
     # ── Genre/Theme distribution (top 10) ──
     # Join: ReadingHistory → Manga → MangaTag → Tag
     genre_r = await db.execute(
-        select(Tag.Name, func.count().label("cnt"))
+        select(Tag.NameEn, func.count().label("cnt"))
         .select_from(ReadingHistory)
         .join(Manga, ReadingHistory.MangaId == Manga.MangaId)
         .join(MangaTag, Manga.MangaId == MangaTag.MangaId)
         .join(Tag, MangaTag.TagId == Tag.TagId)
-        .where(ReadingHistory.UserId == user_id, Tag.Group == "genre")
-        .group_by(Tag.Name)
+        .where(ReadingHistory.UserId == user_id, Tag.GroupName == "genre")
+        .group_by(Tag.NameEn)
         .order_by(desc("cnt"))
         .limit(10)
     )
-    genre_distribution = [{"name": row.Name, "count": row.cnt} for row in genre_r.all()]
+    genre_distribution = [{"name": row.NameEn, "count": row.cnt} for row in genre_r.all()]
 
     # ── Theme distribution (top 10) ──
     theme_r = await db.execute(
-        select(Tag.Name, func.count().label("cnt"))
+        select(Tag.NameEn, func.count().label("cnt"))
         .select_from(ReadingHistory)
         .join(Manga, ReadingHistory.MangaId == Manga.MangaId)
         .join(MangaTag, Manga.MangaId == MangaTag.MangaId)
         .join(Tag, MangaTag.TagId == Tag.TagId)
-        .where(ReadingHistory.UserId == user_id, Tag.Group == "theme")
-        .group_by(Tag.Name)
+        .where(ReadingHistory.UserId == user_id, Tag.GroupName == "theme")
+        .group_by(Tag.NameEn)
         .order_by(desc("cnt"))
         .limit(10)
     )
-    theme_distribution = [{"name": row.Name, "count": row.cnt} for row in theme_r.all()]
+    theme_distribution = [{"name": row.NameEn, "count": row.cnt} for row in theme_r.all()]
 
     # ── Recent manga (last 5 unique) ──
     recent_r = await db.execute(
