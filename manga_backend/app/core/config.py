@@ -17,7 +17,11 @@ class Settings(BaseSettings):
     SMTP_ACCOUNT: str = "xuanhuy10ad3@gmail.com" # Thay bằng email thực tế của bạn
     SMTP_PASSWORD: str = "uctghzoztwckxkyy" # Thay bằng app password của bạn
 
+    # Google Gemini API Key (for MangaTranslator AI pipeline)
+    GOOGLE_API_KEY: str = ""
+
     class Config:
         env_file = ".env"
+        extra = "ignore" # Allow extra fields in settings without failing validation
 
 settings = Settings()

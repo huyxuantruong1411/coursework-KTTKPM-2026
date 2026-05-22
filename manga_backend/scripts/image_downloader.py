@@ -5,9 +5,11 @@ Standalone script that downloads cover images (and optionally chapter pages)
 from MangaDex API and uploads them to MinIO.
 
 Usage:
-    python -m scripts.image_downloader --covers          # Download covers only
-    python -m scripts.image_downloader --chapters <id>   # Download chapter pages
-    python -m scripts.image_downloader --all-covers      # Batch all manga in DB
+    python -m scripts.image_downloader --cover <manga_id>                 # Tải cover cho 1 manga
+    python -m scripts.image_downloader --chapter <chapter_id>             # Tải toàn bộ trang của 1 chapter
+    python -m scripts.image_downloader --chapter <id> --page-index 5      # Chỉ tải trang số 5 của 1 chapter
+    python -m scripts.image_downloader --manga-chapters <manga_id>        # Tải toàn bộ chapter của 1 manga
+    python -m scripts.image_downloader --all-covers                       # Batch tải cover cho tất cả manga trong DB
 """
 import asyncio
 import argparse
@@ -32,7 +34,7 @@ MANGADEX_UPLOADS = "https://uploads.mangadex.org"
 
 # Headers bắt buộc để bypass MangaDex Firewall
 HEADERS = {
-    "User-Agent": "MangaLibrary-Downloader/1.0 (Contact: admin@truongxuanhuy.id.vn)"
+    "User-Agent": "MangaLibrary-Downloader/1.1 (Contact: admin@truongxuanhuy.id.vn)"
 }
 
 async def download_cover_for_manga(manga_id: str, db_session, client: httpx.AsyncClient):
@@ -124,95 +126,141 @@ async def download_cover_for_manga(manga_id: str, db_session, client: httpx.Asyn
     print(f"    ✓ Uploaded to MinIO: {minio_key}")
 
 
-async def download_chapter_pages(chapter_id: str):
+async def download_chapter_pages(chapter_id: str, client: httpx.AsyncClient, page_index: int = None):
     """Download chapter pages from MangaDex at-home API → MinIO."""
     print(f"  [pages] Processing chapter {chapter_id}...")
 
-    async with httpx.AsyncClient(timeout=30, headers=HEADERS, trust_env=True) as client:
-        # Tương tự, nếu muốn có thể áp dụng retry ở đây, nhưng tạm giữ nguyên luồng cũ
-        try:
-            resp = await client.get(f"{MANGADEX_API}/at-home/server/{chapter_id}")
-            if resp.status_code != 200:
-                print(f"    ✗ at-home API error: {resp.status_code}")
-                return
-        except Exception as e:
-            print(f"    ✗ ConnectError: {repr(e)}")
+    # Fetch at-home API to get page URLs
+    try:
+        resp = await client.get(f"{MANGADEX_API}/at-home/server/{chapter_id}")
+        if resp.status_code != 200:
+            print(f"    ✗ at-home API error: {resp.status_code}")
             return
+    except Exception as e:
+        print(f"    ✗ ConnectError: {repr(e)}")
+        return
 
-        data = resp.json()
-        base_url = data.get("baseUrl", "")
-        chapter_data = data.get("chapter", {})
-        chapter_hash = chapter_data.get("hash", "")
-        pages = chapter_data.get("data", [])
+    data = resp.json()
+    base_url = data.get("baseUrl", "")
+    chapter_data = data.get("chapter", {})
+    chapter_hash = chapter_data.get("hash", "")
+    pages = chapter_data.get("data", [])
 
-        if not pages:
-            print(f"    ✗ No pages found")
+    if not pages:
+        print(f"    ✗ No pages found")
+        return
+
+    # Handle exact page index download if specified
+    if page_index is not None:
+        if page_index < 1 or page_index > len(pages):
+            print(f"    ✗ Page index {page_index} out of range (Chapter has {len(pages)} pages).")
             return
+        pages_to_download = [(page_index - 1, pages[page_index - 1])]
+    else:
+        pages_to_download = enumerate(pages)
 
-        for i, page_filename in enumerate(pages):
-            page_url = f"{base_url}/data/{chapter_hash}/{page_filename}"
+    for i, page_filename in pages_to_download:
+        page_url = f"{base_url}/data/{chapter_hash}/{page_filename}"
+        img_resp = None
+        
+        for attempt in range(3):
             try:
                 img_resp = await client.get(page_url)
-                if img_resp.status_code != 200:
-                    print(f"    ✗ Failed page {i+1}: {img_resp.status_code}")
-                    continue
+                if img_resp.status_code == 200:
+                    break
+                else:
+                    print(f"    ✗ Lỗi tải page {i+1} (Thử lần {attempt+1}): HTTP {img_resp.status_code}")
             except Exception as e:
-                print(f"    ✗ Lỗi mạng khi tải page {i+1}: {repr(e)}")
-                continue
+                print(f"    ✗ Lỗi mạng tải page {i+1} (Thử lần {attempt+1}): {repr(e)}")
+            
+            if attempt < 2:
+                await asyncio.sleep(2 ** attempt)
 
-            ext = page_filename.rsplit(".", 1)[-1] if "." in page_filename else "jpg"
-            minio_key = f"chapters/{chapter_id}/{i+1:04d}.{ext}"
-            content_type = f"image/{ext}" if ext in ("jpg", "jpeg", "png", "webp") else "image/jpeg"
-            await minio_service.upload_bytes(img_resp.content, minio_key, content_type)
-            print(f"    ✓ Page {i+1}/{len(pages)} → {minio_key}")
+        if not img_resp or img_resp.status_code != 200:
+            print(f"    ✗ Bỏ qua page {i+1} do không thể tải ảnh.")
+            continue
 
-        print(f"    ✓ All {len(pages)} pages uploaded for chapter {chapter_id}")
+        ext = page_filename.rsplit(".", 1)[-1] if "." in page_filename else "jpg"
+        minio_key = f"chapters/{chapter_id}/{i+1:04d}.{ext}"
+        content_type = f"image/{ext}" if ext in ("jpg", "jpeg", "png", "webp") else "image/jpeg"
+        await minio_service.upload_bytes(img_resp.content, minio_key, content_type)
+        print(f"    ✓ Page {i+1}/{len(pages)} → {minio_key}")
+
+    print(f"    ✓ Processed {1 if page_index else len(pages)} pages for chapter {chapter_id}")
 
 
-async def batch_all_covers():
+async def download_all_chapters_for_manga(manga_id: str, client: httpx.AsyncClient):
+    """Lấy danh sách các chapter của 1 manga và tải tất cả trang truyện về."""
+    print(f"  [manga] Fetching all chapters for manga {manga_id}...")
+    try:
+        resp = await client.get(
+            f"{MANGADEX_API}/manga/{manga_id}/feed",
+            params={"limit": 500, "order[chapter]": "asc"}
+        )
+        if resp.status_code != 200:
+            print(f"    ✗ Failed to fetch chapter list: HTTP {resp.status_code}")
+            return
+            
+        data = resp.json()
+        chapters = data.get("data", [])
+        print(f"  Found {len(chapters)} chapters. Starting batch download...")
+        
+        for idx, ch in enumerate(chapters):
+            ch_id = ch["id"]
+            ch_num = ch.get("attributes", {}).get("chapter", "Unknown")
+            print(f"\n  ➤ Downloading Chapter {ch_num} (ID: {ch_id}) [{idx+1}/{len(chapters)}]")
+            await download_chapter_pages(ch_id, client)
+            await asyncio.sleep(0.5) # Rate limiting
+            
+    except Exception as e:
+        print(f"    ✗ Error fetching manga feed: {repr(e)}")
+
+
+async def batch_all_covers(client: httpx.AsyncClient):
     """Download covers for ALL manga in DB that don't have a MinIO cover yet."""
-    await minio_service.ensure_bucket()
-    
-    # Kéo HTTP Client ra ngoài để Connection Pooling & gắn Headers, kích hoạt trust_env
-    async with httpx.AsyncClient(timeout=30, headers=HEADERS, trust_env=True) as client:
-        async with AsyncSessionLocal() as db:
-            result = await db.execute(select(Manga.MangaId))
-            manga_ids = [str(r) for (r,) in result.all()]
-            print(f"Found {len(manga_ids)} manga in DB")
+    async with AsyncSessionLocal() as db:
+        result = await db.execute(select(Manga.MangaId))
+        manga_ids = [str(r) for (r,) in result.all()]
+        print(f"Found {len(manga_ids)} manga in DB")
 
-            for i, mid in enumerate(manga_ids):
-                try:
-                    await download_cover_for_manga(mid, db, client)
-                except Exception as e:
-                    # In rõ repr(e) để xem lỗi timeout hay socket
-                    print(f"    ✗ Error: {repr(e)}")
-                
-                # Tôn trọng API rate limit của MangaDex
-                await asyncio.sleep(0.25)
+        for i, mid in enumerate(manga_ids):
+            try:
+                await download_cover_for_manga(mid, db, client)
+            except Exception as e:
+                # In rõ repr(e) để xem lỗi timeout hay socket
+                print(f"    ✗ Error: {repr(e)}")
+            
+            # Tôn trọng API rate limit của MangaDex
+            await asyncio.sleep(0.25)
 
-                if (i + 1) % 10 == 0:
-                    print(f"  Progress: {i+1}/{len(manga_ids)}")
+            if (i + 1) % 10 == 0:
+                print(f"  Progress: {i+1}/{len(manga_ids)}")
 
 
 async def main():
     parser = argparse.ArgumentParser(description="MangaDex Image Downloader → MinIO")
-    parser.add_argument("--cover", type=str, help="Download cover for a specific manga ID")
-    parser.add_argument("--chapter", type=str, help="Download pages for a specific chapter ID")
-    parser.add_argument("--all-covers", action="store_true", help="Batch download covers for all manga")
+    parser.add_argument("--cover", type=str, metavar="MANGA_ID", help="Download cover for a specific manga ID")
+    parser.add_argument("--chapter", type=str, metavar="CHAPTER_ID", help="Download pages for a specific chapter ID")
+    parser.add_argument("--page-index", type=int, metavar="PAGE_NUM", help="Specific page number (1-based) to download (use with --chapter)")
+    parser.add_argument("--manga-chapters", type=str, metavar="MANGA_ID", help="Download all chapter pages for a specific manga ID")
+    parser.add_argument("--all-covers", action="store_true", help="Batch download covers for all manga in local DB")
     args = parser.parse_args()
 
     await minio_service.ensure_bucket()
 
-    if args.cover:
-        async with httpx.AsyncClient(timeout=30, headers=HEADERS, trust_env=True) as client:
+    # Mở 1 session client chung cho mọi tác vụ để tái sử dụng connection pool
+    async with httpx.AsyncClient(timeout=30, headers=HEADERS, trust_env=True) as client:
+        if args.cover:
             async with AsyncSessionLocal() as db:
                 await download_cover_for_manga(args.cover, db, client)
-    elif args.chapter:
-        await download_chapter_pages(args.chapter)
-    elif args.all_covers:
-        await batch_all_covers()
-    else:
-        parser.print_help()
+        elif args.chapter:
+            await download_chapter_pages(args.chapter, client, page_index=args.page_index)
+        elif args.manga_chapters:
+            await download_all_chapters_for_manga(args.manga_chapters, client)
+        elif args.all_covers:
+            await batch_all_covers(client)
+        else:
+            parser.print_help()
 
 
 if __name__ == "__main__":

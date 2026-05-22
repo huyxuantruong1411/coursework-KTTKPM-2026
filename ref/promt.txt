@@ -1,0 +1,16 @@
+full scan toàn bộ project hiện tại đính kèm gồm backend lẫn app frontend client của tôi để dựa vào đó cung cấp thêm một số tính năng mới mà app flutter chưa tận dụng triệt để hết các api của backend, ví dụ các chức năng về edit tài khoản user, mật khẩu, email,... xem được biểu đồ đọc cá nhân,...
+
+
+
+
+
+Bổ sung các chức năng còn thiếu để aply một cách phù hợp vào app flutter
+
+
+
+Bổ sung các giao diện/chức năng quản lý của admin
+
+
+
+Cung cấp thêm một cơ chế fallback mới cho app flutter trong trường hợp api backend không trả về được các url cho các ảnh covers/ảnh trang truyện. Bằng cách thay thế sử dụng mangadex api cho một số tác vụ hiển thị và đọc truyện tranh (tất nhiên vẫn lưu lại lịch sử, chỉ cần có uuid của bộ manga tương ứng thôi). Tức là giải quyết triệt để tình trạng napp flutter không load được covers hoặc ảnh trang truyện. Vấn đề hiện tại là do minio của tôi chỉ có mỗi một số ít covers art được tải xuống (còn thiếu rất nhiều bộ trong db nhưng chưa có covers art trong minio), và tôi cũng chưa có bất kỳ ảnh trang truyện nào trong minio, nên bắt buộc phải sử dụng api của mangadex như một biện pháp thay thế cho các tác vụ liên quan đến xem hoặc hiển thị ảnh. Đồng thời, biện pháp cuối cùng nhất nếu gặp api của mangadex chặn ip của tôi thì hãy dùng ảnh mặc định (phục vụ cho việc demo)
+

@@ -1,4 +1,13 @@
 """FastAPI application entry point."""
+import sys
+from pathlib import Path
+
+# ── Add MangaTranslator to sys.path so core.* modules are importable ──
+_MT_DIR = Path(__file__).resolve().parent / "MangaTranslator"
+if _MT_DIR.is_dir() and str(_MT_DIR) not in sys.path:
+    sys.path.append(str(_MT_DIR))
+
+
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -40,7 +49,7 @@ app.add_middleware(
 from app.api.v1 import auth, manga, chapter, comment, rating, history, cover, tag, admin, proxy
 from app.api.v1 import analytics, recommendation, creators
 from app.api.v1 import list as list_router
-from app.api.v1 import translate as translate_router 
+from app.services import translate_service
 
 app.include_router(auth.router,    prefix="/api/v1/auth",     tags=["Authentication"])
 app.include_router(manga.router,   prefix="/api/v1/mangas",   tags=["Manga Catalog"])
@@ -56,7 +65,7 @@ app.include_router(proxy.router,   prefix="/api/v1/proxy",    tags=["MangaDex Pr
 app.include_router(analytics.router, prefix="/api/v1/analytics", tags=["Analytics"])
 app.include_router(recommendation.router, prefix="/api/v1/recommendations", tags=["Recommendations"])
 app.include_router(creators.router, prefix="/api/v1/creators", tags=["Creators"])
-app.include_router(translate_router.router, prefix="/api/v1", tags=["Translation"])
+app.include_router(translate_service.router, prefix="/api/v1/translate", tags=["Translation"])
 
 from app.api.v1 import chat as chat_router, friends as friends_router
 app.include_router(chat_router.router, prefix="/api/v1/chat", tags=["Chat"])

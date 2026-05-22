@@ -12,12 +12,13 @@ async def main():
         hashed_password = get_password_hash(admin_password)
 
         new_admin = User(
-            UserId=admin_id,
-            Username=admin_username,
-            Email="admin@mangalibrary.local",
-            PasswordHash=hashed_password,
-            Role="admin"
-        )
+        UserId=admin_id,
+        Username=admin_username,
+        Email="admin@mangalibrary.local",
+        PasswordHash=hashed_password,
+        Role="admin",
+        IsVerified=True,  # ← THÊM
+    )
         db.add(new_admin)
         await db.commit()
         print(f"✅ Admin account created successfully!")

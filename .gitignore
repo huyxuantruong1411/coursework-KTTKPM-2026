@@ -26,7 +26,6 @@ dist/
 downloads/
 eggs/
 .eggs/
-lib/
 lib64/
 parts/
 sdist/
@@ -38,6 +37,8 @@ wheels/
 venv/
 .venv/
 .env
+project_dump.txt
+
 
 # ========================
 # Node.js / Next.js (manga_frontend)
@@ -54,6 +55,8 @@ build/
 .env.development.local
 .env.test.local
 .env.production.local
+project_dump.md
+
 
 # ========================
 # Flutter / Dart (ktgk_2324802010044)
@@ -71,3 +74,8 @@ macos/Flutter/ephemeral/
 macos/Runner/Configs/AppInfo.xcconfig
 linux/flutter/ephemeral/
 windows/flutter/ephemeral/
+flutter_project_dump.txt
+
+project_dump.md
+project_dump.txt
+flutter_project_dump.txt
